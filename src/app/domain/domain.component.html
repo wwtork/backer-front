@@ -1,0 +1,12 @@
+<div class="wrapper middle-wrapper">
+  <div class="top">Укажите доменное имя сайта</div>
+  <div class="middle">
+    <form (ngSubmit)="domainForm.form.valid && onSubmit()" #domainForm="ngForm" novalidate>
+      <div class="name-input">Домен</div>
+      <label class="input-line validate">
+        <input type="url" [(ngModel)]="hostingSettings.domain" #domain="ngModel" name="domain" placeholder="domen.ru" required value="{{ hostingSettings.domain }}">
+      </label>
+      <input type="submit" class="btn-orn" value="Далее" name="submit">
+    </form>
+  </div>
+</div>

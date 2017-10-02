@@ -1,0 +1,45 @@
+<div class="wrapper middle-wrapper">
+    <div class="top">
+        Загрузите SSL сертификат
+    </div>
+    <div class="middle">
+        <div class="text-after-something">
+            Если вы не знаете где находятся ключи вашего SSL сертификата, можете заказать
+            <a href="#">выпуск бесплатного SSL от Let’s Encrypt</a>
+        </div>
+        <div class="load-certificate-file">
+            <div class="txt">
+                <strong>Загрузите файлы* SSL:</strong>
+                <ol>
+                    <li>Основной сертификат (*.crt)</li>
+                    <li>Промежуточные сертификаты (intermediate certificates *.crt)</li>
+                    <li>Ключ (Private Key, *.key)</li>
+                </ol>
+                <div class="note"><span class="red">*</span> - или 1 файл в формате *.pem</div>
+            </div>
+            <div class="upload-block">
+                <form id="upload" method="post" action="" enctype="multipart/form-data">
+                    <div class="drop-list">
+                        <div id="drop" class="drop-field">
+                            <div class="title-field">
+                                Перетащите файлы сюда
+                                <span>или</span>
+                            </div>
+                            <a>Выберите файлы</a>
+                            <input type="file" name="upl" multiple/>
+                        </div>
+
+                        <ul class="list-file-load">
+                            <!-- загрузки будут показаны здесь -->
+                        </ul>
+                    </div>
+                    <input type="submit" class="btn-orn" value="Далее" data-fancybox data-src="#check-placement-2">
+                    <div class="link-after-something">
+                        <a href="#skip-step" data-fancybox>Пропустить этап и перейти дальше</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

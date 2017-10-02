@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WindowComponent } from './window.component';
+import { BackupActivationComponent } from './backup-activation.component';
 
-describe('WindowComponent', () => {
-  let component: WindowComponent;
-  let fixture: ComponentFixture<WindowComponent>;
+describe('BackupActivationComponent', () => {
+  let component: BackupActivationComponent;
+  let fixture: ComponentFixture<BackupActivationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WindowComponent ]
+      declarations: [ BackupActivationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WindowComponent);
+    fixture = TestBed.createComponent(BackupActivationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

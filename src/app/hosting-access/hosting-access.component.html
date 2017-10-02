@@ -1,0 +1,33 @@
+<div class="wrapper middle-wrapper">
+  <div class="top">Укажите доступ к хостингу</div>
+  <div class="middle">
+    <form (ngSubmit)="hostingAccessForm.form.valid && onSubmit()" #hostingAccessForm="ngForm" novalidate>
+      <span class="name-input">Адрес сервера (FTP/SFTP) <i class="icn-inform" data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus deserunt doloremque facilis odit quam quo sit veniam. A consequuntur cum doloribus enim esse explicabo itaque nesciunt, non qui sint unde. " data-balloon-pos="right" data-balloon-length="large"></i></span>
+
+      <label class="one-line validate">
+        <input type="text" [(ngModel)]="hostingSettings.hostAddress" #hostAddress="ngModel" name="hostAddress" placeholder="" required value="{{ hostingSettings.hostAddress }}">
+        <!--<span class="note">Вы не указали адрес сервера</span>-->
+      </label>
+
+      <span class="name-input">Имя пользователя</span>
+
+      <label class="one-line validate">
+        <input type="text" placeholder="">
+        <!--<span class="note">Вы не указали имя пользователя</span>-->
+      </label>
+
+      <span class="name-input">Пароль </span>
+      <label class="one-line novalidate">
+                            <span class="password-block">
+                                <input type="password" name="password" id="pass_id"  class="invalid-input" required>
+                                <span id="showpassword" class="showpassword"><img src="img/eye.png" alt=""></span>
+                            </span>
+        <span class="note">Вы не указали пароль</span>
+      </label>
+
+      <input type="submit" class="btn-orn" value="Подключить" data-fancybox data-src="#error">
+      <input type="submit" class="btn-orn" value="Подключить" data-fancybox data-src="#verification-accesses">
+      <div class="lost-step"><a href="#">Пропустить этап и перейти дальше</a></div>
+    </form>
+  </div>
+</div>

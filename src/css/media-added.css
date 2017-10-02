@@ -1,0 +1,5 @@
+@media (max-width: 480px) {
+    .bottom-wrapper.instruction-help .instruction {width: 100%;}
+    main.step-connection-main .bottom-wrapper.instruction-help .help {width: 100%;}
+    main.step-connection-main .bottom-wrapper.instruction-help {flex-direction: column;}
+}

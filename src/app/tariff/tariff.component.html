@@ -1,0 +1,16 @@
+<div class="tarif-chose">
+
+    <input type="radio" name="tarif">
+    <span class="name-tarif">{{ tariff.name }}</span>
+    <span class="price">{{ tariff.amount }} <i class="fa fa-rouble"></i>/мес.</span>
+    <ul class="list-composite">
+        <li>{{ tariff.siteLimit }} сайт</li>
+        <li>{{ tariff.sizeLimit }} для бэкапа</li>
+        <li>{{ tariff.cdnLimit }} CDN-трафика</li>
+        <li>{{ tariff.cdnCacheLimit }} CDN-кэша</li>
+    </ul>
+
+    <span class="bottom-label">
+        <a href="#">Что входит в тариф</a>
+    </span>
+</div>
