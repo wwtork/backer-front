@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../model/user";
 import {AuthService} from "../service/auth.service";
-
+import { Router } from '@angular/router';
+import {
+    FormBuilder,
+    FormGroup,
+    Validators,
+    AbstractControl
+} from '@angular/forms';
 @Component({
     selector: 'login-form',
     templateUrl: './login.component.html',
@@ -9,20 +15,25 @@ import {AuthService} from "../service/auth.service";
 })
 export class LoginComponent implements OnInit {
 
-    username:string;
-    password:string;
-    rememberme:boolean = true;
+    private model:User;
+    private form:FormGroup;
 
-    constructor(public authService: AuthService) {
+    constructor(public authService: AuthService, fb:FormBuilder) {
+        localStorage.clear();
+        this.model = new User();
+        this.form = fb.group({
+            website: ['', Validators.required],
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+            agreement: [false, Validators.requiredTrue]
+        })
     }
 
     onSubmit(form) {
-        let user:User = new User();
-        user.email = form.email;
-        user.password = form.password;
-        user.remember_me = form.rememberme;
-
-        this.authService.login(user);
+        this.model.email = form.email;
+        this.model.password = form.password;
+        this.model.remember_me = form.rememberme;
+        this.authService.login(this.model);
     }
 
     ngOnInit() {

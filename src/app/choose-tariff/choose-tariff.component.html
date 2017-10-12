@@ -1,11 +1,11 @@
 <div class="wrapper middle-wrapper tuning tuning-2 chose-tarif">
     <div class="top">Выберите себе подходящий тариф</div>
     <div class="middle">
-        <app-tariff *ngFor="let trf of tariffs" tariff="{{ trf }}"></app-tariff>
+        <app-tariff  (click)="selectTariff(tariff)" *ngFor="let trf of tariffs" tariff="{{ trf }}"></app-tariff>
         <div class="bottom-block-btn btn-block-tariff">
-            <a href="#free" class="btn-orn" data-fancybox>Далее</a>
-            <a href="#pay-now" class="btn-orn" data-fancybox>Оплатить</a>
-            <a href="#submit" class="btn-orn" data-fancybox>Оставить заявку</a>
+            <button (click)="next()" href="#free" class="btn-orn" data-fancybox>Далее</button>
+            <button (click)="pay()" href="#pay-now" class="btn-orn" data-fancybox [attr.disabled]="currentTariff?null:''">Оплатить</button>
+            <button (click)="placeRequest()" href="#submit" class="btn-orn" data-fancybox [attr.disabled]="currentTariff?null:''">Оставить заявку</button>
         </div>
     </div>
 </div>

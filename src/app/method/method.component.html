@@ -1,33 +1,10 @@
-<main>
-    <div class="container">
-        <div class="row">
-            <div class="wrapper">
-                <div class="top">Выберите способ подключения</div>
-                <div class="left">
-                    <div class="icn-block">
-                        <img src="assets/images/icn-personal.png" alt="">
-                    </div>
-                    <div class="name">Самостоятельно</div>
-                    <div class="price">0 руб</div>
-                    <div class="bottom min-height">
-                        <p>Если у вас есть немного времени и вы хотите понять как устроена система WSR, тогда этот
-                            вариант для вас.</p>
-                        <a href="#" class="btn-blue">Подключить сайт</a>
-                    </div>
-                </div>
-                <div class="right">
-                    <div class="icn-block">
-                        <img src="assets/images/icn-forkay.png" alt="">
-                    </div>
-                    <div class="name">“Под ключ”</div>
-                    <div class="price">2 000 руб</div>
-                    <div class="bottom min-height">
-                        <p>Для самых занятых! Вам ничего не нужно будет настраивать, необходимо
-                            только ответить на пару вопросов нашего специалиста, который свяжется с вами по e-mail.</p>
-                        <a href="#" class="btn-orn">Заказать подключение</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    <div class="icn-block">
+        <img src="assets/images/icn-{{ method.slug }}.png" alt="">
     </div>
-</main>
+    <div class="name">{{ method.name }}</div>
+    <div class="price">{{ method.price }}</div>
+    <div class="bottom min-height">
+        <p>{{ method.description }}</p>
+        <button href="#" class="btn-blue">Подключить сайт</button>
+    </div>

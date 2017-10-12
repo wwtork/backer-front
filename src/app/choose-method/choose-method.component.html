@@ -1,0 +1,12 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="wrapper">
+        <div class="top">Выберите способ подключения</div>
+        <div *ngFor="let method of methods; let i = index" [ngClass]="{true:'left', false:'right'}[i % 2 == 0]">
+          <app-method (click)="selectMethod(method)" [method]="method"></app-method>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

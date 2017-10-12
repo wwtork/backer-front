@@ -1,4 +1,4 @@
-<div class="wrapper middle-wrapper">
+<div class="wrapper middle-wrapper ssl-certificate">
     <div class="top">
         Загрузите SSL сертификат
     </div>
@@ -18,24 +18,37 @@
                 <div class="note"><span class="red">*</span> - или 1 файл в формате *.pem</div>
             </div>
             <div class="upload-block">
-                <form id="upload" method="post" action="" enctype="multipart/form-data">
+                <form id="upload" method="post" action="" enctype="multipart/form-data"
+                      (ngSubmit)="sslDownloadForm.form.valid && onSubmit()" #sslDownloadForm="ngForm" novalidate>
                     <div class="drop-list">
                         <div id="drop" class="drop-field">
-                            <div class="title-field">
-                                Перетащите файлы сюда
-                                <span>или</span>
-                            </div>
-                            <a>Выберите файлы</a>
-                            <input type="file" name="upl" multiple/>
+                            <ng4-files-drop (filesSelect)="filesSelect($event)">
+                                <div class="title-field">
+                                    Перетащите файлы сюда
+                                </div>
+                            </ng4-files-drop>
+                            или
+                            <ng4-files-click (filesSelect)="filesSelect($event)">
+                                <a>Выберите файлы</a>
+                            </ng4-files-click>
                         </div>
 
-                        <ul class="list-file-load">
-                            <!-- загрузки будут показаны здесь -->
+                        <ul *ngIf="selectedFiles" class="list-file-load">
+                            <li *ngFor="let file of selectedFiles">
+                                <div style="display:inline;width:48px;height:48px;">
+                                    <canvas width="48" height="48px"></canvas>
+                                    <input type="text" value="0" data-width="48" data-height="48" data-fgcolor="#6ab5ca"
+                                           data-readonly="1" data-bgcolor="#3e4043" readonly="readonly"
+                                           style="width: 28px; height: 16px; position: absolute; vertical-align: middle; margin-top: 16px; margin-left: -38px; border: 0px; background: none; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; font-size: 9px; line-height: normal; font-family: Arial; text-align: center; color: rgb(106, 181, 202); padding: 0px; -webkit-appearance: none;">
+                                </div>
+                                <p>{{ file.name }}<i>{{ file.size }}</i>
+                                </p><span></span>
+                            </li>
                         </ul>
                     </div>
                     <input type="submit" class="btn-orn" value="Далее" data-fancybox data-src="#check-placement-2">
                     <div class="link-after-something">
-                        <a href="#skip-step" data-fancybox>Пропустить этап и перейти дальше</a>
+                        <a (click)="onSkip()" href="#skip-step" data-fancybox>Пропустить этап и перейти дальше</a>
                     </div>
                 </form>
             </div>

@@ -701,10 +701,10 @@
     main.enter-ip .middle-wrapper .middle .input-block {width: 195px;}
     main.enter-ip .middle-wrapper .middle .text-after-something {font-size: 15px;}
     .ui-selectmenu-open{left: 50%!important;-webkit-transform: translate(-50%);transform: translate(-50%);}
-    main.ssl-certificate .middle-wrapper .middle .download-load-certificate + .text-after-something span{padding-left: 25px; font-size: 15px;text-align: left;}     
+    main .ssl-certificate.middle-wrapper .middle .download-load-certificate + .text-after-something span{padding-left: 25px; font-size: 15px;text-align: left;}
     .attention-icn-blue-mini {position: absolute;top: 20px;}
-    main.ssl-certificate .middle-wrapper .middle .text-after-something {font-size: 15px;}
-    main.ssl-certificate .middle-wrapper .middle .download-load-certificate + .text-after-something {position: relative}
+    main .ssl-certificate.middle-wrapper .middle .text-after-something {font-size: 15px;}
+    main .ssl-certificate.middle-wrapper .middle .download-load-certificate + .text-after-something {position: relative}
     .md-620-board {max-width: 95%}
     .md-620-board .bottom-polibtn-block {width: 100%;padding: 10px 0 0;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;}
     .md-620-board .bottom-polibtn-block input {margin-left: auto;margin-right: auto;}
@@ -713,7 +713,7 @@
     .md .title-md {font-size: 24px;line-height: 1.4;}
     .md-620-board {padding-bottom: 40px!important;}
     main.step-connection-main .middle-wrapper .middle input[type=submit] {width: 100%;}
-    main.ssl-certificate .middle-wrapper .middle .load-certificate-file li {position: relative;padding-left: 40px;font-size: 14px;}
+    main .ssl-certificate.middle-wrapper .middle .load-certificate-file li {position: relative;padding-left: 40px;font-size: 14px;}
     .load-certificate-file li:before {position: absolute;left: 10px;top: 2px;}
     main .dns.middle-wrapper .top{padding-left: 10px;padding-right: 10px;}
     main .dns.middle-wrapper .middle .list-dns-block ul li.name-table {font-size: 14px;}

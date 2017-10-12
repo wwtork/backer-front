@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -33,6 +32,11 @@ import { TariffComponent } from './tariff/tariff.component';
 import {BackendDataService} from "./service/backend-data.service";
 import { HostingStateDirective } from './hosting-state.directive';
 import {GlobalDataService} from "./service/global-data.service";
+import { ChooseMethodComponent } from './choose-method/choose-method.component';
+import { Ng4FilesModule } from 'angular4-files-upload/src/app/ng4-files';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { VideoBlockComponent } from './video-block/video-block.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //const childRoutes:Routes = [
 //    {path: '', redirectTo: 'domain', pathMatch: 'full'},
 //    {path: 'domain', component: DomainComponent },
@@ -46,11 +50,10 @@ import {GlobalDataService} from "./service/global-data.service";
 //    {path: 'backup-activation', component: BackupActivationComponent }
 //];
 const routes:Routes = [
-    {path: '', redirectTo: 'connection-wizard', pathMatch: 'full'},
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'method', component: MethodComponent, canActivate: [LoggedInGuard]},
-    {path: 'connection-wizard', component: ConnectWizardComponent}
+    {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [ LoggedInGuard ]}
 ];
 @NgModule({
     declarations: [
@@ -75,13 +78,20 @@ const routes:Routes = [
         EmergencyHelpComponent,
         InstructionComponent,
         TariffComponent,
-        HostingStateDirective
+        HostingStateDirective,
+        ChooseMethodComponent,
+        ProgressBarComponent,
+        VideoBlockComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(routes)
+        JsonpModule,
+        Ng4FilesModule,
+        RouterModule.forRoot(routes),
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [
         AUTH_PROVIDERS,
@@ -100,6 +110,7 @@ const routes:Routes = [
         HostingAccessComponent,
         ChooseTariffComponent,
         BackupActivationComponent,
+        ChooseMethodComponent
     ],
 })
 export class AppModule {

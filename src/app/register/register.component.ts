@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../model/user";
 import {
-    Form,
-    FormGroup
+    FormBuilder,
+    FormGroup,
+    Validators,
+    AbstractControl
 } from '@angular/forms';
+import {AuthService} from "../service/auth.service";
 @Component({
     selector: 'register-form',
     templateUrl: './register.component.html',
@@ -15,37 +18,54 @@ export class RegisterComponent implements OnInit {
     submitted:boolean;
     complexity:string;
     show_password:boolean;
+    form:FormGroup;
+    private showpromo = false;
 
-    constructor() {
+    constructor(private authService:AuthService, fb:FormBuilder) {
+        localStorage.clear();
         this.show_password = false;
         this.submitted = false;
         this.complexity = '';
 
         this.model = new User();
+
+        this.form = fb.group({
+            website: ['', Validators.required],
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+            agreement: [false, Validators.requiredTrue]
+        })
     }
 
     ngOnInit() {
     }
 
-
-    onSubmit() {
-        this.submitted = true;
+    togglePromo(){
+        this.showpromo = !this.showpromo;
     }
 
-    showPassword(){
+
+    onSubmit(form) {
+        this.model.email = form.email;
+        this.model.password = form.password;
+        this.model.remember_me = form.rememberme;
+        this.authService.register(this.model);
+    }
+
+    showPassword() {
         this.show_password = !this.show_password;
     }
 
-    getComplexityClass(){
+    getComplexityClass() {
         return this.complexity;
     }
 
-    getComplexityText(){
+    getComplexityText() {
         return this.complexity;
     }
 
-    updateComplexity(){
-        if(this.model.password)
+    updateComplexity() {
+        if (this.model.password)
             this.complexity = this.checkComplexity(this.model.password);
     }
 
@@ -94,7 +114,7 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    between(c, n1, n2){
+    between(c, n1, n2) {
         return c > n1 && c <= n2
     }
 

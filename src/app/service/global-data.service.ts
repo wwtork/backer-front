@@ -11,13 +11,27 @@ import {ChooseTariffComponent} from "../choose-tariff/choose-tariff.component";
 import {BackupActivationComponent} from "../backup-activation/backup-activation.component";
 import {IHostingStateComponent} from "../interface/hosting-state-component";
 import {HostingStateComponent} from "../model/hosting-state-component";
+import {ChooseMethodComponent} from "../choose-method/choose-method.component";
 const HOSTING_STATE_KEY = 'hosting_state';
 const HOSTING_STAGE_KEY = 'hosting_stage';
-const DEFAULT_STAGE = 0;
+const DEFAULT_STAGE = 'choose-method';
 const DEFAULT_STATE = 'domain';
 const HOSTING_KEY = 'hosting';
 @Injectable()
 export class GlobalDataService {
+
+    private stages = {
+        'ssl-download': new HostingStateComponent(SslDownloadComponent, 'settings'),
+        'domain': new HostingStateComponent(DomainComponent, 'domain'),
+        'hosting-access': new HostingStateComponent(HostingAccessComponent, 'domain'),
+        'choose-tariff': new HostingStateComponent(ChooseTariffComponent, 'tariff'),
+        'backup-activation': new HostingStateComponent(BackupActivationComponent, 'settings'),
+        'firewall-activation': new HostingStateComponent(FirewallActivationComponent, 'settings'),
+        'ssl-check': new HostingStateComponent(SslCheckComponent, 'settings'),
+        'hosting-state': new HostingStateComponent(UpdateDnsComponent, 'settings'),
+        'auto-setup': new HostingStateComponent(AutoSetupComponent, 'settings'),
+        'choose-method': new HostingStateComponent(ChooseMethodComponent, 'settings'),
+    };
 
     constructor() {
     }
@@ -27,8 +41,8 @@ export class GlobalDataService {
         return state !== null ? state : DEFAULT_STATE;
     }
 
-    getHostingStage():number {
-        var stage = parseInt(localStorage.getItem(HOSTING_STAGE_KEY), 10);
+    getHostingStage():string {
+        var stage = localStorage.getItem(HOSTING_STAGE_KEY);
         return stage ? stage : DEFAULT_STAGE;
     }
 
@@ -45,25 +59,16 @@ export class GlobalDataService {
         localStorage.setItem(HOSTING_KEY, JSON.stringify(hosting));
     }
 
-    getStages():Array<IHostingStateComponent> {
-        return [
-            new HostingStateComponent(DomainComponent, 'domain'),
-            new HostingStateComponent(HostingAccessComponent, 'domain'),
-            new HostingStateComponent(ChooseTariffComponent, 'tariff'),
-            new HostingStateComponent(BackupActivationComponent, 'settings'),
-            new HostingStateComponent(FirewallActivationComponent, 'settings'),
-            new HostingStateComponent(SslCheckComponent, 'settings'),
-            new HostingStateComponent(SslDownloadComponent, 'settings'),
-            new HostingStateComponent(UpdateDnsComponent, 'settings'),
-            new HostingStateComponent(AutoSetupComponent, 'settings'),
-        ];
+    getStages():Object {
+        return this.stages;
     }
 
     setHostingStage(stage:Number):void {
         localStorage.setItem(HOSTING_STAGE_KEY, stage.toString());
     }
 
-    getStage(stage:number = null):IHostingStateComponent {
+    getStage(stage:string = null):IHostingStateComponent {
+        console.log(this.getStages()[stage == null ? this.getHostingStage() : stage]);
         return this.getStages()[stage == null ? this.getHostingStage() : stage];
     }
 }

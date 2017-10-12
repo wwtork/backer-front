@@ -18,8 +18,8 @@
             <i class="attention-icn-blue-mini"></i> <span>SSL от Let's Encrypt – бесплатно и с автоматическим продлением.</span>
         </div>
         <div class="bottom-block-btn">
-            <a href="#check-placement" class="btn-orn" data-fancybox>Далее</a>
+            <button (click)="onSubmit()" class="btn-orn" data-fancybox>Далее</button>
         </div>
-        <div class="link-after-something"><a href="#skip-step" data-fancybox>Пропустить этап и перейти дальше</a></div>
+        <div class="link-after-something"><a href="#skip-step" (click)="onSkip()" data-fancybox>Пропустить этап и перейти дальше</a></div>
     </div>
 </div>

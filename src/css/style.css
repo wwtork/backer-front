@@ -169,7 +169,7 @@ iframe {
 
 /*General styles - END */
 /*Buttons style - START */
-a[class*="btn-"], input[class*="btn-"] {
+button[class*="btn-"], a[class*="btn-"], input[class*="btn-"] {
     border-radius: 3px;
     width: 263px;
     height: 45px;
@@ -184,7 +184,7 @@ a[class*="btn-"], input[class*="btn-"] {
     transition: all 0.3s ease-out 0s;
 }
 
-input[class*="btn-"] {
+button[class*="btn-"], input[class*="btn-"] {
     font: bold 16px/44px "Raleway", "ProximaNova", sans-serif;
 }
 
@@ -197,7 +197,16 @@ a[class*="btn-"]:hover, a[class*="btn-"]:focus, input[class*="btn-"]:hover, inpu
     box-shadow: none;
 }
 
-input[class*="btn-"]:disabled {
+button[class*="btn-"]:hover, button[class*="btn-"]:focus {
+    color: #ffffff;
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+button[class*="btn-"]:disabled, input[class*="btn-"]:disabled {
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color: #fb9e39;
@@ -219,23 +228,23 @@ input[class*="btn-"]:disabled {
     background-color: #fb9e39;
 }
 
-a.btn-gray {
+button.btn-gray, a.btn-gray {
     background-color: #e6e6e6;
     color: #9a9a9a;
 }
 
-a.btn-gray:hover {
+button.btn-gray:hover, a.btn-gray:hover {
     background-color: #9a9a9a;
     color: #e6e6e6;
 }
 
-a.btn-def-blue, input.btn-def-blue {
-    background-color: #ffffff;
-    color: #59ADC7;
-    border: 1px solid #59ADC7;
-}
+a.btn-def-blue, button.btn-def-blue, input.btn-def-blue {
+     background-color: #ffffff;
+     color: #59ADC7;
+     border: 1px solid #59ADC7;
+ }
 
-a.btn-def-blue:hover, input.btn-def-blue:hover, a.btn-def-blue:focus {
+a.btn-def-blue:hover, button.btn-def-blue:hover, input.btn-def-blue:hover, a.btn-def-blue:focus {
     background-color: #59ADC7 !important;
     color: #ffffff;
 }
@@ -2440,74 +2449,74 @@ main.enter-ip .bottom-wrapper.instruction-help {
     justify-content: space-between;
 }
 
-main.ssl-certificate .middle-wrapper .middle {
+main .ssl-certificate.middle-wrapper .middle {
     width: 100%;
     margin: 0;
     padding: 0 70px;
 }
 
-main.ssl-certificate .middle-wrapper .middle .text-after-something {
+main .ssl-certificate.middle-wrapper .middle .text-after-something {
     font-size: 16px;
     padding-bottom: 30px;
 }
 
-main.ssl-certificate .middle-wrapper .middle .text-after-something strong {
+main .ssl-certificate.middle-wrapper .middle .text-after-something strong {
     display: block;
 }
 
-main.ssl-certificate .middle-wrapper .middle .load-certificate-file {
+main .ssl-certificate.middle-wrapper .middle .load-certificate-file {
     text-align: left;
 }
 
-main.ssl-certificate .middle-wrapper .middle .load-certificate-file strong {
+main .ssl-certificate.middle-wrapper .middle .load-certificate-file strong {
     display: inline-block;
     margin-bottom: 10px;
     font-size: 16px;
 }
 
-main.ssl-certificate .middle-wrapper .middle .load-certificate-file li {
+main .ssl-certificate.middle-wrapper .middle .load-certificate-file li {
     font-size: 16px;
 }
 
-main.ssl-certificate .middle-wrapper .middle .load-certificate-file .note {
+main .ssl-certificate.middle-wrapper .middle .load-certificate-file .note {
     font-size: 14px;
     line-height: 36px;
     border-top: 1px solid #c1c1c1;
 }
 
-main.ssl-certificate .middle-wrapper .middle .load-certificate-file .note span.red {
+main .ssl-certificate.middle-wrapper .middle .load-certificate-file .note span.red {
     font-weight: 700;
 }
 
-main.ssl-certificate .middle-wrapper .middle .download-load-certificate a {
+main .ssl-certificate.middle-wrapper .middle .download-load-certificate a {
     display: inline-block;
     width: 100%;
     font-size: 16px;
 }
 
-main.ssl-certificate .middle-wrapper .middle .download-load-certificate a.btn-blue {
+main .ssl-certificate.middle-wrapper .middle .download-load-certificate a.btn-blue {
     width: 225px;
 }
 
-main.ssl-certificate .middle-wrapper .middle .download-load-certificate + .text-after-something {
+main .ssl-certificate.middle-wrapper .middle .download-load-certificate + .text-after-something {
     padding: 10px 0 0;
     margin: 35px 0 0;
     border-top: 1px solid #c1c1c1;
 }
 
-main.ssl-certificate .middle-wrapper .middle .download-load-certificate + .text-after-something span {
+main .ssl-certificate.middle-wrapper .middle .download-load-certificate + .text-after-something span {
     display: inline-block;
     vertical-align: middle;
 }
 
-main.ssl-certificate .middle-wrapper .middle .download-load-certificate span {
+main .ssl-certificate.middle-wrapper .middle .download-load-certificate span {
     display: inline-block;
     width: 100%;
     font-size: 16px;
     padding: 18px 0 15px;
 }
 
-main.ssl-certificate .middle-wrapper .middle .bottom-block-btn {
+main .ssl-certificate.middle-wrapper .middle .bottom-block-btn {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;

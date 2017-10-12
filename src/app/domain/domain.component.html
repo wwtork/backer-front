@@ -3,7 +3,7 @@
   <div class="middle">
     <form (ngSubmit)="domainForm.form.valid && onSubmit()" #domainForm="ngForm" novalidate>
       <div class="name-input">Домен</div>
-      <label class="input-line validate">
+      <label class="input-line" [ngClass]="{true:'validate', false:'novalidate'}[domain.valid]">
         <input type="url" [(ngModel)]="hostingSettings.domain" #domain="ngModel" name="domain" placeholder="domen.ru" required value="{{ hostingSettings.domain }}">
       </label>
       <input type="submit" class="btn-orn" value="Далее" name="submit">

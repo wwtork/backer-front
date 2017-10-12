@@ -5,7 +5,6 @@ export class HostingStage {
     public parentComponent:ConnectWizardComponent;
 
     onSubmit(){
-        this.hostingSettings.stage+=1;
         this.parentComponent.nextStage();
     }
 }

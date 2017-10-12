@@ -10,6 +10,11 @@ export class FirewallActivationComponent extends HostingStage implements OnInit 
 
   constructor() { super(); }
 
+  onAcceptSubmit(){
+    this.hostingSettings.firewallSupport = true;
+    this.onSubmit();
+  }
+
   ngOnInit() {
   }
 
