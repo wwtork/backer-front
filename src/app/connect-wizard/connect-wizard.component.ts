@@ -33,6 +33,8 @@ export class ConnectWizardComponent implements OnInit {
 
     chooseComponent(){
         let stageComponent:IHostingStateComponent = this.globalData.getStage(this.hostingSettings.stage);
+        console.log(this.hostingSettings.stage);
+        console.log(stageComponent);
         this.state = stageComponent.state;
         this.component = stageComponent.component;
     }

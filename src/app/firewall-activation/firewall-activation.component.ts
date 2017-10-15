@@ -12,6 +12,12 @@ export class FirewallActivationComponent extends HostingStage implements OnInit 
 
   onAcceptSubmit(){
     this.hostingSettings.firewallSupport = true;
+    this.hostingSettings.stage = 'auto-setup';
+    this.onSubmit();
+  }
+
+  onSkip(){
+    this.hostingSettings.stage = 'auto-setup';
     this.onSubmit();
   }
 

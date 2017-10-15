@@ -1,20 +1,26 @@
-import { Input, Component, OnInit } from '@angular/core';
+import { Input, EventEmitter, Output, Component, OnInit } from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
 import {Method} from "../model/method";
 
 @Component({
-  selector: 'app-method',
-  templateUrl: './method.component.html',
-  styleUrls: ['./method.component.css']
+    selector: 'app-method',
+    templateUrl: './method.component.html',
+    styleUrls: ['./method.component.css']
 })
 export class MethodComponent implements OnInit {
 
-  @Input() method:Method;
+    @Input() method:Method;
+    @Output() buttonClick:EventEmitter<any>;
 
-  constructor() {
-  }
+    constructor() {
+        this.buttonClick = new EventEmitter();
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+    onClick() {
+        this.buttonClick.emit();
+    }
 
 }

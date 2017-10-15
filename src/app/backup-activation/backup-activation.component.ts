@@ -14,12 +14,12 @@ export class BackupActivationComponent extends HostingStage implements OnInit {
 
     onAcceptSubmit() {
         this.hostingSettings.backupSupport = true;
-        this.hostingSettings.stage = 'hosting_access';
+        this.hostingSettings.stage = 'hosting-access';
         this.onSubmit();
     }
 
     onSkip() {
-        this.hostingSettings.stage = 'auto_setup';
+        this.hostingSettings.stage = 'auto-setup';
         this.onSubmit();
     }
 

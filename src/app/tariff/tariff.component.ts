@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {Tariff} from "../model/tariff";
 
 @Component({
@@ -9,12 +9,17 @@ import {Tariff} from "../model/tariff";
 export class TariffComponent implements OnInit {
 
     @Input() tariff:Tariff;
+    @Output() buttonClick:EventEmitter<any>;
 
     constructor() {
-
+        this.buttonClick = new EventEmitter();
     }
 
     ngOnInit() {
+    }
+
+    onClick(){
+        this.buttonClick.emit();
     }
 
 }

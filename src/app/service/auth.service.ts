@@ -15,10 +15,10 @@ export class AuthService {
     login(user:User):boolean {
         this.backendDataService.post('login', user.getSerialized()).then((result:Response) => {
             if(result.status){
-                user.apiKey = result['apiKey'];
+                user = result['user'];
                 localStorage.setItem(USER_KEY, JSON.stringify(user));
                 this.router.navigate(['/connection-wizard']);
-                return result;
+                return user;
             }
             return false;
         }, (err) => {

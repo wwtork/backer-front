@@ -12,16 +12,16 @@ import {HostingStage} from "../model/hosting-stage";
 export class ChooseTariffComponent extends HostingStage implements OnInit {
 
     private tariffs:Array<Tariff>;
-    private currentTariffId:number;
+    private currentTariff:Tariff;
 
     constructor(private backendDataService:BackendDataService) {
         super();
+        console.log(this.hostingSettings);
         this.backendDataService.getTariffs().then((result) => {
             let tariffs = [];
                 for (let i in result) {
                     tariffs.push((new Tariff).fillFromJSON(result[i]));
                 }
-                console.log(tariffs);
                 this.setTariffs(tariffs);
             }
         );
@@ -34,27 +34,31 @@ export class ChooseTariffComponent extends HostingStage implements OnInit {
     ngOnInit() {
     }
 
-    selectTriff(tariff:Tariff){
-        this.currentTariffId = tariff.id;
+    selectTariff(tariff:Tariff){
+        this.currentTariff = tariff;
     }
 
 
     next() {
+        this.hostingSettings.stage = 'choose-method';
+        this.hostingSettings.tariffId = this.currentTariff.id;
         this.onSubmit();
     }
 
     pay() {
-        if(this.currentTariffId){
+        if(this.currentTariff){
             this.hostingSettings.tariffPay = true;
-            this.hostingSettings.tariffId = this.currentTariffId;
+            this.hostingSettings.tariffId = this.currentTariff.id;
+            this.hostingSettings.stage = 'choose-method';
             this.onSubmit();
         }
     }
 
     placeRequest() {
-        if(this.currentTariffId){
+        if(this.currentTariff){
             this.hostingSettings.tariffRequest = true;
-            this.hostingSettings.tariffId = this.currentTariffId;
+            this.hostingSettings.tariffId = this.currentTariff.id;
+            this.hostingSettings.stage = 'choose-method';
             this.onSubmit();
         }
     }

@@ -100,8 +100,8 @@ export class HostingSettings extends Serializable {
     private _sslFiles;
     private _tariffRequest:boolean = false;
     private _tariffPay:boolean = false;
-    private _backupSupport:boolean;
-    private _firewallSupport:boolean;
+    private _backupSupport:boolean = false;
+    private _firewallSupport:boolean = false;
     private _hostUsername:string;
     private _hostPassword:string;
     private _hostAddress:string;
@@ -109,4 +109,11 @@ export class HostingSettings extends Serializable {
     private _methodId:number;
     private _tariffId:number;
 
+    getHostAccessData(){
+        return {
+            hostUsername: this.hostUsername,
+            hostPassword: this.hostPassword,
+            hostAddress: this.hostAddress
+        }
+    }
 }

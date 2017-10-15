@@ -17,11 +17,8 @@ export class ChooseMethodComponent extends HostingStage implements OnInit {
         this.backendDataService.getMethods().then((result) => {
                 let methods = [];
                 for (let i in result) {
-                    console.log(i);
-                    console.log(result[i]);
                     methods.push((new Method).fillFromJSON(result[i]));
                 }
-                console.log(methods);
                 this.setMethods(methods);
             }
         );
@@ -36,7 +33,7 @@ export class ChooseMethodComponent extends HostingStage implements OnInit {
 
     selectMethod(method:Method) {
         this.hostingSettings.methodId = method.id;
-        this.hostingSettings.stage = 'choose_tariff';
+        this.hostingSettings.stage = 'backup-activation';
         this.onSubmit();
     }
 

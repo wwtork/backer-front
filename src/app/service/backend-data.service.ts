@@ -9,8 +9,10 @@ import {HostingSettings} from "../model/hosting-settings";
 import {arrayify} from "tslint/lib/utils";
 
 const apiUrl = 'http://backer.local/app_dev.php/api/';
-const GET_METHODS_URI = 'secured/get_methods';
-const GET_TARIFFS_URI = 'secured/get_tariffs';
+const GET_METHODS_URI = 'secured/methods';
+const GET_TARIFFS_URI = 'secured/tariffs';
+const CHECK_ACCESS_URI = 'secured/check-hosting-access';
+const SAVE_HOSTING_SETTINGS_URI = 'secured/save-hosting-settings';
 const USER_KEY = 'user';
 
 @Injectable()
@@ -26,6 +28,26 @@ export class BackendDataService implements IBackendDataService {
 
     getMethods(){
         return  this.securedPost(GET_METHODS_URI).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+
+    }
+
+    checkAccess(hostAccessData){
+        return  this.securedPost(CHECK_ACCESS_URI,JSON.stringify( {hostAccessData: hostAccessData})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+
+    }
+
+    saveSettings(){
+        return  this.securedPost(SAVE_HOSTING_SETTINGS_URI).then((result) => {
             return result;
         }, (err) => {
             console.log(err);

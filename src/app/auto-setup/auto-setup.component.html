@@ -1,9 +1,9 @@
-<div class="wrapper middle-wrapper">
+<div class="tuning wrapper middle-wrapper">
     <div class="top">Выполняю автоматические настройки</div>
-    <div class="middle">
-        <app-progress-bar title="Security & backup" percent="0" skipped="!hostingSettings.backupSupport" optionName="backupSupport"></app-progress-bar>
-        <app-progress-bar title="FireCDN" percent="0" skipped="!hostingSettings.firewallSupport" optionName="firewallSupport"></app-progress-bar>
-        <app-video-block *ngIf="hostingSettings.backupSupport && hostingSettings.backupSupport"></app-video-block>
+    <div class="middle" *ngIf="initialized">
+        <app-progress-bar title="Security & backup" [percent]="0" [skipped]="!hostingSettings.backupSupport" (activate)="activateBackup()"></app-progress-bar>
+        <app-progress-bar title="FireCDN" [percent]="0" [skipped]="!hostingSettings.firewallSupport" (activate)="activateCDN()"></app-progress-bar>
+        <app-video-block *ngIf="hostingSettings.backupSupport && hostingSettings.firewallSupport"></app-video-block>
         <div *ngIf="subdomains">
             <div class="text-after-something"> Найденные поддомены: <strong>ololo.domen.ru</strong> <strong>ololo2.domen.ru</strong>
                 <strong>ololo3.domen.ru</strong></div>

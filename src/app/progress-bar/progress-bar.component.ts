@@ -10,25 +10,22 @@ import {HostingSettings} from "../model/hosting-settings";
 export class ProgressBarComponent implements OnInit {
 
     @Input() title:string;
-    @Input() percent = 0;
-    @Input() optionName:string;
-    @Output() activate: EventEmitter<string>;
+    @Input() percent;
+    @Output() activate: EventEmitter<any> = new EventEmitter();
     @Input() hostingSettings:HostingSettings;
-    @Input() skipped = true;
+    @Input() skipped;
 
     constructor() {
         if(!this.skipped) this.startProcess();
-        if(this.skipped) this.activate = new EventEmitter();
     }
 
     ngOnInit() {
+
     }
 
-    activate(){
-        if(this.hostingSettings.hasOwnProperty(this.optionName)) {
-            this.activate.emit(this.optionName);
-            this.skipped = false;
-        }
+    onActivate(){
+        this.activate.emit();
+        this.skipped = false;
     }
 
     private startProcess():void {

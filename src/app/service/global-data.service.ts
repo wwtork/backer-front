@@ -14,7 +14,7 @@ import {HostingStateComponent} from "../model/hosting-state-component";
 import {ChooseMethodComponent} from "../choose-method/choose-method.component";
 const HOSTING_STATE_KEY = 'hosting_state';
 const HOSTING_STAGE_KEY = 'hosting_stage';
-const DEFAULT_STAGE = 'choose-method';
+const DEFAULT_STAGE = 'choose-tariff';
 const DEFAULT_STATE = 'domain';
 const HOSTING_KEY = 'hosting';
 @Injectable()
@@ -43,6 +43,7 @@ export class GlobalDataService {
 
     getHostingStage():string {
         var stage = localStorage.getItem(HOSTING_STAGE_KEY);
+        console.log(stage);
         return stage ? stage : DEFAULT_STAGE;
     }
 
@@ -68,7 +69,7 @@ export class GlobalDataService {
     }
 
     getStage(stage:string = null):IHostingStateComponent {
-        console.log(this.getStages()[stage == null ? this.getHostingStage() : stage]);
+        console.log(this.getHostingStage());
         return this.getStages()[stage == null ? this.getHostingStage() : stage];
     }
 }

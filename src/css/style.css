@@ -1570,6 +1570,11 @@ label.one-line .password-block .showpassword img {
     margin: 5px 0;
 }
 
+.btn-block-tariff button.btn-orn {
+    width: 260px;
+    margin: 5px 0;
+}
+
 /*Show password and Password complexity - START */
 .result-password {
     float: left;
@@ -2224,34 +2229,38 @@ i.icn-inform {
 
 /*Modal windows - END */
 /*Beckup Antivirus Speedup Page style - START */
-main.beckup-antivirus-speedup .middle-wrapper .middle {
+main .beckup-antivirus-speedup.middle-wrapper .middle {
     width: 100%;
     margin: 0;
     padding: 0 90px;
 }
 
-main.beckup-antivirus-speedup .middle-wrapper .middle ul.list-beckup-antivirus-speedup {
+main .beckup-antivirus-speedup.middle-wrapper .middle ul.list-beckup-antivirus-speedup {
     text-align: left;
 }
 
-main.beckup-antivirus-speedup .middle-wrapper .middle ul.list-beckup-antivirus-speedup li {
+main .beckup-antivirus-speedup.middle-wrapper .middle ul.list-beckup-antivirus-speedup li {
     margin-bottom: 20px;
     font-size: 18px;
 }
 
-main.beckup-antivirus-speedup .middle-wrapper .middle ul.list-beckup-antivirus-speedup li span {
+main .beckup-antivirus-speedup.middle-wrapper .middle ul.list-beckup-antivirus-speedup li span {
     margin-left: 10px;
 }
 
-main.beckup-antivirus-speedup .middle-wrapper .middle .bottom-block-btn a {
+main .beckup-antivirus-speedup.middle-wrapper .middle .bottom-block-btn a {
     width: 230px;
 }
 
-main.beckup-antivirus-speedup .middle-wrapper .middle .note {
+main .beckup-antivirus-speedup.middle-wrapper .middle .bottom-block-btn button {
+    width: 230px;
+}
+
+main .beckup-antivirus-speedup.middle-wrapper .middle .note {
     text-align: center;
 }
 
-main.beckup-antivirus-speedup .middle-wrapper .middle .note span {
+main .beckup-antivirus-speedup.middle-wrapper .middle .note span {
     display: inline-block;
     vertical-align: middle;
     font-size: 15px;
@@ -2586,6 +2595,13 @@ main .ssl-certificate.middle-wrapper .middle .bottom-block-btn {
 }
 
 .progressbar-block a.btn-orn {
+    width: 135px;
+    height: 38px;
+    margin: 20px 0 0;
+    line-height: 38px;
+}
+
+.progressbar-block button.btn-orn {
     width: 135px;
     height: 38px;
     margin: 20px 0 0;

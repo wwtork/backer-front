@@ -157,7 +157,8 @@
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); } }
 @media (max-width: 767px) {
-  main.beckup-antivirus-speedup .middle-wrapper .middle .bottom-block-btn a.btn-def-blue{margin-top: 20px;}
+  main .beckup-antivirus-speedup.middle-wrapper .middle .bottom-block-btn a.btn-def-blue{margin-top: 20px;}
+  main .beckup-antivirus-speedup.middle-wrapper .middle .bottom-block-btn button.btn-def-blue{margin-top: 20px;}
   .container {
     width: 430px; }
 
@@ -463,8 +464,8 @@
 @media (min-width: 480px) and (max-width: 640px) {
     main.select-folder .middle-wrapper .middle {padding:0 30px;}
     span.dynatree-folder a {font-size: 12px;}
-   
-    
+
+
 }
 @media (max-width: 480px) {
   main .wrapper {
@@ -613,7 +614,7 @@
     }
     main .wrapper .top {
         padding: 12px 35px;
-        
+
     }
     main.step-connection-main .middle-wrapper .middle{
         width: 100%;
@@ -625,7 +626,7 @@
         padding: 0;
     }
     main.enter .top-wrapper ul {
-        display: none;   
+        display: none;
     }
     #ui-id-1-button{
 /*        display: none;*/
@@ -657,7 +658,7 @@
     }
     header.header.inside .wrapper .enter-lang .enter {-webkit-box-ordinal-group: 2;-ms-flex-order: 1;order: 1;}
     .md-810 {max-width: 95%; padding: 0;}
-    
+
     .md-810 .title-md {border-bottom: 0; padding-top: 40px; font: 700 24px "Raleway", "ProximaNova", sans-serif;}
     .md-810 .btn-block-md {-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column}
     .md-810 .btn-block-md input {width: 100%;}
@@ -677,12 +678,14 @@
     }
     .list-beckup-antivirus-speedup li {position: relative;}
     .list-beckup-antivirus-speedup i {position: absolute; left: 0;}
-    main.beckup-antivirus-speedup .middle-wrapper .middle ul.list-beckup-antivirus-speedup li {padding-left: 55px; padding-bottom: 15px;}
-    main.beckup-antivirus-speedup .middle-wrapper .middle ul.list-beckup-antivirus-speedup li span {margin-left: 0;}
-    main.beckup-antivirus-speedup .middle-wrapper .middle .bottom-block-btn a {width: 100%;}
+    main .beckup-antivirus-speedup.middle-wrapper .middle ul.list-beckup-antivirus-speedup li {padding-left: 55px; padding-bottom: 15px;}
+    main .beckup-antivirus-speedup.middle-wrapper .middle ul.list-beckup-antivirus-speedup li span {margin-left: 0;}
+    main .beckup-antivirus-speedup.middle-wrapper .middle .bottom-block-btn a {width: 100%;}
+    main .beckup-antivirus-speedup.middle-wrapper .middle .bottom-block-btn button {width: 100%;}
     .attention-icn-mini {position: absolute}
-    main.beckup-antivirus-speedup .middle-wrapper .middle .bottom-block-btn a.btn-def-blue{margin-top: 20px;}
-    main.beckup-antivirus-speedup .middle-wrapper .middle .note span {margin-left: 20px;}
+    main .beckup-antivirus-speedup.middle-wrapper .middle .bottom-block-btn a.btn-def-blue{margin-top: 20px;}
+    main .beckup-antivirus-speedup.middle-wrapper .middle .bottom-block-btn button.btn-def-blue{margin-top: 20px;}
+    main .beckup-antivirus-speedup.middle-wrapper .middle .note span {margin-left: 20px;}
     .middle form {padding: 15px;}
     main.step-connection-main .middle-wrapper .middle .name-input {font-size: 15px;}
     [data-balloon-pos=right]:after, [data-balloon-pos=right]:before {left: -240px;top: 90px;}
@@ -725,7 +728,7 @@
     main.step-connection-main .chose-tarif.wrapper.middle-wrapper {-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1;}
     main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose .bottom-label, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:hover .bottom-label, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:focus .bottom-label {background-color: white;text-align: right;}
     ul.list-composite {display: none;}
-    
+
     main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose.popular .price, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:hover.popular .price, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:focus.popular .price {width: 100%;position:static;text-align: left; padding-top: 5px;padding-left: 53px;margin-bottom: 0;}
     main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose .popular {background: #fb9e39; line-height: normal; padding: 8px 10px 5px;position: absolute;right: -5px;font-size: 11px;left: auto;}
   main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose .ui-checkboxradio-icon, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:hover .ui-checkboxradio-icon, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:focus .ui-checkboxradio-icon,
@@ -760,6 +763,11 @@
     margin: 5px 0;
     max-width: 100%;
     }
+    .btn-block-tariff button.btn-orn {
+      width: 260px;
+      margin: 5px 0;
+      max-width: 100%;
+    }
     main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:hover, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:focus {margin-bottom: 60px;padding: 20px 0 5px;}
     .upload-block .drop-field {background-color: transparent;min-height: 0;}
     .upload-block .drop-list {border: none;min-height: 0;}
@@ -772,7 +780,7 @@
 }
 @media (max-width: 479px) {
     main.select-folder .middle-wrapper .middle {
-       
+
     }
-    
+
 }

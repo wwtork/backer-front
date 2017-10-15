@@ -1,5 +1,19 @@
 import {Serializable} from "./serializable";
 export class Tariff extends Serializable{
+    get isPayable():boolean {
+        return this._isPayable;
+    }
+
+    set isPayable(value:boolean) {
+        this._isPayable = value;
+    }
+    get isRequestable():boolean {
+        return this._isRequestable;
+    }
+
+    set isRequestable(value:boolean) {
+        this._isRequestable = value;
+    }
     get cdnCacheLimit():number {
         return this._cdnCacheLimit;
     }
@@ -64,6 +78,12 @@ export class Tariff extends Serializable{
     private _sizeLimit:number;
     private _cdnLimit:number;
     private _cdnCacheLimit:number;
+    private _isPayable:boolean;
+    private _isRequestable:boolean;
+
+    isFree(){
+        return this.price == 0;
+    }
 
     constructor(){
         super();

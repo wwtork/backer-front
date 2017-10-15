@@ -8,11 +8,24 @@ import {HostingStage} from "../model/hosting-stage";
 })
 export class AutoSetupComponent extends HostingStage implements OnInit {
 
+    private initialized = false;
+
     constructor() {
         super();
     }
 
     ngOnInit() {
+        console.log(this.hostingSettings);
+        this.initialized = true;
     }
 
+    activateBackup(){
+        this.hostingSettings.stage = 'backup-activation';
+        this.onSubmit();
+    }
+
+    activateCDN(){
+        this.hostingSettings.stage = 'firewall-activation';
+        this.onSubmit();
+    }
 }
