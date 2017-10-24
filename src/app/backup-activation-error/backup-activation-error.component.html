@@ -1,0 +1,28 @@
+<div class="select-folder wrapper middle-wrapper">
+  <div class="top red">
+    Ошибка подключения бэкапов!
+  </div>
+  <div class="middle">
+    <div class="text-after-something" *ngIf="error.hasFolderError">
+      <strong>Сайт не найден. Выберите, пожалуйста, папку вручную.</strong>
+    </div>
+    <div class="text-after-something" *ngIf="error.hasPermissionError">
+      К сожалению, у вашего аккунта нет прав на запись в папку сайта.
+      Поменяйте права на хостинге или укажите другой аккаунт.
+    </div>
+    <div class="text-after-something" *ngIf="error.hasScriptError">
+      <strong>Проверочный скрипт не доступен. Возможно, сработала ваша защита.</strong>
+      По этому адресу: <a href="#">http://вашсайт/blabla/bla.php</a>  должна открываться страница с текстом «OK».  Вы можете отключить свою защиту или обратиться за помощью в техподдержку хостинга,
+      на котором размещен ваш сайт.
+    </div>
+
+    <app-select-folder *ngIf="error.hasFolderError"></app-select-folder>
+
+    <div class="link-after-something"><a href="#">Изменить аккаунт</a></div>
+    <div class="bottom-block-btn">
+      <a href="#" class="btn-orn">Далее</a>
+    </div>
+    <div class="link-after-something"><a href="#">Пропустить этап и перейти дальше</a></div>
+  </div>
+</div>
+   

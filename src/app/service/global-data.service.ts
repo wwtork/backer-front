@@ -23,7 +23,7 @@ export class GlobalDataService {
     private stages = {
         'ssl-download': new HostingStateComponent(SslDownloadComponent, 'settings'),
         'domain': new HostingStateComponent(DomainComponent, 'domain'),
-        'hosting-access': new HostingStateComponent(HostingAccessComponent, 'domain'),
+        'hosting-access': new HostingStateComponent(HostingAccessComponent, 'settings'),
         'choose-tariff': new HostingStateComponent(ChooseTariffComponent, 'tariff'),
         'backup-activation': new HostingStateComponent(BackupActivationComponent, 'settings'),
         'firewall-activation': new HostingStateComponent(FirewallActivationComponent, 'settings'),

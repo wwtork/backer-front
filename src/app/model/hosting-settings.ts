@@ -2,6 +2,22 @@ import {Method} from "./method";
 import {Tariff} from "./tariff";
 import {Serializable} from "./serializable";
 export class HostingSettings extends Serializable {
+    get predefinedRoots() {
+        return this._predefinedRoots;
+    }
+
+    set predefinedRoots(value) {
+        this._predefinedRoots = value;
+    }
+
+    get serverId(): number {
+        return this._serverId;
+    }
+
+    set serverId(value: number) {
+        this._serverId = value;
+    }
+
     get tariffId():number {
         return this._tariffId;
     }
@@ -108,12 +124,22 @@ export class HostingSettings extends Serializable {
     private _domain:string;
     private _methodId:number;
     private _tariffId:number;
+    private _serverId: number;
+    private _predefinedRoots;
 
     getHostAccessData(){
         return {
             hostUsername: this.hostUsername,
             hostPassword: this.hostPassword,
             hostAddress: this.hostAddress
+        }
+    }
+
+    getHostScanData() {
+        return {
+            serverId: this.serverId,
+            predefinedRoots: this.predefinedRoots,
+            domainFilter: this.domain
         }
     }
 }

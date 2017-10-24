@@ -12,6 +12,9 @@ import {
     RouterModule,
     Routes
 } from '@angular/router';
+import {
+    NgbModule
+} from '@ng-bootstrap/ng-bootstrap';
 import { MethodComponent } from './method/method.component';
 import { UserComponent } from './user/user.component';
 import { ConnectStateComponent } from './connect-state/connect-state.component';
@@ -37,6 +40,8 @@ import { Ng4FilesModule } from 'angular4-files-upload/src/app/ng4-files';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { VideoBlockComponent } from './video-block/video-block.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SelectFolderComponent } from './select-folder/select-folder.component';
+import { BackupActivationErrorComponent } from './backup-activation-error/backup-activation-error.component';
 //const childRoutes:Routes = [
 //    {path: '', redirectTo: 'domain', pathMatch: 'full'},
 //    {path: 'domain', component: DomainComponent },
@@ -50,7 +55,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //    {path: 'backup-activation', component: BackupActivationComponent }
 //];
 const routes:Routes = [
-    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: '', redirectTo: 'connection-wizard', pathMatch: 'full'},
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
     {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [ LoggedInGuard ]}
@@ -81,7 +86,9 @@ const routes:Routes = [
         HostingStateDirective,
         ChooseMethodComponent,
         ProgressBarComponent,
-        VideoBlockComponent
+        VideoBlockComponent,
+        SelectFolderComponent,
+        BackupActivationErrorComponent
     ],
     imports: [
         BrowserModule,
@@ -91,7 +98,8 @@ const routes:Routes = [
         Ng4FilesModule,
         RouterModule.forRoot(routes),
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule.forRoot()
     ],
     providers: [
         AUTH_PROVIDERS,

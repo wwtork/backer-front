@@ -152,7 +152,7 @@
             header.header.inside .wrapper .enter-lang .lang .drop-block .drop-name {
               padding: 0 0 10px 0; }
 
-  main.step-connection-main.chose-tarif .wrapper.attention .txt:before {
+  main.step-connection-main .wrapper.attention .txt:before {
     top: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); } }
@@ -252,7 +252,7 @@
 
   main.step-connection-main.chose-tarif .wrapper.top-wrapper {
     width: 100%; }
-  main.step-connection-main.chose-tarif .wrapper.attention {
+  main.step-connection-main .wrapper.attention {
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
     -webkit-box-orient: vertical;
@@ -260,13 +260,13 @@
     -ms-flex-direction: column;
     flex-direction: column;
     height: auto; }
-    main.step-connection-main.chose-tarif .wrapper.attention .txt {
+    main.step-connection-main .wrapper.attention .txt {
       width: 100%;
       padding-left: 105px;
       padding-right: 15px; }
-      main.step-connection-main.chose-tarif .wrapper.attention .txt:before {
+      main.step-connection-main .wrapper.attention .txt:before {
         left: 20px; }
-    main.step-connection-main.chose-tarif .wrapper.attention .link-block {
+    main.step-connection-main .wrapper.attention .link-block {
       width: 100%;
       -webkit-box-orient: horizontal;
       -webkit-box-direction: normal;
@@ -274,12 +274,12 @@
       flex-direction: row;
       border-top: 1px solid #c1c1c1;
       height: 50px; }
-      main.step-connection-main.chose-tarif .wrapper.attention .link-block .top-link {
+      main.step-connection-main .wrapper.attention .link-block .top-link {
         border-bottom: none;
         border-right: 1px solid #c1c1c1;
         height: 100%;
         width: 50%; }
-      main.step-connection-main.chose-tarif .wrapper.attention .link-block .bottom-link {
+      main.step-connection-main .wrapper.attention .link-block .bottom-link {
         height: 100%;
         width: 50%;
         border: none; }
@@ -722,9 +722,9 @@
     main .dns.middle-wrapper .middle .list-dns-block ul li.name-table {font-size: 14px;}
     main .dns.middle-wrapper .middle .list-dns-block ul li {padding: 5px 10px; font-size: 12px; line-height: 1.4;}
     .upload-block .drop-field .title-field {padding: 0 10px;}
-    main.step-connection-main.chose-tarif .wrapper.attention {-webkit-box-ordinal-group:3;-ms-flex-order:2;order:2;margin-top: 20px;}
-    main.step-connection-main.chose-tarif .wrapper.attention .txt {padding:105px 15px 10px;text-align: center;position: relative;}
-    main.step-connection-main.chose-tarif .wrapper.attention .txt:before {left: 50%;-webkit-transform: translate(-50%);transform: translate(-50%);top: 20px;}
+    main.step-connection-main .wrapper.attention {-webkit-box-ordinal-group:3;-ms-flex-order:2;order:2;margin-top: 20px;}
+    main.step-connection-main .wrapper.attention .txt {padding:105px 15px 10px;text-align: center;position: relative;}
+    main.step-connection-main .wrapper.attention .txt:before {left: 50%;-webkit-transform: translate(-50%);transform: translate(-50%);top: 20px;}
     main.step-connection-main .chose-tarif.wrapper.middle-wrapper {-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1;}
     main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose .bottom-label, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:hover .bottom-label, main.step-connection-main .chose-tarif.wrapper.middle-wrapper .middle label.tarif-chose:focus .bottom-label {background-color: white;text-align: right;}
     ul.list-composite {display: none;}
@@ -757,7 +757,7 @@
     .chose-tarif .ui-state-active span {color: white!important;}
     .chose-tarif .ui-state-active .ui-checkboxradio-icon {background-color: white!important;}
     .chose-tarif .ui-state-active .ui-checkboxradio-icon:after {color: #6ab5ca!important;}
-    main.step-connection-main.chose-tarif .wrapper.attention .link-block {border: 1px solid #c1c1c1;}
+    main.step-connection-main .wrapper.attention .link-block {border: 1px solid #c1c1c1;}
     .btn-block-tariff a.btn-orn {
     width: 260px;
     margin: 5px 0;
@@ -776,7 +776,7 @@
     main.access-hosting .middle-wrapper .middle {margin-left: 0!important;}
     main.access-hosting .middle form {padding: 20px;}
     body {min-width: 320px;}
-    main.step-connection-main.chose-tarif .wrapper.attention {padding-left: 0!important; padding-right: 0!important;}
+    main.step-connection-main .wrapper.attention {padding-left: 0!important; padding-right: 0!important;}
 }
 @media (max-width: 479px) {
     main.select-folder .middle-wrapper .middle {

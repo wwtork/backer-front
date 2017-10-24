@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Tariff} from "../model/tariff";
 import {IBackendDataService} from "../interface/backend-data-service";
-import {Method} from "../model/method";
 import {User} from "../model/user";
-import {Jsonp, Http, Headers} from '@angular/http';
-import {AuthService} from "./auth.service";
+import {Http} from "@angular/http";
 import {HostingSettings} from "../model/hosting-settings";
-import {arrayify} from "tslint/lib/utils";
 
 const apiUrl = 'http://backer.local/app_dev.php/api/';
 const GET_METHODS_URI = 'secured/methods';
@@ -14,15 +10,17 @@ const GET_TARIFFS_URI = 'secured/tariffs';
 const CHECK_ACCESS_URI = 'secured/check-hosting-access';
 const SAVE_HOSTING_SETTINGS_URI = 'secured/save-hosting-settings';
 const USER_KEY = 'user';
+const BACKUP_SCAN_URI = 'secured/backup_scan_data';
+const FIREWALL_SCAN_URI = 'secured/firewall_scan_data';
 
 @Injectable()
 export class BackendDataService implements IBackendDataService {
 
     constructor(private http:Http) {
+
     }
 
     getUser():User{
-        console.log(localStorage.getItem(USER_KEY));
         return (new User).fillFromJSONString(localStorage.getItem(USER_KEY));
     }
 
@@ -37,13 +35,24 @@ export class BackendDataService implements IBackendDataService {
     }
 
     checkAccess(hostAccessData){
-        return  this.securedPost(CHECK_ACCESS_URI,JSON.stringify( {hostAccessData: hostAccessData})).then((result) => {
+        return  this.securedPost(CHECK_ACCESS_URI, JSON.stringify( {hostAccessData: hostAccessData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
             return [];
         });
+    }
 
+    getBackupScanData(hostScanData) {
+        console.log(this.getUser());
+        if(!hostScanData.domainFilter) hostScanData.domainFilter = this.getUser().website;
+        console.log(hostScanData);
+        return  this.securedPost(BACKUP_SCAN_URI, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
     }
 
     saveSettings(){
@@ -85,5 +94,26 @@ export class BackendDataService implements IBackendDataService {
                     reject(err);
                 });
         });
+    }
+
+
+
+    getFirewallScanData(fireScanData) {
+        return  this.securedPost(FIREWALL_SCAN_URI, {fireScanData: fireScanData}).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    saveHostingSettings(hostingSettings: HostingSettings) {
+        return  this.securedPost(SAVE_HOSTING_SETTINGS_URI,JSON.stringify( {hostSettingsData: hostingSettings})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+
     }
 }

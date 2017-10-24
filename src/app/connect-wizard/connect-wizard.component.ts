@@ -7,6 +7,7 @@ import {HostingSettings} from "../model/hosting-settings";
 import {GlobalDataService} from "../service/global-data.service";
 import {IHostingStateComponent} from "../interface/hosting-state-component";
 import {HostingStateDirective} from "../hosting-state.directive";
+import {Hosting} from "../model/hosting";
 
 @Component({
     selector: 'app-connect-wizard',
@@ -23,7 +24,12 @@ export class ConnectWizardComponent implements OnInit {
 
     constructor(private globalData:GlobalDataService, private componentFactoryResolver: ComponentFactoryResolver) {
 
-        this.hostingSettings = new HostingSettings();
+        let hs:any = this.fromLS();
+        if(hs){
+            this.hostingSettings = hs;
+        }else {
+            this.hostingSettings = new HostingSettings();
+        }
         this.chooseComponent();
     }
 
@@ -33,8 +39,6 @@ export class ConnectWizardComponent implements OnInit {
 
     chooseComponent(){
         let stageComponent:IHostingStateComponent = this.globalData.getStage(this.hostingSettings.stage);
-        console.log(this.hostingSettings.stage);
-        console.log(stageComponent);
         this.state = stageComponent.state;
         this.component = stageComponent.component;
     }
@@ -56,6 +60,15 @@ export class ConnectWizardComponent implements OnInit {
     nextStage(){
         this.chooseComponent();
         this.loadComponent(this.component);
+        localStorage.setItem('hosting_settings', JSON.stringify(this.hostingSettings));
     }
 
+    fromLS():HostingSettings|boolean{
+        let hs:any = localStorage.getItem('hosting_settings');
+        if (hs) {
+            hs = new HostingSettings().fillFromJSONString(hs);
+            return <HostingSettings>hs;
+        }
+        return false;
+    }
 }

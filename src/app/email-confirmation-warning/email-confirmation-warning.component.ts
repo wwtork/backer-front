@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../service/auth.service";
+import {BackendDataService} from "../service/backend-data.service";
 
 @Component({
   selector: 'app-email-confirmation-warning',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmailConfirmationWarningComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService, public backendDataService:BackendDataService) { }
 
   ngOnInit() {
+
   }
 
 }

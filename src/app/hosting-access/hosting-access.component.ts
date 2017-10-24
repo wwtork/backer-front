@@ -26,6 +26,20 @@ export class HostingAccessComponent extends HostingStage implements OnInit {
     checkAccess() {
         this.backendDataService.checkAccess(this.hostingSettings.getHostAccessData()).then((result:Response) => {
             if(result.status){
+                this.saveHostingSettings();
+            }else{
+                this.error = result['error'];
+            }
+        }, (err) => {
+            this.error = err;
+            return false;
+        });
+    }
+
+    saveHostingSettings() {
+        this.backendDataService.saveHostingSettings(this.hostingSettings).then((result:Response) => {
+            if(result.status){
+                this.hostingSettings.serverId = result['data']['serverId'];
                 this.submit();
             }else{
                 this.error = result['error'];
