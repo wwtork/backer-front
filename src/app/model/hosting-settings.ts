@@ -1,7 +1,45 @@
-import {Method} from "./method";
-import {Tariff} from "./tariff";
 import {Serializable} from "./serializable";
+import {Site} from "./site";
 export class HostingSettings extends Serializable {
+    get firewallScanFinished(): boolean {
+        return this._firewallScanFinished;
+    }
+
+    set firewallScanFinished(value: boolean) {
+        this._firewallScanFinished = value;
+    }
+    get backupScanFinished(): boolean {
+        return this._backupScanFinished;
+    }
+
+    set backupScanFinished(value: boolean) {
+        this._backupScanFinished = value;
+    }
+    private _backupScanFinished: boolean;
+    private _firewallScanFinished: boolean;
+    get site(): Site {
+        return this._site;
+    }
+
+    set site(value: Site) {
+        this._site = value;
+    }
+
+    get scanPath() {
+        return this._scanPath;
+    }
+
+    set scanPath(value) {
+        this._scanPath = value;
+    }
+    get scanType(): string {
+        return this._scanType;
+    }
+
+    set scanType(value: string) {
+        this._scanType = value;
+    }
+
     get predefinedRoots() {
         return this._predefinedRoots;
     }
@@ -10,12 +48,12 @@ export class HostingSettings extends Serializable {
         this._predefinedRoots = value;
     }
 
-    get serverId(): number {
-        return this._serverId;
+    get id(): number {
+        return this._id;
     }
 
-    set serverId(value: number) {
-        this._serverId = value;
+    set id(value: number) {
+        this._id = value;
     }
 
     get tariffId():number {
@@ -112,6 +150,19 @@ export class HostingSettings extends Serializable {
         this._sslFiles = value;
     }
 
+    get scanErrors() {
+        return this._scanErrors;
+    }
+
+    set scanErrors(value) {
+        this._scanErrors = value
+    }
+
+    private _scanErrors =  {
+        searchError: false,
+        permissionError: false,
+        scriptError: false
+    };
     private _stage:string;
     private _sslFiles;
     private _tariffRequest:boolean = false;
@@ -124,8 +175,11 @@ export class HostingSettings extends Serializable {
     private _domain:string;
     private _methodId:number;
     private _tariffId:number;
-    private _serverId: number;
+    private _id: number;
     private _predefinedRoots;
+    private _scanType = 'search';
+    private _scanPath;
+    private _site: Site;
 
     getHostAccessData(){
         return {
@@ -136,10 +190,21 @@ export class HostingSettings extends Serializable {
     }
 
     getHostScanData() {
+        let request = {
+            serverId: this.id,
+            type: this.scanType,
+            path: this.scanPath,
+            filter: this.domain
+        };
+
+        if(this.scanPath) request['scanPath'] = this.scanPath;
+
+        return request;
+    }
+
+    getFirewallScanData() {
         return {
-            serverId: this.serverId,
-            predefinedRoots: this.predefinedRoots,
-            domainFilter: this.domain
+            siteId: this.site.id,
         }
     }
 }

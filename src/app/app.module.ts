@@ -42,6 +42,7 @@ import { VideoBlockComponent } from './video-block/video-block.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectFolderComponent } from './select-folder/select-folder.component';
 import { BackupActivationErrorComponent } from './backup-activation-error/backup-activation-error.component';
+import { IpErrorComponent } from './ip-error/ip-error.component';
 //const childRoutes:Routes = [
 //    {path: '', redirectTo: 'domain', pathMatch: 'full'},
 //    {path: 'domain', component: DomainComponent },
@@ -88,7 +89,8 @@ const routes:Routes = [
         ProgressBarComponent,
         VideoBlockComponent,
         SelectFolderComponent,
-        BackupActivationErrorComponent
+        BackupActivationErrorComponent,
+        IpErrorComponent
     ],
     imports: [
         BrowserModule,

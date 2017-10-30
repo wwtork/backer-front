@@ -3,26 +3,26 @@
     Ошибка подключения бэкапов!
   </div>
   <div class="middle">
-    <div class="text-after-something" *ngIf="error.hasFolderError">
+    <div class="text-after-something" *ngIf="errors['searchError']">
       <strong>Сайт не найден. Выберите, пожалуйста, папку вручную.</strong>
     </div>
-    <div class="text-after-something" *ngIf="error.hasPermissionError">
+    <div class="text-after-something" *ngIf="errors['permissionError']">
       К сожалению, у вашего аккунта нет прав на запись в папку сайта.
       Поменяйте права на хостинге или укажите другой аккаунт.
     </div>
-    <div class="text-after-something" *ngIf="error.hasScriptError">
+    <div class="text-after-something" *ngIf="errors['scriptError']">
       <strong>Проверочный скрипт не доступен. Возможно, сработала ваша защита.</strong>
       По этому адресу: <a href="#">http://вашсайт/blabla/bla.php</a>  должна открываться страница с текстом «OK».  Вы можете отключить свою защиту или обратиться за помощью в техподдержку хостинга,
       на котором размещен ваш сайт.
     </div>
 
-    <app-select-folder *ngIf="error.hasFolderError"></app-select-folder>
+    <app-select-folder *ngIf="errors['searchError']" (folderSelected)="updatePath($event)"></app-select-folder>
 
-    <div class="link-after-something"><a href="#">Изменить аккаунт</a></div>
-    <div class="bottom-block-btn">
-      <a href="#" class="btn-orn">Далее</a>
+    <div *ngIf="errors['permissionError']" class="link-after-something" (click)="onChangeAccount()"><a href="#">Изменить аккаунт</a></div>
+    <div *ngIf="errors['searchError'] && hostingSettings.scanPath" class="bottom-block-btn">
+      <a href="#" class="btn-orn"  (click)="onFormSubmit()" >Далее</a>
     </div>
-    <div class="link-after-something"><a href="#">Пропустить этап и перейти дальше</a></div>
+    <div class="link-after-something"  (click)="onSkip()" ><a href="#">Пропустить этап и перейти дальше</a></div>
   </div>
 </div>
    

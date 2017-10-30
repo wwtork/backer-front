@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
 import {BackendDataService} from "../service/backend-data.service";
+import {Site} from "../model/site";
 
 @Component({
     selector: 'app-hosting-access',
@@ -39,7 +40,9 @@ export class HostingAccessComponent extends HostingStage implements OnInit {
     saveHostingSettings() {
         this.backendDataService.saveHostingSettings(this.hostingSettings).then((result:Response) => {
             if(result.status){
-                this.hostingSettings.serverId = result['data']['serverId'];
+                this.hostingSettings.id = result['data']['serverId'];
+                this.hostingSettings.site = new Site();
+                this.hostingSettings.site.id = result['data']['siteId'];
                 this.submit();
             }else{
                 this.error = result['error'];

@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { User } from "../model/user";
 import { Router } from '@angular/router';
 import {BackendDataService} from "./backend-data.service";
+import {HostingSettings} from "../model/hosting-settings";
+import {after} from "selenium-webdriver/testing";
 const USER_KEY = 'user';
+const HOSTING_SETTINGS_KEY = 'hosting_settings';
 @Injectable()
 export class AuthService {
 
@@ -12,11 +15,20 @@ export class AuthService {
 
     }
 
-    login(user:User):boolean {
+    login(user:User, afterRegister = false):boolean {
+
+        if(afterRegister) {
+            let hs = new HostingSettings();
+            hs.stage = 'choose-tariff';
+            hs.domain = user.website;
+            localStorage.set(HOSTING_SETTINGS_KEY, JSON.stringify(hs));
+        }
+
         this.backendDataService.post('login', user.getSerialized()).then((result:Response) => {
             if(result.status){
                 user = result['user'];
-                localStorage.setItem(USER_KEY, JSON.stringify(user));
+                this.setUser(user);
+
                 this.router.navigate(['/connection-wizard']);
                 return user;
             }
@@ -33,8 +45,8 @@ export class AuthService {
         //return this.backendDataService.testpost();
         this.backendDataService.post('register', user.getSerialized()).then((result:Response) => {
             if(result.status){
-                localStorage.setItem(USER_KEY, JSON.stringify(user));
-                this.login(user);
+                this.setUser(user);
+                this.login(user, true);
                 return result;
             }
             return false;
@@ -49,6 +61,10 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem(USER_KEY)
+    }
+
+    setUser(user:User){
+        localStorage.setItem(USER_KEY, JSON.stringify(user));
     }
 
     getUser():User {

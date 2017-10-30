@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-select-folder',
-  templateUrl: './select-folder.component.html',
-  styleUrls: ['./select-folder.component.css']
+    selector: 'app-select-folder',
+    templateUrl: './select-folder.component.html',
+    styleUrls: ['./select-folder.component.css']
 })
 export class SelectFolderComponent implements OnInit {
 
-  constructor() { }
+    private path;
+    @Output() folderSelected: EventEmitter<any>;
 
-  ngOnInit() {
-  }
+    constructor() {
+        this.folderSelected = new EventEmitter();
+    }
+
+    ngOnInit() {
+    }
+
+    folderSelect() {
+        this.folderSelected.emit(this.path);
+    }
 
 }

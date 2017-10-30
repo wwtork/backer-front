@@ -25,9 +25,42 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     }
 
     ngAfterViewInit() {
-        if(this.hostingSettings.backupSupport) {
-            this.checkBackupScan();
+        if(this.hostingSettings.backupSupport && !this.hostingSettings.backupScanFinished) {
+            this.startBackupScan();
         }
+        if(this.hostingSettings.firewallSupport && !this.hostingSettings.firewallScanFinished) {
+            this.startFirewallScan();
+        }
+    }
+
+    startBackupScan(){
+        this.backendDataService.startBackupScan(this.hostingSettings.getHostScanData()).then((result:Response) => {
+            if(result.status){
+                setTimeout(() => {
+                    this.checkBackupScan();
+                    }
+                    , 2000);
+
+            }
+        }, (err) => {
+            console.log(err);
+            return false;
+        });
+    }
+
+    startFirewallScan(){
+        this.backendDataService.startFirewallScan(this.hostingSettings.getFirewallScanData()).then((result:Response) => {
+            if(result.status){
+                setTimeout(() => {
+                        this.checkFirewallScan();
+                    }
+                    , 2000);
+
+            }
+        }, (err) => {
+            console.log(err);
+            return false;
+        });
     }
 
     checkBackupScan(){
@@ -35,12 +68,34 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
             if(result.status){
                 if(result.hasOwnProperty('data')) this.backupPercent = result['data']['percent'];
                 if(result.hasOwnProperty('finished') && result['finished']){
+                    this.hostingSettings.backupScanFinished = true;
                     if(result.hasOwnProperty('errors')){
-
+                        this.hostingSettings.scanErrors = result['errors'];
                     }
                 }else {
                     setTimeout(() => {
                         this.checkBackupScan();
+                    }, 2000);
+                }
+            }
+        }, (err) => {
+            console.log(err);
+            return false;
+        });
+    }
+
+    checkFirewallScan(){
+        this.backendDataService.getFirewallScanData(this.hostingSettings.getFirewallScanData()).then((result:Response) => {
+            if(result.status){
+                if(result.hasOwnProperty('data')) this.backupPercent = result['data']['percent'];
+                if(result.hasOwnProperty('finished') && result['finished']){
+                    this.hostingSettings.firewallScanFinished = true;
+                    if(result.hasOwnProperty('errors')){
+                        this.hostingSettings.scanErrors = result['errors'];
+                    }
+                }else {
+                    setTimeout(() => {
+                        this.checkFirewallScan();
                     }, 2000);
                 }
             }

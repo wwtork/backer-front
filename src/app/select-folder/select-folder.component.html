@@ -1,62 +1,62 @@
 
+<input type="text" value="{{ path }}" (change)="folderSelect()"/>
 
-
-          <div class="block-select-folder">
-            <div class="input-block">
-              <input type="text" placeholder="/domen.ru/">
-            </div>
-            <div class="field-select-folder">
-              <div id="tree" class="tree scrollbar-inner">
-                <ul>
-                  <li id="key1" class="folder selected">Название папки</li>
-                  <li id="key2" class="folder"> Очень длинное название папки</li>
-                  <li id="key3" class="folder"> Очень длинное название папки</li>
-                  <li id="key4" class="folder"> Открытая папка. Название
-                    <ul>
-                      <li id="key4.1" class="folder">Название папки</li>
-                      <li id="key4.2" class="folder">Название папки</li>
-                      <li id="key4.3" data="hideCheckbox: true">Название файла</li>
-                    </ul>
-                  </li>
-                  <li id="key5" class="folder">Название папки</li>
-                  <li id="key6" class="folder"> Очень длинное название папки</li>
-                  <li id="key7" class="folder"> Очень длинное название папки</li>
-                  <li id="key8" class="folder"> Открытая папка. Название
-                    <ul>
-                      <li id="key8.1" class="folder">Название папки</li>
-                      <li id="key8.2" class="folder">Название папки</li>
-                      <li id="key8.3" class="folder">Название папки</li>
-                    </ul>
-                  </li>
-                  <li id="key9" class="folder selected">Название папки</li>
-                  <li id="key10" class="folder"> Очень длинное название папки</li>
-                  <li id="key11" class="folder"> Очень длинное название папки</li>
-                  <li id="key12" class="folder"> Открытая папка. Название
-                    <ul>
-                      <li id="key12.1" class="folder">Название папки
-                        <ul>
-                          <li id="key12.1.1" class="folder">Название папки</li>
-                          <li id="key12.1.2" class="folder">Название папки</li>
-                          <li id="key12.1.3" class="folder">Название папки</li>
-                        </ul>
-                      </li>
-                      <li id="key12.2" class="folder">Название папки</li>
-                      <li id="key12.3" data="hideCheckbox: true">Название файла</li>
-                    </ul>
-                  </li>
-                  <li id="key13" class="folder">Название папки</li>
-                  <li id="key14" class="folder"> Очень длинное название папки</li>
-                  <li id="key15" class="folder"> Очень длинное название папки</li>
-                  <li id="key16" class="folder"> Название папки
-                    <ul>
-                      <li id="key16.1" class="folder">Название папки</li>
-                      <li id="key16.2" data="hideCheckbox: true">Название файла</li>
-                      <li id="key16.3" class="folder">Название папки</li>
-                      <li id="key16.4" class="folder">Название папки</li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <!--<div class="block-select-folder">-->
+            <!--<div class="input-block">-->
+              <!--<input type="text" placeholder="/domen.ru/">-->
+            <!--</div>-->
+            <!--<div class="field-select-folder">-->
+              <!--<div id="tree" class="tree scrollbar-inner">-->
+                <!--<ul>-->
+                  <!--<li id="key1" class="folder selected">Название папки</li>-->
+                  <!--<li id="key2" class="folder"> Очень длинное название папки</li>-->
+                  <!--<li id="key3" class="folder"> Очень длинное название папки</li>-->
+                  <!--<li id="key4" class="folder"> Открытая папка. Название-->
+                    <!--<ul>-->
+                      <!--<li id="key4.1" class="folder">Название папки</li>-->
+                      <!--<li id="key4.2" class="folder">Название папки</li>-->
+                      <!--<li id="key4.3" data="hideCheckbox: true">Название файла</li>-->
+                    <!--</ul>-->
+                  <!--</li>-->
+                  <!--<li id="key5" class="folder">Название папки</li>-->
+                  <!--<li id="key6" class="folder"> Очень длинное название папки</li>-->
+                  <!--<li id="key7" class="folder"> Очень длинное название папки</li>-->
+                  <!--<li id="key8" class="folder"> Открытая папка. Название-->
+                    <!--<ul>-->
+                      <!--<li id="key8.1" class="folder">Название папки</li>-->
+                      <!--<li id="key8.2" class="folder">Название папки</li>-->
+                      <!--<li id="key8.3" class="folder">Название папки</li>-->
+                    <!--</ul>-->
+                  <!--</li>-->
+                  <!--<li id="key9" class="folder selected">Название папки</li>-->
+                  <!--<li id="key10" class="folder"> Очень длинное название папки</li>-->
+                  <!--<li id="key11" class="folder"> Очень длинное название папки</li>-->
+                  <!--<li id="key12" class="folder"> Открытая папка. Название-->
+                    <!--<ul>-->
+                      <!--<li id="key12.1" class="folder">Название папки-->
+                        <!--<ul>-->
+                          <!--<li id="key12.1.1" class="folder">Название папки</li>-->
+                          <!--<li id="key12.1.2" class="folder">Название папки</li>-->
+                          <!--<li id="key12.1.3" class="folder">Название папки</li>-->
+                        <!--</ul>-->
+                      <!--</li>-->
+                      <!--<li id="key12.2" class="folder">Название папки</li>-->
+                      <!--<li id="key12.3" data="hideCheckbox: true">Название файла</li>-->
+                    <!--</ul>-->
+                  <!--</li>-->
+                  <!--<li id="key13" class="folder">Название папки</li>-->
+                  <!--<li id="key14" class="folder"> Очень длинное название папки</li>-->
+                  <!--<li id="key15" class="folder"> Очень длинное название папки</li>-->
+                  <!--<li id="key16" class="folder"> Название папки-->
+                    <!--<ul>-->
+                      <!--<li id="key16.1" class="folder">Название папки</li>-->
+                      <!--<li id="key16.2" data="hideCheckbox: true">Название файла</li>-->
+                      <!--<li id="key16.3" class="folder">Название папки</li>-->
+                      <!--<li id="key16.4" class="folder">Название папки</li>-->
+                    <!--</ul>-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 

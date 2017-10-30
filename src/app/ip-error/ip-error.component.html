@@ -1,0 +1,23 @@
+<div class="enter-ip wrapper middle-wrapper">
+  <div class="top red">
+    Ошибка!
+  </div>
+  <div class="middle">
+    <div class="text-after-something">
+      Не могу обнаружить IP адрес вашего сайта. Укажите, пожалуйста, его вручную.
+    </div>
+    <form (ngSubmit)="ipForm.form.valid && onFormSubmit()" #ipForm="ngForm" novalidate>
+      <div class="input-block">
+        <div class="input-name"><span>Укажите IP-адрес вашего сайта </span></div>
+        <label [ngClass]="{true:'validate', false:'novalidate'}[ip.valid]">
+          <input type="text" [(ngModel)]="site.ip" #ip="ngModel" name="ip" required value="{{ site.ip }}">
+        </label>
+      </div>
+      <div class="bottom-block-btn">
+        <input type="submit" class="btn-orn">Далее</a>
+      </div>
+    </form>
+
+    <div class="link-after-something"><a href="#" (click)="onSkip()">Пропустить этап и перейти дальше</a></div>
+  </div>
+</div>

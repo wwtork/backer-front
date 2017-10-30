@@ -701,8 +701,8 @@
     span.dynatree-folder a {font-size: 14px;text-overflow: ellipsis;max-width: 150px;white-space: nowrap;overflow: hidden;}
     .block-select-folder .field-select-folder {padding: 5px;}
     main.select-folder .middle-wrapper .middle .text-after-something {font-size: 15px;}
-    main.enter-ip .middle-wrapper .middle .input-block {width: 195px;}
-    main.enter-ip .middle-wrapper .middle .text-after-something {font-size: 15px;}
+    main .enter-ip.middle-wrapper .middle .input-block {width: 195px;}
+    main .enter-ip.middle-wrapper .middle .text-after-something {font-size: 15px;}
     .ui-selectmenu-open{left: 50%!important;-webkit-transform: translate(-50%);transform: translate(-50%);}
     main .ssl-certificate.middle-wrapper .middle .download-load-certificate + .text-after-something span{padding-left: 25px; font-size: 15px;text-align: left;}
     .attention-icn-blue-mini {position: absolute;top: 20px;}

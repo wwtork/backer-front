@@ -10,8 +10,10 @@ const GET_TARIFFS_URI = 'secured/tariffs';
 const CHECK_ACCESS_URI = 'secured/check-hosting-access';
 const SAVE_HOSTING_SETTINGS_URI = 'secured/save-hosting-settings';
 const USER_KEY = 'user';
-const BACKUP_SCAN_URI = 'secured/backup_scan_data';
-const FIREWALL_SCAN_URI = 'secured/firewall_scan_data';
+const BACKUP_SCAN_DATA_URI = 'secured/backup_scan_data';
+const BACKUP_START_SCAN_URI = 'secured/backup_scan_init';
+const FIREWALL_SCAN_DATA_URI = 'secured/firewall_scan_data';
+const FIREWALL_START_SCAN_URI = 'secured/firewall_scan_init';
 
 @Injectable()
 export class BackendDataService implements IBackendDataService {
@@ -43,11 +45,18 @@ export class BackendDataService implements IBackendDataService {
         });
     }
 
+    startBackupScan(hostScanData) {
+        return  this.securedPost(BACKUP_START_SCAN_URI, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
     getBackupScanData(hostScanData) {
-        console.log(this.getUser());
         if(!hostScanData.domainFilter) hostScanData.domainFilter = this.getUser().website;
-        console.log(hostScanData);
-        return  this.securedPost(BACKUP_SCAN_URI, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+        return  this.securedPost(BACKUP_SCAN_DATA_URI, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -96,10 +105,17 @@ export class BackendDataService implements IBackendDataService {
         });
     }
 
-
+    startFirewallScan(fireScanData) {
+        return  this.securedPost(FIREWALL_START_SCAN_URI, {fireScanData: fireScanData}).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
 
     getFirewallScanData(fireScanData) {
-        return  this.securedPost(FIREWALL_SCAN_URI, {fireScanData: fireScanData}).then((result) => {
+        return  this.securedPost(FIREWALL_SCAN_DATA_URI, {fireScanData: fireScanData}).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -116,4 +132,6 @@ export class BackendDataService implements IBackendDataService {
         });
 
     }
+
+
 }

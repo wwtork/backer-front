@@ -2400,33 +2400,33 @@ main .dns.middle-wrapper .middle .bottom-block-btn {
     padding-bottom: 0;
 }
 
-main.enter-ip .middle-wrapper .middle {
+main .enter-ip.middle-wrapper .middle {
     width: 100%;
     margin: 0;
     padding: 0 55px;
 }
 
-main.enter-ip .middle-wrapper .middle .text-after-something {
+main .enter-ip.middle-wrapper .middle .text-after-something {
     font-size: 16px;
     padding-bottom: 30px;
 }
 
-main.enter-ip .middle-wrapper .middle .text-after-something strong {
+main .enter-ip.middle-wrapper .middle .text-after-something strong {
     display: block;
 }
 
-main.enter-ip .middle-wrapper .middle .bottom-block-btn {
+main .enter-ip.middle-wrapper .middle .bottom-block-btn {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
 }
 
-main.enter-ip .middle-wrapper .middle .input-block {
+main .enter-ip.middle-wrapper .middle .input-block {
     width: 64%;
     display: inline-block;
 }
 
-main.enter-ip .middle-wrapper .middle .input-name span {
+main .enter-ip.middle-wrapper .middle .input-name span {
     font-size: 16px;
     line-height: 1.25em;
     margin-bottom: 5px;
@@ -2436,12 +2436,12 @@ main.enter-ip .middle-wrapper .middle .input-name span {
     width: 100%;
 }
 
-main.enter-ip .middle-wrapper .middle label {
+main .enter-ip.middle-wrapper .middle label {
     position: relative;
     width: 100%;
 }
 
-main.enter-ip .middle-wrapper .middle label input {
+main .enter-ip.middle-wrapper .middle label input {
     width: 100%;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -2452,7 +2452,7 @@ main.enter-ip .middle-wrapper .middle label input {
     padding: 15px;
 }
 
-main.enter-ip .bottom-wrapper.instruction-help {
+main .enter-ip.bottom-wrapper.instruction-help {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
