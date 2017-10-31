@@ -18,6 +18,7 @@ export class SelectFolderComponent implements OnInit {
     }
 
     folderSelect() {
+        console.log('changed');
         this.folderSelected.emit(this.path);
     }
 

@@ -120,7 +120,9 @@ const routes:Routes = [
         HostingAccessComponent,
         ChooseTariffComponent,
         BackupActivationComponent,
-        ChooseMethodComponent
+        ChooseMethodComponent,
+        IpErrorComponent,
+        BackupActivationErrorComponent
     ],
 })
 export class AppModule {

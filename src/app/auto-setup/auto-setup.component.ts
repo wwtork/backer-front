@@ -25,7 +25,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     }
 
     ngAfterViewInit() {
-        if(this.hostingSettings.backupSupport && !this.hostingSettings.backupScanFinished) {
+        if(this.hostingSettings.backupSupport/* && !this.hostingSettings.backupScanFinished*/) {
             this.startBackupScan();
         }
         if(this.hostingSettings.firewallSupport && !this.hostingSettings.firewallScanFinished) {
@@ -66,12 +66,11 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     checkBackupScan(){
         this.backendDataService.getBackupScanData(this.hostingSettings.getHostScanData()).then((result:Response) => {
             if(result.status){
-                if(result.hasOwnProperty('data')) this.backupPercent = result['data']['percent'];
-                if(result.hasOwnProperty('finished') && result['finished']){
-                    this.hostingSettings.backupScanFinished = true;
-                    if(result.hasOwnProperty('errors')){
-                        this.hostingSettings.scanErrors = result['errors'];
-                    }
+                console.log(result);
+                let data = result.hasOwnProperty('data') ? result['data'] : null;
+                if(data && data['finished']){
+                    this.backupPercent = 100;
+                    this.processBackupScanResults(data)
                 }else {
                     setTimeout(() => {
                         this.checkBackupScan();
@@ -82,6 +81,26 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
             console.log(err);
             return false;
         });
+    }
+
+    processBackupScanResults(result){
+        this.hostingSettings.backupScanFinished = true;
+        if(result.hasOwnProperty('errors')){
+            this.hostingSettings.scanErrors = result['errors'];
+            this.hostingSettings.stage = 'backup-activation-error';
+            this.onSubmit();
+        }
+        if(result.hasOwnProperty('domain')){
+            this.hostingSettings.site.fillFromJSONString(result['domain']);
+            if(!this.hostingSettings.site.ip){
+                this.hostingSettings.stage = 'ip-error';
+                this.onSubmit();
+            }
+        } else {
+            this.hostingSettings.scanErrors['searchError'] = true;
+            this.hostingSettings.stage = 'backup-activation-error';
+            this.onSubmit();
+        }
     }
 
     checkFirewallScan(){

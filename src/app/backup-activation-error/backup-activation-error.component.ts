@@ -15,10 +15,12 @@ export class BackupActivationErrorComponent extends HostingStage implements OnIn
     }
 
     ngOnInit() {
+        console.log(this.hostingSettings);
+        this.errors = this.hostingSettings.scanErrors;
     }
 
     ngAfterViewInit() {
-        this.errors = this.hostingSettings.scanErrors;
+        //this.errors = this.hostingSettings.scanErrors;
     }
 
     onFormSubmit(){
