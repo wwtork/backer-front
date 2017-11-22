@@ -30,7 +30,6 @@ export class BackupActivationErrorComponent extends HostingStage implements OnIn
 
     updatePath(path:string){
         this.hostingSettings.scanPath = path;
-        this.hostingSettings.scanType = 'scan';
     }
 
     onSkip(){

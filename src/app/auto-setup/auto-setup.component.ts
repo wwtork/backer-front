@@ -72,6 +72,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
                     this.backupPercent = 100;
                     this.processBackupScanResults(data)
                 }else {
+                    this.backupPercent = data['percent'];
                     setTimeout(() => {
                         this.checkBackupScan();
                     }, 2000);

@@ -10,8 +10,9 @@ const GET_TARIFFS_URI = 'secured/tariffs';
 const CHECK_ACCESS_URI = 'secured/check-hosting-access';
 const SAVE_HOSTING_SETTINGS_URI = 'secured/save-hosting-settings';
 const USER_KEY = 'user';
-const BACKUP_SCAN_DATA_URI = 'secured/backup_scan_data';
-const BACKUP_START_SCAN_URI = 'secured/backup_scan_init';
+const BACKUP_SCAN_DATA_URI = 'secured/backup_scan/status/';
+const BACKUP_SCAN_TERMINATE_URI = 'secured/backup_scan/terminate/';
+const BACKUP_START_SCAN_URI = 'secured/backup_scan/process/';
 const FIREWALL_SCAN_DATA_URI = 'secured/firewall_scan_data';
 const FIREWALL_START_SCAN_URI = 'secured/firewall_scan_init';
 
@@ -46,7 +47,7 @@ export class BackendDataService implements IBackendDataService {
     }
 
     startBackupScan(hostScanData) {
-        return  this.securedPost(BACKUP_START_SCAN_URI, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+        return  this.securedPost(BACKUP_START_SCAN_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -56,7 +57,17 @@ export class BackendDataService implements IBackendDataService {
 
     getBackupScanData(hostScanData) {
         if(!hostScanData.domainFilter) hostScanData.domainFilter = this.getUser().website;
-        return  this.securedPost(BACKUP_SCAN_DATA_URI, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+        return  this.securedPost(BACKUP_SCAN_DATA_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    terminateBackupScan(hostScanData) {
+        if(!hostScanData.domain) hostScanData.domain = this.getUser().website;
+        return  this.securedPost(BACKUP_SCAN_TERMINATE_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);

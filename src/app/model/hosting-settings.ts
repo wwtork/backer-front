@@ -155,7 +155,10 @@ export class HostingSettings extends Serializable {
     }
 
     set scanErrors(value) {
-        this._scanErrors = value
+        for(let k in value){
+            if(value.hasOwnProperty(k))
+                this._scanErrors[k] = value[k]
+        }
     }
 
     private _scanErrors =  {
@@ -191,13 +194,14 @@ export class HostingSettings extends Serializable {
 
     getHostScanData() {
         let request = {
-            serverId: this.id,
-            type: this.scanType,
-            path: this.scanPath,
-            filter: this.domain
+            id: this.id,
         };
 
-        if(this.scanPath) request['scanPath'] = this.scanPath;
+        if(this.scanPath){
+            request['path'] = this.scanPath;
+            request['force'] = true;
+        }
+        if(this.domain) request['domain'] = this.domain;
 
         return request;
     }
