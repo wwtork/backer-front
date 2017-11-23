@@ -12,9 +12,9 @@ const SAVE_HOSTING_SETTINGS_URI = 'secured/save-hosting-settings';
 const USER_KEY = 'user';
 const BACKUP_SCAN_DATA_URI = 'secured/backup_scan/status/';
 const BACKUP_SCAN_TERMINATE_URI = 'secured/backup_scan/terminate/';
-const BACKUP_START_SCAN_URI = 'secured/backup_scan/process/';
-const FIREWALL_SCAN_DATA_URI = 'secured/firewall_scan_data';
-const FIREWALL_START_SCAN_URI = 'secured/firewall_scan_init';
+const BACKUP_START_SCAN_URI = 'secured/backup_scan/init/';
+const FIREWALL_SCAN_DATA_URI = 'secured/firewall_scan/status/';
+const FIREWALL_START_SCAN_URI = 'secured/firewall_scan/init/';
 
 @Injectable()
 export class BackendDataService implements IBackendDataService {
@@ -45,6 +45,25 @@ export class BackendDataService implements IBackendDataService {
             return [];
         });
     }
+
+    startFirewallScan(fireScanData) {
+        return  this.securedPost(FIREWALL_START_SCAN_URI + fireScanData.siteId, JSON.stringify({fireScanData: fireScanData})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    getFirewallScanData(fireScanData) {
+        return  this.securedPost(FIREWALL_SCAN_DATA_URI + fireScanData.siteId, JSON.stringify({fireScanData: fireScanData})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
 
     startBackupScan(hostScanData) {
         return  this.securedPost(BACKUP_START_SCAN_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
@@ -113,24 +132,6 @@ export class BackendDataService implements IBackendDataService {
                 }, (err) => {
                     reject(err);
                 });
-        });
-    }
-
-    startFirewallScan(fireScanData) {
-        return  this.securedPost(FIREWALL_START_SCAN_URI, {fireScanData: fireScanData}).then((result) => {
-            return result;
-        }, (err) => {
-            console.log(err);
-            return [];
-        });
-    }
-
-    getFirewallScanData(fireScanData) {
-        return  this.securedPost(FIREWALL_SCAN_DATA_URI, {fireScanData: fireScanData}).then((result) => {
-            return result;
-        }, (err) => {
-            console.log(err);
-            return [];
         });
     }
 

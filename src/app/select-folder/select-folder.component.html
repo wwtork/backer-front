@@ -1,6 +1,6 @@
-
-<input type="text" value="{{ path }}" (change)="folderSelect()"/>
-
+<label class="one-line"  [ngClass]="{true:'validate', false:'novalidate'}[pathField.valid]">
+  <input type="text" [(ngModel)]="path" #pathField="ngModel" value="{{ path }}" (change)="folderSelect()" required/>
+</label>
           <!--<div class="block-select-folder">-->
             <!--<div class="input-block">-->
               <!--<input type="text" placeholder="/domen.ru/">-->

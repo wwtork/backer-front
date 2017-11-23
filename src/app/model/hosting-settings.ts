@@ -5,6 +5,11 @@ export class HostingSettings extends Serializable {
         return this._firewallScanFinished;
     }
 
+    constructor(){
+        super();
+        this.site = new Site();
+    }
+
     set firewallScanFinished(value: boolean) {
         this._firewallScanFinished = value;
     }
@@ -209,6 +214,14 @@ export class HostingSettings extends Serializable {
     getFirewallScanData() {
         return {
             siteId: this.site.id,
+            www: null,
+            protocol: null,
+            profiles: null,
+            letsencrypt: null,
+            mode: null,
+            copy: null,
+            names: null,
+            subdomains: null
         }
     }
 }

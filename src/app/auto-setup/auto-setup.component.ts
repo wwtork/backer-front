@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
-import { Observable } from "rxjs/Observable";
+import {Observable} from "rxjs/Observable";
 import {BackendDataService} from "../service/backend-data.service";
 
 @Component({
@@ -14,7 +14,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     private backupPercent = 0;
     private firePercent = 0;
 
-    constructor(private backendDataService : BackendDataService) {
+    constructor(private backendDataService: BackendDataService) {
         super();
     }
 
@@ -25,19 +25,19 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     }
 
     ngAfterViewInit() {
-        if(this.hostingSettings.backupSupport/* && !this.hostingSettings.backupScanFinished*/) {
+        if (this.hostingSettings.backupSupport/* && !this.hostingSettings.backupScanFinished*/) {
             this.startBackupScan();
         }
-        if(this.hostingSettings.firewallSupport && !this.hostingSettings.firewallScanFinished) {
+        if (this.hostingSettings.firewallSupport && !this.hostingSettings.firewallScanFinished) {
             this.startFirewallScan();
         }
     }
 
-    startBackupScan(){
-        this.backendDataService.startBackupScan(this.hostingSettings.getHostScanData()).then((result:Response) => {
-            if(result.status){
+    startBackupScan() {
+        this.backendDataService.startBackupScan(this.hostingSettings.getHostScanData()).then((result: Response) => {
+            if (result.status) {
                 setTimeout(() => {
-                    this.checkBackupScan();
+                        this.checkBackupScan();
                     }
                     , 2000);
 
@@ -48,14 +48,13 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         });
     }
 
-    startFirewallScan(){
-        this.backendDataService.startFirewallScan(this.hostingSettings.getFirewallScanData()).then((result:Response) => {
-            if(result.status){
+    startFirewallScan() {
+        this.backendDataService.startFirewallScan(this.hostingSettings.getFirewallScanData()).then((result: Response) => {
+            if (result.status) {
                 setTimeout(() => {
                         this.checkFirewallScan();
                     }
                     , 2000);
-
             }
         }, (err) => {
             console.log(err);
@@ -63,16 +62,15 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         });
     }
 
-    checkBackupScan(){
-        this.backendDataService.getBackupScanData(this.hostingSettings.getHostScanData()).then((result:Response) => {
-            if(result.status){
+    checkBackupScan() {
+        this.backendDataService.getBackupScanData(this.hostingSettings.getHostScanData()).then((result: Response) => {
+            if (result.status) {
                 console.log(result);
-                let data = result.hasOwnProperty('data') ? result['data'] : null;
-                if(data && data['finished']){
+                if (result.hasOwnProperty('finished') && result['finished']) {
                     this.backupPercent = 100;
-                    this.processBackupScanResults(data)
-                }else {
-                    this.backupPercent = data['percent'];
+                    this.processBackupScanResults(result['entity'])
+                } else {
+                    this.backupPercent = result.hasOwnProperty('percent') ? result['percent'] : 0;
                     setTimeout(() => {
                         this.checkBackupScan();
                     }, 2000);
@@ -84,36 +82,42 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         });
     }
 
-    processBackupScanResults(result){
+    processBackupScanResults(result) {
         this.hostingSettings.backupScanFinished = true;
-        if(result.hasOwnProperty('errors')){
+        if (!result) {
+            this.hostingSettings.scanErrors['searchError'] = true;
+            this.hostingSettings.stage = 'backup-activation-error';
+            this.onSubmit();
+            return;
+        }
+
+        result = result[0];
+
+        if (result.hasOwnProperty('errors')) {
             this.hostingSettings.scanErrors = result['errors'];
             this.hostingSettings.stage = 'backup-activation-error';
             this.onSubmit();
+            return;
         }
-        if(result.hasOwnProperty('domain')){
-            this.hostingSettings.site.fillFromJSONString(result['domain']);
-            if(!this.hostingSettings.site.ip){
-                this.hostingSettings.stage = 'ip-error';
-                this.onSubmit();
-            }
-        } else {
-            this.hostingSettings.scanErrors['searchError'] = true;
-            this.hostingSettings.stage = 'backup-activation-error';
+
+        this.hostingSettings.site.fillFromJSON(result);
+
+        if (!this.hostingSettings.site.ip) {
+            this.hostingSettings.stage = 'ip-error';
             this.onSubmit();
         }
     }
 
-    checkFirewallScan(){
-        this.backendDataService.getFirewallScanData(this.hostingSettings.getFirewallScanData()).then((result:Response) => {
-            if(result.status){
-                if(result.hasOwnProperty('data')) this.backupPercent = result['data']['percent'];
-                if(result.hasOwnProperty('finished') && result['finished']){
+    checkFirewallScan() {
+        this.backendDataService.getFirewallScanData(this.hostingSettings.getFirewallScanData()).then((result: Response) => {
+            if (result.status) {
+                if (result.hasOwnProperty('data')) this.backupPercent = result['data']['percent'];
+                if (result.hasOwnProperty('finished') && result['finished']) {
                     this.hostingSettings.firewallScanFinished = true;
-                    if(result.hasOwnProperty('errors')){
+                    if (result.hasOwnProperty('errors')) {
                         this.hostingSettings.scanErrors = result['errors'];
                     }
-                }else {
+                } else {
                     setTimeout(() => {
                         this.checkFirewallScan();
                     }, 2000);
@@ -129,12 +133,12 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     //     Observable.interval(10000).takeWhile(() => true).subscribe(() => this.backendDataService.getFirewallScanData(this.hostingSettings.getHostScanData()));
     // }
 
-    activateBackup(){
+    activateBackup() {
         this.hostingSettings.stage = 'backup-activation';
         this.onSubmit();
     }
 
-    activateCDN(){
+    activateCDN() {
         this.hostingSettings.stage = 'firewall-activation';
         this.onSubmit();
     }

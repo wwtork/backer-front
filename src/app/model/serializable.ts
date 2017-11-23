@@ -8,7 +8,12 @@ export class Serializable {
 
     fillFromJSON(jsonObj):any {
         for (var propName in jsonObj) {
-            this[propName] = jsonObj[propName]
+            if(typeof this[propName] == 'object')
+                for (var subpropName in jsonObj[propName]) {
+                    this[propName][subpropName] = jsonObj[propName][subpropName]
+                }
+            else
+                this[propName] = jsonObj[propName]
         }
 
         return this;

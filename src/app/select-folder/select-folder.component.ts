@@ -7,7 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class SelectFolderComponent implements OnInit {
 
-    private path;
+    @Input() path = '';
     @Output() folderSelected: EventEmitter<any>;
 
     constructor() {
@@ -18,7 +18,6 @@ export class SelectFolderComponent implements OnInit {
     }
 
     folderSelect() {
-        console.log('changed');
         this.folderSelected.emit(this.path);
     }
 
