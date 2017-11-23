@@ -111,11 +111,10 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     checkFirewallScan() {
         this.backendDataService.getFirewallScanData(this.hostingSettings.getFirewallScanData()).then((result: Response) => {
             if (result.status) {
-                if (result.hasOwnProperty('data')) this.backupPercent = result['data']['percent'];
-                if (result.hasOwnProperty('finished') && result['finished']) {
-                    this.hostingSettings.firewallScanFinished = true;
-                    if (result.hasOwnProperty('errors')) {
-                        this.hostingSettings.scanErrors = result['errors'];
+                if (result['text_status'] == 2) {
+                    if(result.hasOwnProperty('message') && result['message']){
+                        this.hostingSettings.firewallScanResult = result['message'];
+                        this.firePercent = 100;
                     }
                 } else {
                     setTimeout(() => {

@@ -1,6 +1,14 @@
 import {Serializable} from "./serializable";
 import {Site} from "./site";
 export class HostingSettings extends Serializable {
+    get firewallScanResult(): any {
+        return this._firewallScanResult;
+    }
+
+    set firewallScanResult(value: any) {
+        this._firewallScanResult = value;
+    }
+    private _firewallScanResult: any;
     get firewallScanFinished(): boolean {
         return this._firewallScanFinished;
     }
