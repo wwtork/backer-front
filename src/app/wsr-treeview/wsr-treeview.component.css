@@ -1,0 +1,120 @@
+:host /deep/ .treeview-header .row-filter {
+    margin-bottom: .5rem;
+}
+
+
+:host /deep/ .treeview-container .fa {
+    width: 33px;
+    cursor: pointer;
+    height: 33px;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.treeview-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 18px;
+}
+.treeview-text {
+    padding: .3rem 0;
+    white-space: nowrap;
+}
+
+
+:host /deep/ .form-check-label {
+    padding: 0;
+    line-height: 33px;
+    vertical-align: middle;
+}
+
+
+
+:host /deep/ .form-check1 {
+    height: 33px;
+    line-height: 33px;
+    position: relative;
+}
+
+:host /deep/ .bbb {
+    color: slategray;
+    line-height: 30px;
+    padding-left: 33px;
+    /*background: url('../../assets/image/treeview/line.gif') repeat-y;*/
+    width: 200px;
+}
+:host /deep/ .form-check1.last + .bbb {
+    background: none;
+
+}
+
+:host /deep/ .bbb .treeview-item {
+    position: relative;
+    top: -4px;
+}
+
+:host /deep/ .bbb:not(.last) {
+    background: url('../../assets/image/treeview/line.gif') repeat-y;
+}
+
+:host /deep/ .form-check1:not(.last) {
+    background: url('../../assets/image/treeview/join.gif') no-repeat;
+}
+
+:host /deep/ .form-check1.opened {
+    background: url('../../assets/image/treeview/minus.png') no-repeat;
+}
+:host /deep/ .form-check1.closed {
+    background: url('../../assets/image/treeview/plus.png') no-repeat;
+}
+
+:host /deep/ .form-check1 {
+    width: 200px;
+    padding-left: 33px;
+}
+
+:host /deep/ .form-check1.opened.last {
+    background: url('../../assets/image/treeview/minusbottom.png') no-repeat;
+}
+:host /deep/ .form-check1.closed.last {
+    background: url('../../assets/image/treeview/plusbottom.png') no-repeat;
+}
+
+:host /deep/ .form-check1.last {
+    background: url('../../assets/image/treeview/joinbottom.gif') no-repeat;
+}
+
+:host /deep/ .form-check1.single {
+    background: url('../../assets/image/treeview/joinbottom.gif') no-repeat;
+}
+
+:host /deep/ .form-check1.opened.single {
+    background: url('../../assets/image/treeview/nolines_minus.png') no-repeat;
+}
+:host /deep/ .form-check1.closed.single {
+    background: url('../../assets/image/treeview/nolines_plus.png') no-repeat;
+}
+
+:host /deep/ .form-check1.opened.first {
+    background: url('../../assets/image/treeview/minustop.png') no-repeat;
+}
+:host /deep/ .form-check1.closed.first {
+    background: url('../../assets/image/treeview/plustop.png') no-repeat;
+}
+
+:host /deep/ .node-name {
+    margin-left: 9px;
+}
+
+:host /deep/ .node-name.country-name {
+    font-weight: bold;
+}
+
+:host /deep/ .node-name .flag24 {
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    margin-right: 9px;
+}
