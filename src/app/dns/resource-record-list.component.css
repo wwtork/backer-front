@@ -1,0 +1,171 @@
+.error-popover {
+    text-align: center;
+    background-color: #e33618;
+    border: none;
+    z-index: 500;
+}
+
+.error-popover .popover-body {
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.error-popover > .arrow {
+    left: 50%;
+}
+
+.error-popover > .arrow:after {
+    border-top-color: #e33618;
+}
+.error-popover > .arrow:before {
+    border-top: none;
+}
+
+.error-popover.bs-popover-top {
+    top: auto;
+    bottom: 100%
+}
+
+.error-popover.bs-popover-bottom {
+    top: 100%;
+    bottom: auto
+}
+
+.error-popover {
+    display: none;
+}
+
+.has-error .error-popover {
+    display: block;
+}
+
+.wrong-value {
+    color: #e33618;
+}
+
+table.records th {
+    font-weight: normal;
+    background-color: #59adc7;
+    color: #fff;
+    padding: 10px 8px;
+}
+
+table.records td {
+    vertical-align: middle;
+    text-align: left;
+    padding: 5px 8px;
+}
+
+table.records {
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+}
+
+
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: smaller;
+    margin-bottom: 5px;
+}
+
+button.icon {
+    border: none;
+    background: none;
+}
+button.icon:focus,
+button.icon:active {
+    outline: none;
+}
+button.edit-rr {
+    background: url('../../assets/image/edit_rr.png') no-repeat;
+    width: 36px;
+    height: 36px;
+    display: block;
+    float: right;
+    margin-left: 10px;
+}
+
+
+
+.mobile .rr-cdn-setting {
+    position: absolute;
+    right: 0;
+    width: 180px;
+    padding: 14px;
+}
+
+.mobile .rr-name {
+    padding: 12px 15px;
+    position: relative;
+}
+.mobile .rr-name.rr-a {
+    margin-right: 180px;
+}
+.mobile .rr-item-header {
+    position: relative;
+    border-bottom: 1px solid #c1c1c1;
+}
+.mobile .rr-item-body {
+    padding: 15px 20px;
+}
+.mobile .rr-item {
+    margin-bottom: 15px;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+}
+
+.mobile .rr-item:nth-child(2n){
+    background-color: #f7f7f7;
+}
+
+
+.rr-item input {
+    background-color: transparent;
+    border-color: transparent;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.rr-item input:active,
+.rr-item input:focus {
+    border-color: #aaa;
+}
+
+.rr-item .has-error input {
+    border-color: #e33618 !important;
+}
+
+
+
+.desktop {
+    display: none;
+}
+@media (min-width: 768px){
+    .desktop {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
+}
+
+.plus-icon {
+    background: url('../../assets/image/plus.png') no-repeat;
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    vertical-align: -0.5em;
+    margin-right: 10px;
+}
+
+.add-record-button {
+    color: #0066b3;
+    background: none;
+    border: none;
+    padding: 3px 0;
+}
