@@ -14,6 +14,17 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     private backupPercent = 0;
     private firePercent = 0;
 
+    private backupScanErrors  = {
+        6: 'configError',
+        5: 'cmsNotFoundError',
+        4: 'ipError',
+        3: 'searchError',
+        2: 'loginError',
+        1: 'connectionError',
+        7: 'scriptError',
+        8: 'permissionError'
+    };
+
     constructor(private backendDataService: BackendDataService) {
         super();
     }
@@ -84,27 +95,25 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
 
     processBackupScanResults(result) {
         this.hostingSettings.backupScanFinished = true;
-        if (!result) {
-            this.hostingSettings.scanErrors['searchError'] = true;
-            this.hostingSettings.stage = 'backup-activation-error';
-            this.onSubmit();
-            return;
-        }
 
-        result = result[0];
+        if(result['errorCodes']) {
+            for (let error of result['errorCodes']) {
+                this.hostingSettings.scanErrors[this.backupScanErrors[error]] = true
+            }
+            if (this.hostingSettings.scanErrors['searchError'] ||
+                this.hostingSettings.scanErrors['scriptError'] ||
+                this.hostingSettings.scanErrors['permissionError']) {
+                this.hostingSettings.stage = 'backup-activation-error';
+                this.onSubmit();
+                return;
+            }
 
-        if (result.hasOwnProperty('errors')) {
-            this.hostingSettings.scanErrors = result['errors'];
-            this.hostingSettings.stage = 'backup-activation-error';
-            this.onSubmit();
-            return;
-        }
+            this.hostingSettings.site.fillFromJSON(result);
 
-        this.hostingSettings.site.fillFromJSON(result);
-
-        if (!this.hostingSettings.site.ip) {
-            this.hostingSettings.stage = 'ip-error';
-            this.onSubmit();
+            if (this.hostingSettings.scanErrors['ipError']) {
+                this.hostingSettings.stage = 'ip-error';
+                this.onSubmit();
+            }
         }
     }
 
