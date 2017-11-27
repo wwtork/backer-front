@@ -1,0 +1,74 @@
+.group {
+	position: relative;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	padding: 5px 5px 5px 50px;
+	width: 100%;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	font-size: smaller;
+	cursor: pointer;
+}
+
+@media (min-width: 768px){
+	.group {
+		width: 48%;
+		margin-right: 4%;
+		float: left;
+	}
+	.group:nth-child(2n){
+		margin-right: 0;
+	}
+}
+
+@media (min-width: 992px){
+	.group {
+		width: 32%;
+		margin-right: 2%;
+		float: left;
+	}
+	.group:nth-child(2n){
+		margin-right: 2%;
+	}
+	.group:nth-child(3n){
+		margin-right: 0;
+	}
+}
+
+.group .flag32 {
+	position: absolute;
+	top: 0;
+	left: 5px;
+}
+
+.group .flag-xx {
+	background: none;
+}
+
+.group .name {
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.group .comment {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.group.selected {
+	border-color: #7ea4d4;
+	box-shadow: 0 0 0 3px rgba(196, 211, 247, 0.7);
+}
+
+.group:hover {
+	box-shadow: 0 0 0 3px rgba(224, 223, 223, 0.7);
+}
+
+.modal-footer button {
+	display: block;
+	width: 49%;
+}
+.modal-footer button + button {
+	margin-left: 2%;
+}

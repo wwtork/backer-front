@@ -1,0 +1,122 @@
+.cdn-off > .icon,
+.cdn-on > .icon {
+	width: 37px;
+	height: 27px;
+	background: url('../../assets/image/cdn_icon.png') no-repeat 0 0;
+}
+
+.cdn-on > .icon {
+	background-position: -37px 0;
+}
+
+.popover-button {
+	position: relative;
+	height: 30px;
+	line-height: 30px;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	color: #4b4b4b;
+}
+
+.detail-button {
+	height: 31px;
+	line-height: 30px;
+	border: none;
+	background-color: transparent;
+	display: inline-block;
+	cursor: pointer;
+	text-align: left;
+	overflow: hidden;
+}
+
+.popover-button:active,
+.detail-button:active,
+.popover-button:focus,
+.detail-button:focus {
+	outline: none;
+}
+
+.detail-button .regions-count {
+	height: 30px;
+	width: 30px;
+	border-radius: 15px;
+	border: 1px solid #c1c1c1;
+	text-align: center;
+}
+
+.toggle-button {
+	position: relative;
+	padding: 5px;
+	line-height: 30px;
+	vertical-align: middle;
+	display: inline-block;
+	cursor: pointer;
+}
+.toggle-button:after {
+	clear: both;
+}
+
+.toggle-button .icon {
+	float: left;
+	margin-right: 10px;
+}
+
+.toggle-button.selected {
+	font-weight: bold;
+}
+
+.regions-overview {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+:host {
+	position: relative;
+	height: 30px;
+	display: block;
+}
+.popover-button {
+	position: absolute;
+}
+
+@media (max-width: 767px){
+	.regions-count {
+		display: none;
+	}
+	.group-name {
+		display: none;
+	}
+	:host {
+		text-align: right;
+	}
+	.popover-button {
+		right: 0;
+		left: auto;
+	}
+	.detail-button {
+		margin-right: 50px;
+		margin-left: auto;
+	}
+}
+
+@media (min-width: 768px){
+	:host {
+		text-align: left;
+	}
+	.detail-button {
+		margin-right: auto;
+		margin-left: 50px;
+	}
+	.popover-button {
+		left: 0;
+		right: auto;
+	}
+	.regions-count {
+		display: inline-block;
+	}
+	.group-name {
+		display: inline;
+	}
+}

@@ -1,0 +1,13 @@
+.treeview-wrapper {
+    padding: 12px 10px;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+}
+
+.modal-footer button {
+    display: block;
+    width: 49%;
+}
+.modal-footer button + button {
+    margin-left: 2%;
+}

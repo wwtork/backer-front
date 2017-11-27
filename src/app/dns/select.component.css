@@ -1,0 +1,41 @@
+:host {
+    display: block;
+    position: relative;
+}
+
+select {
+    padding-right: 45px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    z-index: 2;
+    background: transparent;
+}
+select:focus,
+select:active {
+    background: transparent;
+}
+
+/* CAUTION: IE hackery ahead */
+select::-ms-expand {
+    display: none; /* remove default arrow in IE 10 and 11 */
+}
+
+/* target Internet Explorer 9 to undo the custom arrow */
+.select-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 40px;
+    border-left: 1px solid #b4b4b4;
+    background: url(../../assets/image/select_arrow.png) 50% 50% no-repeat;
+}
+
+@media screen and (min-width:0\0) {
+    select {
+        background:none\9;
+        padding: 5px\9;
+    }
+}
