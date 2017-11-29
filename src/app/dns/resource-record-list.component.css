@@ -82,7 +82,7 @@ button.icon:active {
     outline: none;
 }
 button.edit-rr {
-    background: url('../../assets/image/edit_rr.png') no-repeat;
+    background: url('../../assets/images/edit_rr.png') no-repeat;
     width: 36px;
     height: 36px;
     display: block;
@@ -155,7 +155,7 @@ button.edit-rr {
 }
 
 .plus-icon {
-    background: url('../../assets/image/plus.png') no-repeat;
+    background: url('../../assets/images/plus.png') no-repeat;
     width: 23px;
     height: 23px;
     display: inline-block;

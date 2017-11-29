@@ -5,7 +5,7 @@ import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core
 	selector: 'rr-rem',
 	styles: [`
 		.delete-button {
-			background: url(../../assets/image/delete_rr.png) no-repeat;
+			background: url(../../assets/images/delete_rr.png) no-repeat;
 			border: none;
 			width: 28px;
 			height: 28px;

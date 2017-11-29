@@ -56,18 +56,18 @@
 }
 
 :host /deep/ .bbb:not(.last) {
-    background: url('../../assets/image/treeview/line.gif') repeat-y;
+    background: url('../../assets/images/treeview/line.gif') repeat-y;
 }
 
 :host /deep/ .form-check1:not(.last) {
-    background: url('../../assets/image/treeview/join.gif') no-repeat;
+    background: url('../../assets/images/treeview/join.gif') no-repeat;
 }
 
 :host /deep/ .form-check1.opened {
-    background: url('../../assets/image/treeview/minus.png') no-repeat;
+    background: url('../../assets/images/treeview/minus.png') no-repeat;
 }
 :host /deep/ .form-check1.closed {
-    background: url('../../assets/image/treeview/plus.png') no-repeat;
+    background: url('../../assets/images/treeview/plus.png') no-repeat;
 }
 
 :host /deep/ .form-check1 {
@@ -76,32 +76,32 @@
 }
 
 :host /deep/ .form-check1.opened.last {
-    background: url('../../assets/image/treeview/minusbottom.png') no-repeat;
+    background: url('../../assets/images/treeview/minusbottom.png') no-repeat;
 }
 :host /deep/ .form-check1.closed.last {
-    background: url('../../assets/image/treeview/plusbottom.png') no-repeat;
+    background: url('../../assets/images/treeview/plusbottom.png') no-repeat;
 }
 
 :host /deep/ .form-check1.last {
-    background: url('../../assets/image/treeview/joinbottom.gif') no-repeat;
+    background: url('../../assets/images/treeview/joinbottom.gif') no-repeat;
 }
 
 :host /deep/ .form-check1.single {
-    background: url('../../assets/image/treeview/joinbottom.gif') no-repeat;
+    background: url('../../assets/images/treeview/joinbottom.gif') no-repeat;
 }
 
 :host /deep/ .form-check1.opened.single {
-    background: url('../../assets/image/treeview/nolines_minus.png') no-repeat;
+    background: url('../../assets/images/treeview/nolines_minus.png') no-repeat;
 }
 :host /deep/ .form-check1.closed.single {
-    background: url('../../assets/image/treeview/nolines_plus.png') no-repeat;
+    background: url('../../assets/images/treeview/nolines_plus.png') no-repeat;
 }
 
 :host /deep/ .form-check1.opened.first {
-    background: url('../../assets/image/treeview/minustop.png') no-repeat;
+    background: url('../../assets/images/treeview/minustop.png') no-repeat;
 }
 :host /deep/ .form-check1.closed.first {
-    background: url('../../assets/image/treeview/plustop.png') no-repeat;
+    background: url('../../assets/images/treeview/plustop.png') no-repeat;
 }
 
 :host /deep/ .node-name {

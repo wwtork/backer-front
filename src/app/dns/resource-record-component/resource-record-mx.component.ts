@@ -18,11 +18,11 @@ import { Validators as CustomValidators } from '../validators';
 		}
 		.down-button {
 			right: 40px;
-			background: transparent url('../../../assets/image/arrow_down.png') 50% 50% no-repeat;
+			background: transparent url('../../../assets/images/arrow_down.png') 50% 50% no-repeat;
 		}
 		.up-button {
 			right: 0;
-			background: transparent url('../../../assets/image/arrow_up.png') 50% 50% no-repeat;
+			background: transparent url('../../../assets/images/arrow_up.png') 50% 50% no-repeat;
 		}
 	`],
 	template: `

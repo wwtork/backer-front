@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../service/auth.service";
+import {User} from "../authentication/user";
+import {AuthenticationService} from "../authentication/authentication.service";
 
 @Component({
   selector: 'panel',
@@ -8,7 +9,14 @@ import {AuthService} from "../service/auth.service";
 })
 export class PanelComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  private user:User;
+  private isLoggedIn;
+
+
+  constructor() {
+      this.isLoggedIn = AuthenticationService.isLoggedIn();
+      this.user = AuthenticationService.getUser();
+  }
 
   ngOnInit() {
   }

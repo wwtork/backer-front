@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { CommonModule } from '@angular/common';
 import { ResourceRecordListComponent } from './resource-record-list.component';
 import { ResourceRecordMxComponent } from "./resource-record-component/resource-record-mx.component";
 import { ResourceRecordSoaComponent } from "./resource-record-component/resource-record-soa.component";
@@ -38,7 +38,7 @@ import { ReactiveSelectComponent } from "./reactive-select.component";
 		ModalModule.forRoot(),
 		NgbModule.forRoot(),
 		WsrTreeViewModule,
-		BrowserModule,
+		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
 		HttpModule,

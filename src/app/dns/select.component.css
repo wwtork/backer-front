@@ -30,7 +30,7 @@ select::-ms-expand {
     height: 100%;
     width: 40px;
     border-left: 1px solid #b4b4b4;
-    background: url(../../assets/image/select_arrow.png) 50% 50% no-repeat;
+    background: url(../../assets/images/select_arrow.png) 50% 50% no-repeat;
 }
 
 @media screen and (min-width:0\0) {

@@ -8,11 +8,11 @@
           </a>
         </div>
         <div class="enter-lang">
-          <div class="enter" *ngIf="!authService.isLoggedIn()">
+          <div class="enter" *ngIf="isLoggedIn">
             <a [routerLink]="['/login']"><span>Вход</span></a>
           </div>
-          <div class="enter" *ngIf="authService.isLoggedIn()">
-            {{ authService.getUser().email }}
+          <div class="enter" *ngIf="isLoggedIn">
+            {{ user.email }}
           </div>
           <div class="lang">
             <div class="drop-block">
