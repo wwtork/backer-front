@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
 import {BackendDataService} from "../backend-data.service";
+import {WsrDnsInfo} from "../../dns-settings/wsr-interfaces";
 
 @Component({
     selector: 'app-auto-setup',
@@ -12,6 +13,8 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     private initialized = false;
     private backupPercent = 0;
     private firePercent = 0;
+
+    private isDnsInfoBlank = true;
 
     private backupScanErrors  = {
         6: 'configError',
@@ -30,17 +33,21 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
 
     ngOnInit() {
         this.initialized = true;
-
-
+        if(this.hostingSettings.backupScanFinished)
+            this.backupPercent = 100;
+        if(this.hostingSettings.firewallScanFinished)
+            this.firePercent = 100;
     }
 
     ngAfterViewInit() {
-        if (this.hostingSettings.backupSupport/* && !this.hostingSettings.backupScanFinished*/) {
+        if (this.hostingSettings.backupSupport && !this.hostingSettings.backupScanFinished) {
             this.startBackupScan();
         }
-        if (this.hostingSettings.firewallSupport && !this.hostingSettings.firewallScanFinished) {
+        if (this.hostingSettings.firewallSupport/* && !this.hostingSettings.firewallScanFinished*/) {
             this.startFirewallScan();
         }
+
+
     }
 
     startBackupScan() {
@@ -56,6 +63,11 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
             console.log(err);
             return false;
         });
+    }
+
+    showDnsSettings(){
+        this.hostingSettings.stage = 'dns-settings';
+        this.onSubmit();
     }
 
     startFirewallScan() {
@@ -78,7 +90,8 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
                 console.log(result);
                 if (result.hasOwnProperty('finished') && result['finished']) {
                     this.backupPercent = 100;
-                    this.processBackupScanResults(result['entity'])
+                    this.processBackupScanResults(result['entity']);
+                    this.hostingSettings.backupScanFinished = true;
                 } else {
                     this.backupPercent = result.hasOwnProperty('percent') ? result['percent'] : 0;
                     setTimeout(() => {
@@ -120,8 +133,10 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         this.backendDataService.getFirewallScanData(this.hostingSettings.getFirewallScanData()).then((result: Response) => {
             if (result.status) {
                 if (result['text_status'] == 2) {
-                    this.hostingSettings.firewallScanResult = result;
+                    this.hostingSettings.firewallScanResult = result['waf_domain_data'];
                     this.firePercent = 100;
+                    this.hostingSettings.firewallScanFinished = true;
+                    this.isDnsInfoBlank = !result['waf_domain_data'];
                 } else {
                     setTimeout(() => {
                         this.checkFirewallScan();

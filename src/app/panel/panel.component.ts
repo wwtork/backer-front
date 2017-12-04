@@ -10,12 +10,17 @@ import {AuthenticationService} from "../authentication/authentication.service";
 export class PanelComponent implements OnInit {
 
   private user:User;
-  private isLoggedIn;
 
 
   constructor() {
-      this.isLoggedIn = AuthenticationService.isLoggedIn();
-      this.user = AuthenticationService.getUser();
+  }
+
+  isLoggedIn(){
+    return AuthenticationService.isLoggedIn();
+  }
+
+  getUser(){
+    return AuthenticationService.getUser();
   }
 
   ngOnInit() {

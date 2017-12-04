@@ -6,10 +6,8 @@ import {BrowserModule} from "@angular/platform-browser";
 import {ConnectionWizardModule} from "./connection-wizard/connection-wizard.module";
 import {RouterModule, Routes} from "@angular/router";
 import {PanelComponent} from "./panel/panel.component";
-import {InstructionComponent} from "./instruction/instruction.component";
-import {EmergencyHelpComponent} from "./emergency-help/emergency-help.component";
 import {Ng4FilesModule} from 'angular4-files-upload/src/app/ng4-files';
-import {DnsSettingsModule} from "./dns/dns-settings.module";
+import {DnsSettingsModule} from "./dns-settings/dns-settings.module";
 
 const routes:Routes = [
     { path: '', loadChildren: './authentication/authentication.module#AuthenticationModule'},
@@ -28,8 +26,6 @@ const routes:Routes = [
     ],
     declarations: [
         PanelComponent,
-        InstructionComponent,
-        EmergencyHelpComponent,
         AppComponent,
     ],
     entryComponents: [],

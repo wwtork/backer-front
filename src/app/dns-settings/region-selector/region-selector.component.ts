@@ -1,32 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ReferencesService } from "./service/references.service";
+import { ReferencesService } from "../service/references.service";
 import { TreeviewItem } from "ngx-treeview";
-import { NodeRegion } from "./node-region";
+import { NodeRegion } from "../node-region";
 
 @Component({
 	selector: 'wsr-region-selector',
 	styleUrls: ['./region-selector.component.css'],
-	template: `
-	<div class="modal-header">
-		<h4 class="modal-title">Выбор региона</h4>
-		<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<div class="modal-body" >
-		<div>Выберите регионы, которые будут использоваться для работы CDN <span class="info-sign" placement="bottom" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></span></div>
-		<br>
-		<div class="treeview-wrapper">
-			<wsr-treeview [config]="twConfig" [items]="treeItems" (selectedChange)="onSelect($event)"></wsr-treeview>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-primary" (click)="activeModal.close(value)">Save</button>
-		<button type="button" class="btn btn-default" (click)="activeModal.close(null)">Close</button>
-	</div>
-	`
+	templateUrl: './region-selector.component.html'
 })
 export class RegionSelectorComponent implements OnInit
 {

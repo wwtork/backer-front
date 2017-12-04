@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ record.type }}-record edition</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ng-template rr-form-host></ng-template>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="component && component.submit() && activeModal.close(record)"
+            [disabled]="!component.form.valid">Save
+    </button>
+    <button type="button" class="btn btn-default" (click)="activeModal.close(null)">Close</button>
+</div>

@@ -1,0 +1,190 @@
+<!--
+<button type="button" class="btn btn-default" (click)="logNames()">Names</button>
+<button type="button" class="btn btn-default" (click)="logRR()">Records</button>
+<button type="button" class="btn btn-default" (click)="logCdnSettings()">CDN settings</button>
+<button type="button" class="btn btn-default" (click)="assembleOutput()">Output</button>
+<br><br>-->
+
+<div class="container-fluid mobile">
+    <div *ngFor="let resourceRecord of resourceRecords; let i = index" class="rr-item">
+        <div class="rr-item-header">
+            <div *ngIf="resourceRecord.type == 'A'" class="rr-cdn-setting">
+                <wsr-domain-cdn-setting [value]="domainCdnSettings[resourceRecord.name]"
+                                        (onVoted)="onChangeCdnSetting($event, domainCdnSettings[resourceRecord.name])"></wsr-domain-cdn-setting>
+            </div>
+
+            <div class="rr-name" [class.rr-a]="resourceRecord.type == 'A'">
+                <div style="position: relative" [class.has-error]="!validateName(names[i])">
+                    <div class="popover error-popover bs-popover-top">
+                        <div class="arrow">
+                        </div>
+                        <div class="popover-body">
+                            Required a valid subdomain name, wildcard(*) or "@" for main domain
+                        </div>
+                    </div>
+                    <input class="form-control" [(ngModel)]="names[i]" (blur)="updateName(i)">
+                </div>
+            </div>
+        </div>
+        <div class="rr-item-body">
+            <div style="display: table; width: 100%">
+                <div style="display: table-row">
+                    <div style="display: table-cell">
+                        <div>Record type: <b>{{ resourceRecord.type }}</b></div>
+                        <div style="position: relative" [class.has-error]="!resourceRecord.valid"
+                             [class.wrong-value]="!resourceRecord.valid">
+                            <div class="popover error-popover bs-popover-top">
+                                <div class="arrow">
+                                </div>
+                                <div class="popover-body">
+                                    Invalid value
+                                </div>
+                            </div>
+                            Value: <b style="position: relative">{{ resourceRecord.getDisplayedValue() }}</b>
+                        </div>
+                        <div>TTL: <b>
+                            <wsr-popover-select-ttl [value]="resourceRecord.ttl" [valueList]="ttlValues"
+                                                    (onVoted)="onTtlChanged(i, $event)"></wsr-popover-select-ttl>
+                        </b></div>
+                    </div>
+                    <div style="display: table-cell; vertical-align: middle; width: 1px; overflow: visible">
+                        <button class="icon edit-rr" (click)="editValue(resourceRecord)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid desktop">
+    <table class="table table-striped records">
+        <tr>
+            <th style="width: 15%">Subdomain</th>
+            <th style="width: 10%">Type</th>
+            <th>Value</th>
+            <th style="width: 15%">TTL</th>
+            <th style="width: 25%">CDN mode</th>
+            <th style="width: 38px"></th>
+        </tr>
+        <tr *ngFor="let resourceRecord of resourceRecords; let i = index" class="rr-item">
+            <td>
+                <div style="position: relative" [class.has-error]="!validateName(names[i])">
+                    <div class="popover error-popover bs-popover-top">
+                        <div class="arrow">
+                        </div>
+                        <div class="popover-body">
+                            Required a valid subdomain name, wildcard(*) or "@" for main domain
+                        </div>
+                    </div>
+                    <input class="form-control" [(ngModel)]="names[i]" (blur)="updateName(i)">
+                </div>
+            </td>
+            <td>
+                {{ resourceRecord.type }}
+            </td>
+            <td>
+                <div style="position: relative" [class.has-error]="!resourceRecord.valid">
+                    <div class="popover error-popover bs-popover-top">
+                        <div class="arrow">
+                        </div>
+                        <div class="popover-body">
+                            Invalid value
+                        </div>
+                    </div>
+                    <input type="text"
+                           [value]="resourceRecord.getDisplayedValue()"
+                           class="form-control"
+                           placeholder="Value"
+                           (click)="editValue(resourceRecord)"
+                           (input)="editValue(resourceRecord)"
+                           (change)="undoManualInput(resourceRecord, $event.currentTarget)">
+                </div>
+            </td>
+            <td>
+                <wsr-popover-select-ttl [value]="resourceRecord.ttl" [valueList]="ttlValues"
+                                        (onVoted)="onTtlChanged(i, $event)"></wsr-popover-select-ttl>
+            </td>
+            <td>
+                <div *ngIf="resourceRecord.type == 'A'">
+                    <wsr-domain-cdn-setting [value]="domainCdnSettings[resourceRecord.name]"
+                                            (onVoted)="onChangeCdnSetting($event, domainCdnSettings[resourceRecord.name])"></wsr-domain-cdn-setting>
+                </div>
+            </td>
+            <td>
+                <rr-rem [i]="i" (onConfirmed)="deleteRecord($event)"></rr-rem>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="container-fluid">
+    <div style="text-align: center" *ngIf="!formShown">
+        <button type="button" class="add-record-button" (click)="formShown = true"><span class="plus-icon"></span>Add
+            record
+        </button>
+    </div>
+    <form (ngSubmit)="onSubmit()" class="record-editor" *ngIf="formShown">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group" [class.has-error]="recordNameError == fieldErrorState.Shown">
+                    <label>Subdomain:</label>
+                    <div style="position: relative">
+                        <input type="text" [(ngModel)]="currentRecord.name" class="form-control" placeholder="Поддомен"
+                               name="name" (input)="recordNameError = fieldErrorState.Hidden">
+                        <div class="popover error-popover bs-popover-top"
+                             (click)="recordNameError = fieldErrorState.Hidden">
+                            <div class="arrow">
+                            </div>
+                            <div class="popover-body">
+                                Required a valid subdomain name, wildcard(*) or "@" for main domain
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Type:</label>
+                    <wsr-select [options]="['A', 'MX', 'SRV', 'TXT', 'CNAME', 'NS', 'SOA', 'AAAA', 'CAA']"
+                                [value]="currentRecord.type" (onChange)="changeRecordType($event)"></wsr-select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" [class.has-error]="recordValueError == fieldErrorState.Shown">
+                    <label>Value:</label>
+                    <div style="position: relative">
+                        <input type="text"
+                               [value]="recordDisplayedValue"
+                               class="form-control"
+                               placeholder="Value"
+                               (click)="editValue(currentRecord)"
+                               (input)="editValue(currentRecord)"
+                               (change)="undoManualInput(currentRecord, $event.currentTarget)"
+                               #newRecordValue
+                               name="value">
+                        <div class="popover error-popover bs-popover-top"
+                             (click)="recordValueError = fieldErrorState.Hidden">
+                            <div class="arrow">
+                            </div>
+                            <div class="popover-body">
+                                A value is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>TTL:</label>
+                    <wsr-select [options]="ttlValues" [value]="currentRecord.ttl"
+                                (onChange)="currentRecord.ttl = $event"></wsr-select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary btn-block">Add record</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

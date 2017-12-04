@@ -8,9 +8,9 @@
             Найденные поддомены:
             <strong *ngFor="let subdomain of subdomains">{{ subdomain }}</strong>
         </div>
-        <div class="link-after-something" *ngIf="hostingSettings.firewallSupport && firePercent == 100"><a href="#">Редактировать поддомены и DNS записи</a></div>
+        <div class="link-after-something" *ngIf="hostingSettings.firewallSupport && firePercent == 100 && !isDnsInfoBlank"><a (click)="showDnsSettings()">Редактировать поддомены и DNS записи</a></div>
         <div class="bottom-block-btn">
-            <a href="#" class="btn-orn" style="margin:0 auto;" *ngIf="(!hostingSettings.firewallSupport || firePercent == 100) && (!hostingSettings.backupSupport || backupPercent == 100)" >Далее</a>
+            <button class="btn-orn" style="margin:0 auto;" *ngIf="(!hostingSettings.firewallSupport || firePercent == 100) && (!hostingSettings.backupSupport || backupPercent == 100)" >Далее</button>
         </div>
     </div>
 </div>

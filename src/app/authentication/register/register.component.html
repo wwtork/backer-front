@@ -1,45 +1,55 @@
-<div class="wrapper">
-    <div class="top">Регистрация</div>
-    <div class="middle">
-        {{ title }}
-        <form (ngSubmit)="registerForm.form.valid && onSubmit(registerForm.value)" #registerForm="ngForm" novalidate>
-            <label class="input-line form-input" [ngClass]="{true:'validate', false:'novalidate'}[website.valid]">
-                <span><i class="earth"></i></span>
-                <input placeholder="Ваш сайт" [(ngModel)]="model.website" #website="ngModel" name="website"
-                       required>
-            </label>
-            <label class="input-line form-input" [ngClass]="{true:'validate', false:'novalidate'}[email.valid]">
-                <span><i class="fa fa-envelope"></i></span>
-                <input type="email" placeholder="Email" [(ngModel)]="model.email" #email="ngModel"
-                       name="email" required>
-            </label>
-            <label class="input-line" [ngClass]="{true:'validate', false:'novalidate'}[password.valid]">
-                <span><i class="fa fa-lock"></i></span>
-                <input type="{{show_password ? 'text' : 'password'}}" id="pass_id"
-                       (keypress)="updateComplexity()" [(ngModel)]="model.password" #password="ngModel"
-                       name="password" required>
-                <span id="showpassword" (click)="showPassword()" class="showpassword"><img
-                        src="assets/images/eye.png" alt=""></span>
-            </label>
-            <div class="result-password" [hidden]="password.pristine || password.invalid">Уровень сложности
-                пароля: <span id='pswdcheck'
-                              class="{{ getComplexityClass() }}">{{ getComplexityText() }}</span></div>
-            <div class="promocod"><a (click)="togglePromo()">У меня есть промокод <i class="fa fa-angle-right"></i></a>
+<main class="enter registration-main">
+    <div class="container">
+        <div class="row">
+            <div class="wrapper">
+                <div class="top">Регистрация</div>
+                <div class="middle">
+                    {{ title }}
+                    <form (ngSubmit)="registerForm.form.valid && onSubmit(registerForm.value)" #registerForm="ngForm"
+                          novalidate>
+                        <label class="input-line form-input"
+                               [ngClass]="{true:'validate', false:'novalidate'}[website.valid]">
+                            <span><i class="earth"></i></span>
+                            <input placeholder="Ваш сайт" [(ngModel)]="model.website" #website="ngModel" name="website"
+                                   required>
+                        </label>
+                        <label class="input-line form-input"
+                               [ngClass]="{true:'validate', false:'novalidate'}[email.valid]">
+                            <span><i class="fa fa-envelope"></i></span>
+                            <input type="email" placeholder="Email" [(ngModel)]="model.email" #email="ngModel"
+                                   name="email" required>
+                        </label>
+                        <label class="input-line" [ngClass]="{true:'validate', false:'novalidate'}[password.valid]">
+                            <span><i class="fa fa-lock"></i></span>
+                            <input type="{{show_password ? 'text' : 'password'}}" id="pass_id"
+                                   (keypress)="updateComplexity()" [(ngModel)]="model.password" #password="ngModel"
+                                   name="password" required>
+                            <span id="showpassword" (click)="showPassword()" class="showpassword"><img
+                                    src="assets/images/eye.png" alt=""></span>
+                        </label>
+                        <div class="result-password" [hidden]="password.pristine || password.invalid">Уровень сложности
+                            пароля: <span id='pswdcheck'
+                                          class="{{ getComplexityClass() }}">{{ getComplexityText() }}</span></div>
+                        <div class="promocod"><a (click)="togglePromo()">У меня есть промокод <i
+                                class="fa fa-angle-right"></i></a>
+                        </div>
+                        <label class="input-line promocod-input" *ngIf="showpromo">
+                            <span><i class="fa fa-percent"></i></span>
+                            <input type="text" placeholder="Введите промокод" [(ngModel)]="model.promocode"
+                                   #promocode="ngModel" name="promocode">
+                        </label>
+                        <label class="check-line solid">
+                            <input type="checkbox" [(ngModel)]="model.agreement" #agreement="ngModel" name="agreement"
+                                   required checked>
+                            <span class="text">Я ознакомлен с <a href="#">пользовательским соглашением</a> и <a
+                                    href="#">политикой конфиденциальности</a></span>
+                        </label>
+                        <input type="submit" name="submit" class="btn-orn" value="Создать аккаунт">
+                        <div class="registration all-field">Все поля обязательны для заполнения</div>
+                    </form>
+                </div>
             </div>
-            <label class="input-line promocod-input" *ngIf="showpromo">
-                <span><i class="fa fa-percent"></i></span>
-                <input type="text" placeholder="Введите промокод" [(ngModel)]="model.promocode"
-                       #promocode="ngModel" name="promocode">
-            </label>
-            <label class="check-line solid">
-                <input type="checkbox" [(ngModel)]="model.agreement" #agreement="ngModel" name="agreement"
-                       required checked>
-                <span class="text">Я ознакомлен с <a href="#">пользовательским соглашением</a> и <a
-                        href="#">политикой конфиденциальности</a></span>
-            </label>
-            <input type="submit" name="submit" class="btn-orn" value="Создать аккаунт">
-            <div class="registration all-field">Все поля обязательны для заполнения</div>
-        </form>
+        </div>
     </div>
-</div>
+</main>
 

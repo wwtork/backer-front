@@ -5,14 +5,7 @@ import { SelectComponent } from "./select.component";
 @Component({
 	selector: 'wsr-reactive-select',
 	styleUrls: ['./select.component.css'],
-	template: `
-		<div [formGroup]="form">
-		<select class="form-control" (change)="onChange.emit($event.currentTarget.value)" [formControl]="control" #ownControl>
-			<option *ngFor="let option of options" value="{{ option.value }}">{{ option.name }}</option>
-		</select>
-		<div class="select-button"></div>
-		</div>
-	`
+	templateUrl: './reactive-select.component.html'
 })
 export class ReactiveSelectComponent extends SelectComponent
 {

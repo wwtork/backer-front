@@ -34,6 +34,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SelectFolderComponent} from './select-folder/select-folder.component';
 import {BackupActivationErrorComponent} from './backup-activation-error/backup-activation-error.component';
 import {IpErrorComponent} from './ip-error/ip-error.component';
+import {DnsSettingsModule} from '../dns-settings/dns-settings.module';
+import {DnsSettingsComponent} from './dns-settings/dns-settings.component';
+import {BottomPanelModule} from "../bottom-panel/bottom-panel.module";
 const connectionWizardRoutes: Routes = [
     {path: '', redirectTo: 'connection-wizard', pathMatch: 'full'},
     {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [LoggedInGuard]},
@@ -59,9 +62,12 @@ const connectionWizardRoutes: Routes = [
         VideoBlockComponent,
         SelectFolderComponent,
         BackupActivationErrorComponent,
-        IpErrorComponent
+        IpErrorComponent,
+        DnsSettingsComponent
     ],
     imports: [
+        DnsSettingsModule,
+        BottomPanelModule,
         CommonModule,
         FormsModule,
         HttpModule,
@@ -70,7 +76,7 @@ const connectionWizardRoutes: Routes = [
         RouterModule.forChild(connectionWizardRoutes),
         FormsModule,
         ReactiveFormsModule,
-        NgbModule.forRoot()
+        NgbModule.forRoot(),
     ],
     providers: [
         LoggedInGuard,
@@ -90,7 +96,8 @@ const connectionWizardRoutes: Routes = [
         BackupActivationComponent,
         ChooseMethodComponent,
         IpErrorComponent,
-        BackupActivationErrorComponent
+        BackupActivationErrorComponent,
+        DnsSettingsComponent,
     ],
 })
 
@@ -98,7 +105,7 @@ const connectionWizardRoutes: Routes = [
     imports: [
         CommonModule
     ],
-    declarations: []
+    declarations: [DnsSettingsComponent]
 })
 export class ConnectionWizardModule {
 }

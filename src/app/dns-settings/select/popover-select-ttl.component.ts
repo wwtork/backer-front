@@ -1,44 +1,10 @@
-import { Component, Input, OnChanges } from "@angular/core";
+import { Component, OnChanges } from "@angular/core";
 import { PopoverSelectComponent } from "./popover-select.component";
 
 @Component({
 	selector: 'wsr-popover-select-ttl',
-	styles: [`
-		.popover-button {
-			border: none;
-			background: none;
-			padding: 0;
-			cursor: pointer;
-			text-align: left;
-			color: #4b4b4b;
-		}
-		.popover-button:focus,
-		.popover-button:active {
-			outline: none;
-		}
-		.item {
-			margin: 3px 10px;
-			cursor: pointer;
-		}
-	`],
-	template: `
-	<button class="popover-button"
-	    [ngbPopover]="popoverContent"
-	    #popover="ngbPopover"
-	    triggers="manual"
-	    placement="bottom"
-	    (click)="onToggle()"
-	    (blur)="onBlur()">
-	    {{ valueToBeDisplayed }}
-	</button>
-	<ng-template #popoverContent>
-		<div (mouseenter)="mouseOn()" (mouseleave)="mouseOff()">
-			<div *ngFor="let valueItem of valueList" class="item" [class.selected]="valueItem.value == value" (click)="select(valueItem.value)">
-				{{ valueItem.name }}
-			</div>
-		</div>
-	</ng-template>
-	`
+	styleUrls: ['./popover-select-ttl.component.css'],
+	templateUrl: './popover-select-ttl.component.html'
 })
 export class PopoverSelectTtlComponent extends PopoverSelectComponent implements OnChanges
 {

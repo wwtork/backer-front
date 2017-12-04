@@ -2,7 +2,7 @@
   <div class="top">Укажите доступ к хостингу</div>
   <div class="middle">
     <form (ngSubmit)="hostingAccessForm.form.valid && checkAccess()" #hostingAccessForm="ngForm" novalidate>
-      <span class="name-input">Адрес сервера (FTP/SFTP) <i class="icn-inform" data-balloon="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus deserunt doloremque facilis odit quam quo sit veniam. A consequuntur cum doloribus enim esse explicabo itaque nesciunt, non qui sint unde. " data-balloon-pos="right" data-balloon-length="large"></i></span>
+      <span class="name-input">Адрес сервера (FTP/SFTP) <i class="icn-inform" data-balloon="" data-balloon-pos="right" data-balloon-length="large"></i></span>
 
       <label class="one-line" [ngClass]="{true:'validate', false:'novalidate'}[hostAddress.valid]">
         <input type="text" [(ngModel)]="hostingSettings.hostAddress" #hostAddress="ngModel" name="hostAddress" required value="{{ hostingSettings.hostAddress }}">

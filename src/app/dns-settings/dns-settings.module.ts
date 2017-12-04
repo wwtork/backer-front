@@ -5,24 +5,24 @@ import { AccordionModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { ResourceRecordListComponent } from './resource-record-list.component';
+import { ResourceRecordListComponent } from './resource-record-list/resource-record-list.component';
 import { ResourceRecordMxComponent } from "./resource-record-component/resource-record-mx.component";
 import { ResourceRecordSoaComponent } from "./resource-record-component/resource-record-soa.component";
 import { ResourceRecordAComponent } from "./resource-record-component/resource-record-a.component";
 import { ResourceRecordSrvComponent } from "./resource-record-component/resource-record-srv.component";
 import { ResourceRecordTxtComponent } from "./resource-record-component/resource-record-txt.component";
 
-import { PopoverSelectTtlComponent } from "./popover-select-ttl.component";
-import { ResourceRecordModalContentComponent } from "./resource-record-modal-content.component";
-import { RemoveConfirmationComponent } from "./remove-confirmation.component";
-import { PopoverSelectComponent } from "./popover-select.component";
-import { DomainCdnSettingComponent } from "./domain-cdn-setting.component";
-import { GroupSelectorComponent } from "./group-selector.component";
-import { RegionSelectorComponent } from "./region-selector.component";
+import { PopoverSelectTtlComponent } from "./select/popover-select-ttl.component";
+import { ResourceRecordModalContentComponent } from "./resource-record-modal-content/resource-record-modal-content.component";
+import { RemoveConfirmationComponent } from "./remove-confirmation/remove-confirmation.component";
+import { PopoverSelectComponent } from "./select/popover-select.component";
+import { DomainCdnSettingComponent } from "./domain-cdn-setting/domain-cdn-setting.component";
+import { GroupSelectorComponent } from "./group-selector/group-selector.component";
+import { RegionSelectorComponent } from "./region-selector/region-selector.component";
 import { FormHostDirective } from './form-host.directive';
 import { ReferencesService } from "./service/references.service";
 import { ResourceRecordsConverterService } from "./service/resource-record-converter.service";
-import { SelectComponent } from "./select.component";
+import { SelectComponent } from "./select/select.component";
 import { WsrTreeViewModule } from "../wsr-treeview/wsr-treeview.module";
 import { HttpModule } from "@angular/http";
 import { ResourceRecordNsComponent } from "./resource-record-component/resource-record-ns.component";
@@ -30,7 +30,7 @@ import { ResourceRecordCnameComponent } from "./resource-record-component/resour
 import { ResourceRecordAaaaComponent } from "./resource-record-component/resource-record-aaaa.component";
 import { parameters } from "../../parameters";
 import { ResourceRecordCaaComponent } from "./resource-record-component/resource-record-caa.component";
-import { ReactiveSelectComponent } from "./reactive-select.component";
+import { ReactiveSelectComponent } from "./select/reactive-select.component";
 
 @NgModule({
 	imports: [

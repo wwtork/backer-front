@@ -1,7 +1,5 @@
-import { Injectable, Inject, Optional } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { NodeGroup } from "../node-group";
-import { nodeGroupsMock} from "./node-groups-mock";
-import { nodeRegionsMock} from "./node-regions-mock";
 import { NodeRegion } from "../node-region";
 import { Http } from "@angular/http";
 import { Response } from '@angular/http';

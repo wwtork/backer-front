@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../user";
 import {AuthenticationService} from "../authentication.service";
 import {
@@ -6,6 +6,7 @@ import {
     FormGroup,
     Validators,
 } from '@angular/forms';
+import {ActivatedRoute} from "@angular/router";
 @Component({
     selector: 'login-form',
     templateUrl: './login.component.html',
@@ -16,15 +17,29 @@ export class LoginComponent implements OnInit {
     private model:User;
     private form:FormGroup;
 
-    constructor(public authService: AuthenticationService, fb:FormBuilder) {
-        localStorage.clear();
-        this.model = new User();
-        this.form = fb.group({
-            website: ['', Validators.required],
-            email: ['', Validators.required],
-            password: ['', Validators.required],
-            agreement: [false, Validators.requiredTrue]
-        })
+    private logout;
+    private sub: any;
+
+    ngOnInit() {
+        this.sub = this.route.data
+            .subscribe((data: { logout: boolean }) => {
+                data.logout && localStorage.clear();
+                this.model = new User();
+                this.form = this.fb.group({
+                    website: ['', Validators.required],
+                    email: ['', Validators.required],
+                    password: ['', Validators.required],
+                    agreement: [false, Validators.requiredTrue]
+                })
+            });
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
+
+    constructor(public authService: AuthenticationService, private fb:FormBuilder, private route: ActivatedRoute) {
+
     }
 
     onSubmit(form) {
@@ -32,9 +47,6 @@ export class LoginComponent implements OnInit {
         this.model.password = form.password;
         this.model.remember_me = form.rememberme;
         this.authService.login(this.model);
-    }
-
-    ngOnInit() {
     }
 
 }

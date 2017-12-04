@@ -9,7 +9,8 @@ import {FormsModule}   from '@angular/forms';
 import {BrowserModule} from "@angular/platform-browser";
 const authRoutes: Routes = [
     {path: 'register', component: RegisterComponent},
-    {path: 'login', component: LoginComponent},
+    {path: 'login', component: LoginComponent, data: {logout: false}},
+    {path: 'logout', component: LoginComponent, data: {logout: true}}
 ];
 
 @NgModule({

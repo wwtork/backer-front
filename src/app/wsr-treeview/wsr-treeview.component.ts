@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { TreeviewComponent, TreeviewI18n, TreeviewConfig, TreeviewEventParser } from "ngx-treeview";
-import { ReferencesService } from "../dns/service/references.service";
+import { ReferencesService } from "../dns-settings/service/references.service";
 
 @Component({
 	selector: 'wsr-treeview',

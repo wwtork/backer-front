@@ -8,12 +8,7 @@ interface ItemOfSelect {
 @Component({
 	selector: 'wsr-select',
 	styleUrls: ['./select.component.css'],
-	template: `
-		<select class="form-control" (change)="onChange.emit($event.currentTarget.value)">
-			<option *ngFor="let option of options" value="{{ option.value }}">{{ option.name }}</option>
-		</select>
-		<div class="select-button"></div>
-	`
+	templateUrl: './select.component.html'
 })
 export class SelectComponent
 {

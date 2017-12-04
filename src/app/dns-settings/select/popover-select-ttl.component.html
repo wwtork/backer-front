@@ -1,0 +1,17 @@
+<button class="popover-button"
+        [ngbPopover]="popoverContent"
+        #popover="ngbPopover"
+        triggers="manual"
+        placement="bottom"
+        (click)="onToggle()"
+        (blur)="onBlur()">
+    {{ valueToBeDisplayed }}
+</button>
+<ng-template #popoverContent>
+    <div (mouseenter)="mouseOn()" (mouseleave)="mouseOff()">
+        <div *ngFor="let valueItem of valueList" class="item" [class.selected]="valueItem.value == value"
+             (click)="select(valueItem.value)">
+            {{ valueItem.name }}
+        </div>
+    </div>
+</ng-template>

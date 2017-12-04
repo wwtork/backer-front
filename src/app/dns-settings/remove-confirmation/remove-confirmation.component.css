@@ -1,0 +1,11 @@
+.delete-button {
+    background: url(../../../assets/images/delete_rr.png) no-repeat;
+    border: none;
+    width: 28px;
+    height: 28px;
+}
+
+.delete-button:focus,
+.delete-button:active {
+    outline: none;
+}

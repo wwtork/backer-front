@@ -3,24 +3,7 @@ import {NgbPopover} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
 	selector: 'wsr-popover-select',
-	template: `
-	<button class="popover-button"
-	    [ngbPopover]="popoverContent"
-	    #popover="ngbPopover"
-	    triggers="manual"
-	    placement="bottom"
-	    (click)="onToggle()"
-	    (blur)="onBlur()">
-	    {{ getValueName() }}
-	</button>
-	<ng-template #popoverContent>
-		<div (mouseenter)="mouseOn()" (mouseleave)="mouseOff()">
-			<div *ngFor="let valueItem of valueList" class="item" [class.selected]="valueItem.value == value" (click)="select(valueItem.value)">
-				{{ valueItem.name }}
-			</div>
-		</div>
-	</ng-template>
-	`
+	templateUrl: 'popover-select.component.html'
 })
 export class PopoverSelectComponent {
 	@Input()

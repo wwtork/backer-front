@@ -1,0 +1,17 @@
+<ng-template #content let-resolve="resolve" let-reject="reject" let-mouseOn="mouseOn" let-mouseOff="mouseOff">
+    <div (mouseenter)="mouseOn()" (mouseleave)="mouseOff()" style="margin: -9px -14px; padding: 9px 14px;">
+        <button type="button" class="btn btn-block btn-danger" (click)="resolve()">Yes</button>
+        <button type="button" class="btn btn-block btn-default" (click)="reject()">No</button>
+    </div>
+</ng-template>
+<button type="button"
+        class="delete-button"
+        [ngbPopover]="content"
+        #popover="ngbPopover"
+        popoverTitle="Really remove?"
+        triggers="manual"
+        placement="left"
+        (click)="toggle()"
+        (blur)="onBlur()">
+
+</button>

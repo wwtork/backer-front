@@ -13,6 +13,7 @@ import {HostingStateComponent} from "./model/hosting-state-component";
 import {ChooseMethodComponent} from "./choose-method/choose-method.component";
 import {BackupActivationErrorComponent} from "./backup-activation-error/backup-activation-error.component";
 import {IpErrorComponent} from "./ip-error/ip-error.component";
+import {DnsSettingsComponent} from "./dns-settings/dns-settings.component";
 const HOSTING_STATE_KEY = 'hosting_state';
 const HOSTING_STAGE_KEY = 'hosting_stage';
 const DEFAULT_STAGE = 'domain';
@@ -34,6 +35,7 @@ export class GlobalDataService {
         'choose-method': new HostingStateComponent(ChooseMethodComponent, 'settings'),
         'backup-activation-error': new HostingStateComponent(BackupActivationErrorComponent, 'settings'),
         'ip-error': new HostingStateComponent(IpErrorComponent, 'settings'),
+        'dns-settings': new HostingStateComponent(DnsSettingsComponent, 'settings'),
     };
 
     constructor() {

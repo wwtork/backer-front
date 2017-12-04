@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h4 class="modal-title">Group selection</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" >
+    <div>Choose a group to differ same-subjects sites by IP-addresses <span class="info-sign" placement="bottom" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></span></div>
+    <br>
+    <div class="clearfix">
+        <div *ngFor="let groupItem of groups" class="group" (click)="onSelect(groupItem)" [class.selected]="group && groupItem.id == group.id">
+            <div [ngClass]="['flag32', 'flag-' + referencesServiceClass.getCountryCode(groupItem.whoisCountry)]"></div>
+            <div class="name">{{ getGroupName(groupItem) }}</div>
+            <div class="comment">{{ getGroupComment(groupItem) }}</div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="activeModal.close(group)">Save</button>
+    <button type="button" class="btn btn-default" (click)="activeModal.close(null)">Close</button>
+</div>
