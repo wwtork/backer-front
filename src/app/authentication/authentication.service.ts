@@ -14,6 +14,8 @@ export class AuthenticationService {
 
     }
 
+    errors:any;
+
     post(type, credentials) {
         return new Promise((resolve, reject) => {
             this.http.post(parameters.apiUrl + type, JSON.stringify(credentials))
@@ -25,44 +27,46 @@ export class AuthenticationService {
         });
     }
 
-    login(user:User, afterRegister = false):boolean {
+    login(user:User, afterRegister = false) {
         this.spinnerService.show();
-        this.post('login', user.getSerialized()).then((result:Response) => {
+        return this.post('login', user.getSerialized()).then((result:Response) => {
             if(result.status){
-                user = result['user'];
+                user = (afterRegister) ? Object.assign({},user, result['user']) : result['user'];
                 AuthenticationService.setUser(user);
-
+                this.spinnerService.hide();
                 this.router.navigate([parameters.afterLoginUri]);
                 return user;
+            }else{
+                this.spinnerService.hide();
+                this.errors = Object.keys(result["errorFields"]);
             }
-            this.spinnerService.hide();
             return false;
         }, (err) => {
             console.log(err);
             return false;
         });
-
-        return false;
     }
     
-    register(user:User):boolean {
+    register(user:User) {
         //return this.backendDataService.testpost();
         this.spinnerService.show();
-        this.post('register', user.getSerialized()).then((result:Response) => {
+        return this.post('register', user.getSerialized()).then((result:Response) => {
             if(result.status){
                 AuthenticationService.setUser(user);
                 this.login(user, true);
                 return result;
             }
+            else{
+                this.errors = Object.keys(result["errorFields"]);
+            }
             this.spinnerService.hide();
             return false;
         }, (err) => {
+            this.spinnerService.hide();
             console.log('error');
             console.log(err);
             return false;
         });
-
-        return false;
     }
 
     static logout() {

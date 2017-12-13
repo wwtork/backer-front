@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
     show_password:boolean;
     form:FormGroup;
     showpromo = false;
+    errors;
 
     constructor(private authService:AuthenticationService, fb:FormBuilder) {
         localStorage.clear();
@@ -48,7 +49,15 @@ export class RegisterComponent implements OnInit {
         this.model.email = form.email;
         this.model.password = form.password;
         this.model.remember_me = form.rememberme;
-        this.authService.register(this.model);
+        this.model.website = form.website;
+        this.model.agreement = form.agreement;
+        this.authService.register(this.model).then((result) => {
+            this.errors = this.authService.errors;
+            for(let i in this.errors){
+                if(this.model.hasOwnProperty(this.errors[i]))
+                    this.model[this.errors[i]].valid = false;
+            }
+        });
     }
 
     showPassword() {

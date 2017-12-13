@@ -9,18 +9,20 @@
                     <form (ngSubmit)="registerForm.form.valid && onSubmit(registerForm.value)" #registerForm="ngForm"
                           novalidate>
                         <label class="input-line form-input"
-                               [ngClass]="{true:'validate', false:'novalidate'}[website.valid]">
+                               [ngClass]="{true:'', false:'invalid-input'}[website.valid]">
                             <span><i class="earth"></i></span>
                             <input placeholder="Ваш сайт" [(ngModel)]="model.website" #website="ngModel" name="website"
                                    required>
                         </label>
+                        <span *ngIf="errors && (errors.indexOf('email') != -1)">Уже используется</span>
                         <label class="input-line form-input"
-                               [ngClass]="{true:'validate', false:'novalidate'}[email.valid]">
+                               [ngClass]="{true:'', false:'invalid-input'}[email.valid]">
                             <span><i class="fa fa-envelope"></i></span>
                             <input type="email" placeholder="Email" [(ngModel)]="model.email" #email="ngModel"
                                    name="email" required>
+
                         </label>
-                        <label class="input-line" [ngClass]="{true:'validate', false:'novalidate'}[password.valid]">
+                        <label class="input-line" [ngClass]="{true:'', false:'invalid-input'}[password.valid]">
                             <span><i class="fa fa-lock"></i></span>
                             <input type="{{show_password ? 'text' : 'password'}}" id="pass_id"
                                    (keypress)="updateComplexity()" [(ngModel)]="model.password" #password="ngModel"

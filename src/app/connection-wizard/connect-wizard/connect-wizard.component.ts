@@ -4,6 +4,7 @@ import {GlobalDataService} from "../global-data.service";
 import {HostingStateDirective} from "../hosting-state.directive";
 import {HostingStateComponent} from "../model/hosting-state-component";
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {AuthenticationService} from "../../authentication/authentication.service";
 @Component({
     selector: 'app-connect-wizard',
     templateUrl: './connect-wizard.component.html',
@@ -18,7 +19,6 @@ export class ConnectWizardComponent implements OnInit {
     private component;
 
     constructor(private spinnerService: Ng4LoadingSpinnerService, private globalData:GlobalDataService, private componentFactoryResolver: ComponentFactoryResolver) {
-
         let hs:any = this.fromLS();
         if(hs){
             this.hostingSettings = hs;
@@ -33,6 +33,8 @@ export class ConnectWizardComponent implements OnInit {
     }
 
     chooseComponent(){
+        if(this.hostingSettings.stage == null && AuthenticationService.getUser().website)
+            this.hostingSettings.stage = 'choose-tariff';
         let stageComponent:HostingStateComponent = this.globalData.getStage(this.hostingSettings.stage);
         this.state = stageComponent.state;
         this.component = stageComponent.component;

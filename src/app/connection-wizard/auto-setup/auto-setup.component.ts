@@ -92,7 +92,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
                 if (result.hasOwnProperty('finished') && result['finished']) {
                     this.processBackupScanResults(result['entity'].length != 0 ? result['entity'] : result);
                 } else {
-                    this.backupPercent = result.hasOwnProperty('percent') ? result['percent'] : 0;
+                    this.backupPercent = result.hasOwnProperty('percent') ? result['percent'] : this.backupPercent;
                     setTimeout(() => {
                         this.checkBackupScan();
                     }, 2000);

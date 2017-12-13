@@ -68,6 +68,7 @@ export class BackendDataService {
 
 
     startBackupScan(hostScanData) {
+        if(!hostScanData.domainFilter) hostScanData.domainFilter = AuthenticationService.getUser().website;
         return  this.securedPost(BACKUP_START_SCAN_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {

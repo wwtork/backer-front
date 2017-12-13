@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
     private logout;
     private sub: any;
+    private errors: any;
 
     ngOnInit() {
         this.sub = this.route.data
@@ -46,7 +47,9 @@ export class LoginComponent implements OnInit {
         this.model.email = form.email;
         this.model.password = form.password;
         this.model.remember_me = form.rememberme;
-        this.authService.login(this.model);
+        this.authService.login(this.model).then((result) => {
+            this.errors = this.authService.errors;
+        });
     }
 
 }

@@ -1494,6 +1494,10 @@ label.one-line.invalid-input {
     border-color: #e33518;
 }
 
+label.input-line.invalid-input {
+    border-color: #e33518;
+}
+
 label.one-line .note {
     color: #e33518;
     font-size: 13px;
