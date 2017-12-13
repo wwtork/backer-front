@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
+import {Site} from "../model/site";
 
 @Component({
     selector: 'ip-error',
@@ -8,7 +9,7 @@ import {HostingStage} from "../model/hosting-stage";
 })
 export class IpErrorComponent extends HostingStage implements OnInit {
 
-    private site;
+    public site:Site;
 
     constructor() {
         super();

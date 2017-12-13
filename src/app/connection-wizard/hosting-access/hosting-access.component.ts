@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
 import {BackendDataService} from "../backend-data.service";
 import {Site} from "../model/site";
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Component({
     selector: 'app-hosting-access',
@@ -9,10 +10,10 @@ import {Site} from "../model/site";
     styleUrls: ['./hosting-access.component.css']
 })
 export class HostingAccessComponent extends HostingStage implements OnInit {
-    private show_password:boolean = false;
-    private error:string;
+    show_password:boolean = false;
+    error:string;
 
-    constructor(private backendDataService:BackendDataService) {
+    constructor(private backendDataService:BackendDataService, public spinnerService: Ng4LoadingSpinnerService) {
         super();
     }
 
@@ -25,10 +26,12 @@ export class HostingAccessComponent extends HostingStage implements OnInit {
     }
 
     checkAccess() {
+        this.spinnerService.show();
         this.backendDataService.checkAccess(this.hostingSettings.getHostAccessData()).then((result:Response) => {
             if(result.status){
                 this.saveHostingSettings();
             }else{
+                this.spinnerService.hide();
                 this.error = result['error'];
             }
         }, (err) => {
@@ -39,7 +42,9 @@ export class HostingAccessComponent extends HostingStage implements OnInit {
 
     saveHostingSettings() {
         this.backendDataService.saveHostingSettings(this.hostingSettings).then((result:Response) => {
+            this.spinnerService.hide();
             if(result.status){
+
                 this.hostingSettings.id = result['data']['serverId'];
                 this.hostingSettings.site = new Site();
                 this.hostingSettings.site.id = result['data']['siteId'];
@@ -54,7 +59,7 @@ export class HostingAccessComponent extends HostingStage implements OnInit {
     }
 
     submit(){
-        this.hostingSettings.stage = 'firewall-activation';
+        this.hostingSettings.stage = (!this.hostingSettings.firewallSupport) ? 'firewall-activation' : 'auto-setup';
         this.onSubmit();
     }
 

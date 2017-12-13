@@ -3,17 +3,20 @@ import {Http} from "@angular/http";
 import {HostingSettings} from "./model/hosting-settings";
 import { parameters } from 'parameters';
 import {AuthenticationService} from "../authentication/authentication.service";
+import {Site} from "./model/site";
 
 const GET_METHODS_URI = 'secured/method/list';
 const GET_TARIFFS_URI = 'secured/tariff/list';
 const CHECK_ACCESS_URI = 'secured/check-hosting-access';
 const SAVE_HOSTING_SETTINGS_URI = 'secured/save-hosting-settings';
+const UPDATE_SITE_SETTINGS_URI = 'secured/update-site-settings';
 // const USER_KEY = 'user';
 const BACKUP_SCAN_DATA_URI = 'secured/backup_scan/status/';
 const BACKUP_SCAN_TERMINATE_URI = 'secured/backup_scan/terminate/';
 const BACKUP_START_SCAN_URI = 'secured/backup_scan/init/';
 const FIREWALL_SCAN_DATA_URI = 'secured/firewall_scan/status/';
 const FIREWALL_START_SCAN_URI = 'secured/firewall_scan/init/';
+const LIST_DIRECTORY_URI = 'secured/backup_scan/list_dir/';
 
 @Injectable()
 export class BackendDataService {
@@ -83,6 +86,15 @@ export class BackendDataService {
         });
     }
 
+    getDirectoryList(serverId, path = null, needle_path = null) {
+        return  this.securedPost(LIST_DIRECTORY_URI + serverId, JSON.stringify({path: path, needle_path: needle_path})).then((result) => {
+            return result.hasOwnProperty('items') ? result['items'] : false;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
     terminateBackupScan(hostScanData) {
         if(!hostScanData.domain) hostScanData.domain = AuthenticationService.getUser().website;
         return  this.securedPost(BACKUP_SCAN_TERMINATE_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
@@ -144,5 +156,14 @@ export class BackendDataService {
 
     }
 
+    updateSiteSettings(site: Site) {
+        return  this.securedPost(UPDATE_SITE_SETTINGS_URI,JSON.stringify( {hostSettingsData: site})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+
+    }
 
 }

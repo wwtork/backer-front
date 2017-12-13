@@ -10,7 +10,7 @@
         </div>
         <div class="link-after-something" *ngIf="hostingSettings.firewallSupport && firePercent == 100 && !isDnsInfoBlank"><a (click)="showDnsSettings()">Редактировать поддомены и DNS записи</a></div>
         <div class="bottom-block-btn">
-            <button class="btn-orn" style="margin:0 auto;" *ngIf="(!hostingSettings.firewallSupport || firePercent == 100) && (!hostingSettings.backupSupport || backupPercent == 100)" >Далее</button>
+            <button class="btn-orn" style="margin:0 auto;" *ngIf="(!hostingSettings.firewallSupport || firePercent == 100) && (!hostingSettings.backupSupport || backupPercent == 100)" (click)="finish()">Далее</button>
         </div>
     </div>
 </div>

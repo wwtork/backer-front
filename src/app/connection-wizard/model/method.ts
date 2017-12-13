@@ -1,5 +1,12 @@
 import {Serializable} from "../../serializable";
 export class Method extends Serializable{
+    get price(): number {
+        return this._price;
+    }
+
+    set price(value: number) {
+        this._price = value;
+    }
     get slug():string {
         return this._slug;
     }
@@ -32,6 +39,7 @@ export class Method extends Serializable{
     private _id:number;
     private _name:string;
     private _description:string;
+    private _price:number;
     private _slug:string = 'professional';
 
     constructor(){

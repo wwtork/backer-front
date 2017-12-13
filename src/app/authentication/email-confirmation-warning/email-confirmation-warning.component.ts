@@ -9,7 +9,7 @@ import {User} from "../user";
 })
 export class EmailConfirmationWarningComponent implements OnInit {
 
-  private user: User;
+  user: User;
 
   constructor() {
     this.user = AuthenticationService.getUser();

@@ -17,7 +17,7 @@ import { TreeviewItemComponent } from "ngx-treeview/src/treeview-item.component"
 	],
 	template: `
 		<div *ngIf="item" class="treeview-item">
-			<ng-template [ngTemplateOutlet]="template" [ngOutletContext]="{level: level, treeItemId: treeItemId, index: index, total: total, item: item, onCollapseExpand: onCollapseExpand, onCheckedChange: onCheckedChange}">
+			<ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{level: level, treeItemId: treeItemId, index: index, total: total, item: item, onCollapseExpand: onCollapseExpand, onCheckedChange: onCheckedChange}">
 			</ng-template>
 			<div *ngIf="!item.collapsed && (item.children)" class="bbb">
 				<wsr-treeview-item *ngFor="let child of item.children; let i = index"

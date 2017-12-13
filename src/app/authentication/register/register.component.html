@@ -2,9 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="wrapper">
+                <ng4-loading-spinner> </ng4-loading-spinner>
                 <div class="top">Регистрация</div>
                 <div class="middle">
-                    {{ title }}
+                    <!--{{ title }}-->
                     <form (ngSubmit)="registerForm.form.valid && onSubmit(registerForm.value)" #registerForm="ngForm"
                           novalidate>
                         <label class="input-line form-input"

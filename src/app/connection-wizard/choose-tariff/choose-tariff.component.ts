@@ -3,6 +3,7 @@ import {Tariff} from "../model/tariff";
 //import {IBackendDataService} from "../interface/backend-data-service";
 import {BackendDataService} from "../backend-data.service";
 import {HostingStage} from "../model/hosting-stage";
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Component({
     selector: 'app-choose-tariff',
@@ -11,18 +12,19 @@ import {HostingStage} from "../model/hosting-stage";
 })
 export class ChooseTariffComponent extends HostingStage implements OnInit {
 
-    private tariffs:Array<Tariff>;
-    private currentTariff:Tariff;
+    tariffs:Array<Tariff>;
+    currentTariff:Tariff;
 
-    constructor(private backendDataService:BackendDataService) {
+    constructor(private backendDataService:BackendDataService, public spinnerService: Ng4LoadingSpinnerService) {
         super();
-        console.log(this.hostingSettings);
+        this.spinnerService.show();
         this.backendDataService.getTariffs().then((result) => {
             let tariffs = [];
                 for (let i in result) {
                     tariffs.push((new Tariff).fillFromJSON(result[i]));
                 }
                 this.setTariffs(tariffs);
+                this.spinnerService.hide();
             }
         );
     }

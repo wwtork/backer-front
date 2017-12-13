@@ -16,11 +16,11 @@
       на котором размещен ваш сайт.
     </div>
 
-    <app-select-folder *ngIf="errors['searchError']" [path]="hostingSettings.scanPath" (folderSelected)="updatePath($event)"></app-select-folder>
+    <app-select-folder *ngIf="errors['searchError']" [path]="hostingSettings.scanPath" [serverId]="hostingSettings.id" (folderSelected)="updatePath($event)"></app-select-folder>
 
     <div *ngIf="errors['permissionError']" class="link-after-something" (click)="onChangeAccount()"><a href="#">Изменить аккаунт</a></div>
     <div *ngIf="errors['searchError'] && hostingSettings.scanPath" class="bottom-block-btn">
-      <a href="#" class="btn-orn"  (click)="onFormSubmit()" style="margin:0 auto;">Далее</a>
+      <button class="btn-orn"  (click)="onFormSubmit()" style="margin:0 auto;">Далее</button>
     </div>
     <div class="link-after-something"  (click)="onSkip()" ><a href="#">Пропустить этап и перейти дальше</a></div>
   </div>

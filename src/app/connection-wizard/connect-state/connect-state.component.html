@@ -4,15 +4,15 @@
       <img src="assets/images/blank.gif" alt="">
       <span>Домен</span>
     </li>
-    <li class="past tarif" [ngClass]="{true:'active', false:''}[state=='tariff' || state=='settings' || state=='ready']">
+    <li class="past tarif" [ngClass]="(state=='tariff' || state=='settings' || state=='ready') ? 'active' : ''">
       <img src="assets/images/blank.gif" alt="">
       <span>Выбор тарифа</span>
     </li>
-    <li class="past setting" [ngClass]="{true:'active', false:''}[state=='settings' || state=='ready']">
+    <li class="past setting" [ngClass]="(state=='settings' || state=='ready') ? 'active' : ''">
       <img src="assets/images/blank.gif" alt="">
       <span>Стартовые настройки</span>
     </li>
-    <li class="past ready" [ngClass]="{true:'active', false:''}[state=='ready']">
+    <li class="past ready" [ngClass]="(state=='ready') ? 'active' : ''">
       <img src="assets/images/blank.gif" alt="">
       <span>Готово!</span>
     </li>

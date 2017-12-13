@@ -2,8 +2,8 @@ import { Injectable, Type } from '@angular/core';
 import {Hosting} from "./model/hosting";
 import {DomainComponent} from "./domain/domain.component";
 import {FirewallActivationComponent} from "./firewall-activation/firewall-activation.component";
-import {SslCheckComponent} from "./ssl-check/ssl-check.component";
-import {SslDownloadComponent} from "./ssl-download/ssl-download.component";
+// import {SslCheckComponent} from "./ssl-check/ssl-check.component";
+// import {SslDownloadComponent} from "./ssl-download/ssl-download.component";
 import {UpdateDnsComponent} from "./update-dns/update-dns.component";
 import {AutoSetupComponent} from "./auto-setup/auto-setup.component";
 import {HostingAccessComponent} from "./hosting-access/hosting-access.component";
@@ -23,13 +23,13 @@ const HOSTING_KEY = 'hosting';
 export class GlobalDataService {
 
     private stages = {
-        'ssl-download': new HostingStateComponent(SslDownloadComponent, 'settings'),
+        // 'ssl-download': new HostingStateComponent(SslDownloadComponent, 'settings'),
         'domain': new HostingStateComponent(DomainComponent, 'domain'),
         'hosting-access': new HostingStateComponent(HostingAccessComponent, 'settings'),
         'choose-tariff': new HostingStateComponent(ChooseTariffComponent, 'tariff'),
         'backup-activation': new HostingStateComponent(BackupActivationComponent, 'settings'),
         'firewall-activation': new HostingStateComponent(FirewallActivationComponent, 'settings'),
-        'ssl-check': new HostingStateComponent(SslCheckComponent, 'settings'),
+        // 'ssl-check': new HostingStateComponent(SslCheckComponent, 'settings'),
         'hosting-state': new HostingStateComponent(UpdateDnsComponent, 'settings'),
         'auto-setup': new HostingStateComponent(AutoSetupComponent, 'settings'),
         'choose-method': new HostingStateComponent(ChooseMethodComponent, 'settings'),

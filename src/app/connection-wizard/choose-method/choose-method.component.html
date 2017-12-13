@@ -3,7 +3,7 @@
     <div class="row">
       <div class="wrapper">
         <div class="top">Выберите способ подключения</div>
-        <div *ngFor="let method of methods; let i = index" [ngClass]="{true:'left', false:'right'}[i % 2 == 0]">
+        <div *ngFor="let method of methods; let i = index" [ngClass]="(i % 2 == 0) ? 'left' : 'right'">
           <app-method (buttonClick)="selectMethod(method)" [method]="method"></app-method>
         </div>
       </div>

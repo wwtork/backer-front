@@ -5,11 +5,12 @@ import {Http} from "@angular/http";
 const USER_KEY = 'user';
 
 import { parameters } from '../../parameters';
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Injectable()
 export class AuthenticationService {
 
-    constructor(private router: Router, private http:Http){
+    constructor(private router: Router, private http:Http, private spinnerService:Ng4LoadingSpinnerService){
 
     }
 
@@ -25,6 +26,7 @@ export class AuthenticationService {
     }
 
     login(user:User, afterRegister = false):boolean {
+        this.spinnerService.show();
         this.post('login', user.getSerialized()).then((result:Response) => {
             if(result.status){
                 user = result['user'];
@@ -33,6 +35,7 @@ export class AuthenticationService {
                 this.router.navigate([parameters.afterLoginUri]);
                 return user;
             }
+            this.spinnerService.hide();
             return false;
         }, (err) => {
             console.log(err);
@@ -44,12 +47,14 @@ export class AuthenticationService {
     
     register(user:User):boolean {
         //return this.backendDataService.testpost();
+        this.spinnerService.show();
         this.post('register', user.getSerialized()).then((result:Response) => {
             if(result.status){
                 AuthenticationService.setUser(user);
                 this.login(user, true);
                 return result;
             }
+            this.spinnerService.hide();
             return false;
         }, (err) => {
             console.log('error');

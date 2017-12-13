@@ -1,0 +1,12 @@
+.all-item {
+    list-style-type: none;
+    display:inline;
+}
+.folder-item { }
+.file-item { padding-left: 0; }
+.children-items {
+    padding-left: 25px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.focus { color: steelblue }

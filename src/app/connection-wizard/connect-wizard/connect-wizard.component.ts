@@ -3,7 +3,7 @@ import {HostingSettings} from "../model/hosting-settings";
 import {GlobalDataService} from "../global-data.service";
 import {HostingStateDirective} from "../hosting-state.directive";
 import {HostingStateComponent} from "../model/hosting-state-component";
-
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 @Component({
     selector: 'app-connect-wizard',
     templateUrl: './connect-wizard.component.html',
@@ -17,7 +17,7 @@ export class ConnectWizardComponent implements OnInit {
     private componentRef;
     private component;
 
-    constructor(private globalData:GlobalDataService, private componentFactoryResolver: ComponentFactoryResolver) {
+    constructor(private spinnerService: Ng4LoadingSpinnerService, private globalData:GlobalDataService, private componentFactoryResolver: ComponentFactoryResolver) {
 
         let hs:any = this.fromLS();
         if(hs){

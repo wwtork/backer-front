@@ -13,4 +13,7 @@ export class SslCheckComponent extends HostingStage implements OnInit {
   ngOnInit() {
   }
 
+  onSkip(){
+
+  }
 }

@@ -6,7 +6,9 @@ import {AUTH_PROVIDERS} from "./authentication.service";
 import {RegisterComponent} from "./register/register.component";
 import {EmailConfirmationWarningComponent} from "./email-confirmation-warning/email-confirmation-warning.component";
 import {FormsModule}   from '@angular/forms';
-import {BrowserModule} from "@angular/platform-browser";
+import {CommonModule} from "@angular/common";
+import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
+// import {BrowserModule} from "@angular/platform-browser";
 const authRoutes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent, data: {logout: false}},
@@ -17,7 +19,8 @@ const authRoutes: Routes = [
     imports: [
         RouterModule.forChild(authRoutes),
         FormsModule,
-        BrowserModule
+        CommonModule,
+        Ng4LoadingSpinnerModule.forRoot()
     ],
     declarations: [
         LoginComponent,

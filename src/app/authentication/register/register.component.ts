@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     complexity:string;
     show_password:boolean;
     form:FormGroup;
-    private showpromo = false;
+    showpromo = false;
 
     constructor(private authService:AuthenticationService, fb:FormBuilder) {
         localStorage.clear();

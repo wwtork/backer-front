@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
+import {BackendDataService} from "../backend-data.service";
 
 @Component({
     selector: 'app-backup-activation-error',
@@ -8,9 +9,9 @@ import {HostingStage} from "../model/hosting-stage";
 })
 export class BackupActivationErrorComponent extends HostingStage implements OnInit {
 
-    private errors;
+    public errors: { searchError: boolean; permissionError: boolean; scriptError: boolean };
 
-    constructor() {
+    constructor(private backendDataService:BackendDataService) {
         super();
     }
 

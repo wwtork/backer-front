@@ -14,7 +14,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-    private model:User;
+    public model:User;
     private form:FormGroup;
 
     private logout;

@@ -1,0 +1,30 @@
+<li *ngIf="node && node.isDir()" class="all-item">
+    <a (click)="clickItem(node)"
+       class="folder-item"
+       [ngClass]="{focus: node._focus}">
+        <div style="white-space: nowrap">
+            <span class="point" (click)="clickFolderExpand(node)">
+                <i class="fa fa-fw fa-caret-right" *ngIf="!(node.isExpanded)"></i>
+                <i class="fa fa-fw fa-caret-down" *ngIf="node.isExpanded"></i>
+            </span>
+
+
+            <i class="fa fa-folder-o" *ngIf="!(node.isExpanded)"></i>
+            <i class="fa fa-folder-open-o" *ngIf="node.isExpanded"></i>
+            {{ node.name }}
+        </div>
+    </a>
+
+    <ul *ngIf="node.isExpanded" class="children-items">
+        <node *ngFor="let n of node.children" [node]="n" (clicked)="propagate($event)"></node>
+    </ul>
+</li>
+<li *ngIf="node && !node.isDir()" class="all-item">
+    <a (click)="clickItem(node)"
+       class="file-item"
+       [ngClass]="{focus: node._focus}">
+        <div style="white-space: nowrap">
+            <i class="fa fa-file-o"></i> {{ node.name }}
+        </div>
+    </a>
+</li>

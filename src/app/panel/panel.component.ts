@@ -9,8 +9,7 @@ import {AuthenticationService} from "../authentication/authentication.service";
 })
 export class PanelComponent implements OnInit {
 
-  private user:User;
-
+  user:User;
 
   constructor() {
   }

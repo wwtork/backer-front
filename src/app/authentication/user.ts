@@ -1,6 +1,13 @@
 
 import {Serializable} from "../serializable";
 export class User extends Serializable{
+    get confirmed(): boolean {
+        return this._confirmed;
+    }
+
+    set confirmed(value: boolean) {
+        this._confirmed = value;
+    }
     get apiKey():string {
         return this._apiKey;
     }
@@ -28,11 +35,12 @@ export class User extends Serializable{
     private _agreement:boolean;
     private _promocode:string;
     private _website:string;
+    private _confirmed:boolean;
     private _passwordComplicity:number;
 
     constructor() {
         super();
-
+        this._confirmed = false;
         this._remember_me = false;
         this._agreement = false;
     };

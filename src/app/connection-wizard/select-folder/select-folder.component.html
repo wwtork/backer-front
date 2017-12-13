@@ -1,6 +1,11 @@
-<label class="one-line"  [ngClass]="{true:'validate', false:'novalidate'}[pathField.valid]">
+<label class="one-line">
   <input type="text" [(ngModel)]="path" #pathField="ngModel" value="{{ path }}" (change)="folderSelect()" required/>
 </label>
+<!--<wsr-treeview [config]="twConfig" [items]="treeItems" (selectedChange)="onSelect($event)"></wsr-treeview>-->
+<!--<directory-tree *ngIf="generated" [directory]="treeItems"-->
+                <!--(onChange)="onSelect($event)"-->
+                <!--[keyboardWatch]=true>-->
+<!--</directory-tree>-->
           <!--<div class="block-select-folder">-->
             <!--<div class="input-block">-->
               <!--<input type="text" placeholder="/domen.ru/">-->

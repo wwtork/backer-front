@@ -34,7 +34,7 @@ import { ReferencesService } from "../dns-settings/service/references.service";
 		</ng-template>
 
 		<div class="treeview-header">
-			<ng-template [ngTemplateOutlet]="headerTemplate || defaultHeaderTemplate" [ngOutletContext]="headerTemplateContext">
+			<ng-template [ngTemplateOutlet]="headerTemplate || defaultHeaderTemplate" [ngTemplateOutletContext]="headerTemplateContext">
 			</ng-template>
 		</div>
 		

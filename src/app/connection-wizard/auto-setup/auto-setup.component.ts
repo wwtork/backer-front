@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
 import {BackendDataService} from "../backend-data.service";
-import {WsrDnsInfo} from "../../dns-settings/wsr-interfaces";
+import {parameters} from "../../../parameters";
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../../authentication/authentication.service";
 
 @Component({
     selector: 'app-auto-setup',
@@ -10,11 +12,11 @@ import {WsrDnsInfo} from "../../dns-settings/wsr-interfaces";
 })
 export class AutoSetupComponent extends HostingStage implements OnInit {
 
-    private initialized = false;
-    private backupPercent = 0;
-    private firePercent = 0;
+    initialized = false;
+    backupPercent = 0;
+    firePercent = 0;
 
-    private isDnsInfoBlank = true;
+    isDnsInfoBlank = true;
 
     private backupScanErrors  = {
         6: 'configError',
@@ -27,7 +29,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         8: 'permissionError'
     };
 
-    constructor(private backendDataService: BackendDataService) {
+    constructor(private router: Router, private backendDataService: BackendDataService) {
         super();
     }
 
@@ -43,7 +45,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         if (this.hostingSettings.backupSupport && !this.hostingSettings.backupScanFinished) {
             this.startBackupScan();
         }
-        if (this.hostingSettings.firewallSupport/* && !this.hostingSettings.firewallScanFinished*/) {
+        if (this.hostingSettings.firewallSupport && !this.hostingSettings.firewallScanFinished) {
             this.startFirewallScan();
         }
 
@@ -87,11 +89,8 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     checkBackupScan() {
         this.backendDataService.getBackupScanData(this.hostingSettings.getHostScanData()).then((result: Response) => {
             if (result.status) {
-                console.log(result);
                 if (result.hasOwnProperty('finished') && result['finished']) {
-                    this.backupPercent = 100;
-                    this.processBackupScanResults(result['entity']);
-                    this.hostingSettings.backupScanFinished = true;
+                    this.processBackupScanResults(result['entity'].length != 0 ? result['entity'] : result);
                 } else {
                     this.backupPercent = result.hasOwnProperty('percent') ? result['percent'] : 0;
                     setTimeout(() => {
@@ -105,11 +104,14 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         });
     }
 
-    processBackupScanResults(result) {
-        this.hostingSettings.backupScanFinished = true;
+    public finish(){
+        // this.backendDataService.updateSiteSettings(this.hostingSettings.site);
+        window.location.href = parameters.backerUrl + '?api_key=' + AuthenticationService.getUser().apiKey;
+    }
 
-        if(result['errorCodes']) {
-            for (let error of result['errorCodes']) {
+    processBackupScanResults(result) {
+        if(result['error_codes']) {
+            for (let error of result['error_codes']) {
                 this.hostingSettings.scanErrors[this.backupScanErrors[error]] = true
             }
             if (this.hostingSettings.scanErrors['searchError'] ||
@@ -117,15 +119,23 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
                 this.hostingSettings.scanErrors['permissionError']) {
                 this.hostingSettings.stage = 'backup-activation-error';
                 this.onSubmit();
-                return;
+                return false;
             }
 
+            this.hostingSettings.backupScanFinished = true;
             this.hostingSettings.site.fillFromJSON(result);
+            this.backupPercent = 100;
+
 
             if (this.hostingSettings.scanErrors['ipError']) {
                 this.hostingSettings.stage = 'ip-error';
                 this.onSubmit();
+                return false;
             }
+        }else{
+            this.hostingSettings.backupScanFinished = true;
+            this.hostingSettings.site.fillFromJSON(result);
+            this.backupPercent = 100;
         }
     }
 
@@ -133,10 +143,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         this.backendDataService.getFirewallScanData(this.hostingSettings.getFirewallScanData()).then((result: Response) => {
             if (result.status) {
                 if (result['text_status'] == 2) {
-                    this.hostingSettings.firewallScanResult = result['waf_domain_data'];
-                    this.firePercent = 100;
-                    this.hostingSettings.firewallScanFinished = true;
-                    this.isDnsInfoBlank = !result['waf_domain_data'];
+                    this.processFirewallScanResults(result);
                 } else {
                     setTimeout(() => {
                         this.checkFirewallScan();
@@ -147,6 +154,13 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
             console.log(err);
             return false;
         });
+    }
+
+    private processFirewallScanResults(result) {
+        this.hostingSettings.firewallScanResult = result['waf_domain_data'];
+        this.firePercent = 100;
+        this.hostingSettings.firewallScanFinished = true;
+        this.isDnsInfoBlank = !result['waf_domain_data'];
     }
 
     // startFirewallScan(){

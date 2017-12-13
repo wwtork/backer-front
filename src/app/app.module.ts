@@ -6,9 +6,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {ConnectionWizardModule} from "./connection-wizard/connection-wizard.module";
 import {RouterModule, Routes} from "@angular/router";
 import {PanelComponent} from "./panel/panel.component";
-import {Ng4FilesModule} from 'angular4-files-upload/src/app/ng4-files';
 import {DnsSettingsModule} from "./dns-settings/dns-settings.module";
-
 const routes:Routes = [
     { path: '', loadChildren: './authentication/authentication.module#AuthenticationModule'},
     { path: '', loadChildren: './connection-wizard/connection-wizard.module#ConnectionWizardModule'},
@@ -18,7 +16,6 @@ const routes:Routes = [
 @NgModule({
     imports: [
         AuthenticationModule,
-        Ng4FilesModule,
         ConnectionWizardModule,
         DnsSettingsModule,
         RouterModule.forRoot(routes),

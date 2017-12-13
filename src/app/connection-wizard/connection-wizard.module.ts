@@ -1,8 +1,9 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {HttpModule, JsonpModule} from '@angular/http';
-
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {LoggedInGuard} from '../authentication/logged-in.guard';
+import {Ng2DirectoryTreeModule} from '../ngx-directory-tree'
 import {
     RouterModule,
     Routes
@@ -27,7 +28,6 @@ import {BackendDataService} from "./backend-data.service";
 import {HostingStateDirective} from './hosting-state.directive';
 import {GlobalDataService} from "./global-data.service";
 import {ChooseMethodComponent} from './choose-method/choose-method.component';
-import {Ng4FilesModule} from 'angular4-files-upload/src/app/ng4-files';
 import {ProgressBarComponent} from './progress-bar/progress-bar.component';
 import {VideoBlockComponent} from './video-block/video-block.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -37,11 +37,27 @@ import {IpErrorComponent} from './ip-error/ip-error.component';
 import {DnsSettingsModule} from '../dns-settings/dns-settings.module';
 import {DnsSettingsComponent} from './dns-settings/dns-settings.component';
 import {BottomPanelModule} from "../bottom-panel/bottom-panel.module";
+import { WsrTreeViewModule } from "../wsr-treeview/wsr-treeview.module";
 const connectionWizardRoutes: Routes = [
     {path: '', redirectTo: 'connection-wizard', pathMatch: 'full'},
-    {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [LoggedInGuard]},
+    {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [LoggedInGuard]}
 ];
 @NgModule({
+    imports: [
+        DnsSettingsModule,
+        BottomPanelModule,
+        WsrTreeViewModule,
+        Ng2DirectoryTreeModule,
+        CommonModule,
+        FormsModule,
+        HttpModule,
+        JsonpModule,
+        RouterModule.forChild(connectionWizardRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule.forRoot(),
+        Ng4LoadingSpinnerModule.forRoot()
+    ],
     declarations: [
         MethodComponent,
         ConnectStateComponent,
@@ -64,19 +80,6 @@ const connectionWizardRoutes: Routes = [
         BackupActivationErrorComponent,
         IpErrorComponent,
         DnsSettingsComponent
-    ],
-    imports: [
-        DnsSettingsModule,
-        BottomPanelModule,
-        CommonModule,
-        FormsModule,
-        HttpModule,
-        JsonpModule,
-        Ng4FilesModule,
-        RouterModule.forChild(connectionWizardRoutes),
-        FormsModule,
-        ReactiveFormsModule,
-        NgbModule.forRoot(),
     ],
     providers: [
         LoggedInGuard,
@@ -101,11 +104,5 @@ const connectionWizardRoutes: Routes = [
     ],
 })
 
-@NgModule({
-    imports: [
-        CommonModule
-    ],
-    declarations: [DnsSettingsComponent]
-})
 export class ConnectionWizardModule {
 }
