@@ -51,6 +51,7 @@ export class RegisterComponent implements OnInit {
         this.model.remember_me = form.rememberme;
         this.model.website = form.website;
         this.model.agreement = form.agreement;
+        this.model.promocode = form.promocode;
         this.authService.register(this.model).then((result) => {
             this.errors = this.authService.errors;
             for(let i in this.errors){

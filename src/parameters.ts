@@ -8,6 +8,6 @@ export const parameters = {
     wddUpdateUrl: baseUrls.backerBaseUrl + '/rest/wdd/dns_test',
     apiUrl: baseUrls.backerBaseUrl + '/api/',
     afterLoginUri: '/connection-wizard',
-    backerUrl: baseUrls.backerBaseUrl + '/secured/hard_login'
+    backerUrl: baseUrls.backerBaseUrl + '/api/secured/hard_login'
 
 };
