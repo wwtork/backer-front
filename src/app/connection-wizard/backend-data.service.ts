@@ -13,9 +13,9 @@ const UPDATE_SITE_SETTINGS_URI = 'secured/update-site-settings';
 // const USER_KEY = 'user';
 const BACKUP_SCAN_DATA_URI = 'secured/backup_scan/status/';
 const BACKUP_SCAN_TERMINATE_URI = 'secured/backup_scan/terminate/';
-const BACKUP_START_SCAN_URI = 'secured/backup_scan/init/';
+const BACKUP_START_SCAN_URI = 'secured/backup_scan/init';
 const FIREWALL_SCAN_DATA_URI = 'secured/firewall_scan/status/';
-const FIREWALL_START_SCAN_URI = 'secured/firewall_scan/init/';
+const FIREWALL_START_SCAN_URI = 'secured/firewall_scan/init';
 const LIST_DIRECTORY_URI = 'secured/backup_scan/list_dir/';
 
 @Injectable()
@@ -49,7 +49,7 @@ export class BackendDataService {
     }
 
     startFirewallScan(fireScanData) {
-        return  this.securedPost(FIREWALL_START_SCAN_URI + fireScanData.siteId, JSON.stringify({fireScanData: fireScanData})).then((result) => {
+        return  this.securedPost(FIREWALL_START_SCAN_URI, JSON.stringify({fireScanData: fireScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -58,7 +58,7 @@ export class BackendDataService {
     }
 
     getFirewallScanData(fireScanData) {
-        return  this.securedPost(FIREWALL_SCAN_DATA_URI + fireScanData.siteId, JSON.stringify({fireScanData: fireScanData})).then((result) => {
+        return  this.securedPost(FIREWALL_SCAN_DATA_URI + fireScanData.id, JSON.stringify({fireScanData: fireScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -68,8 +68,8 @@ export class BackendDataService {
 
 
     startBackupScan(hostScanData) {
-        if(!hostScanData.domainFilter) hostScanData.domainFilter = AuthenticationService.getUser().website;
-        return  this.securedPost(BACKUP_START_SCAN_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+        if(!hostScanData.domain) hostScanData.domain = AuthenticationService.getUser().website;
+        return  this.securedPost(BACKUP_START_SCAN_URI, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -78,7 +78,7 @@ export class BackendDataService {
     }
 
     getBackupScanData(hostScanData) {
-        if(!hostScanData.domainFilter) hostScanData.domainFilter = AuthenticationService.getUser().website;
+        if(!hostScanData.domain) hostScanData.domain = AuthenticationService.getUser().website;
         return  this.securedPost(BACKUP_SCAN_DATA_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {
@@ -157,8 +157,8 @@ export class BackendDataService {
 
     }
 
-    updateSiteSettings(site: Site) {
-        return  this.securedPost(UPDATE_SITE_SETTINGS_URI,JSON.stringify( {hostSettingsData: site})).then((result) => {
+    updateSiteSettings(hostingSettings : HostingSettings) {
+        return  this.securedPost(UPDATE_SITE_SETTINGS_URI,JSON.stringify( {hostSettingsData: hostingSettings})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);

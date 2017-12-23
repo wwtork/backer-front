@@ -1,6 +1,7 @@
 import {Serializable} from "../../serializable";
 import {Site} from "./site";
 export class HostingSettings extends Serializable {
+
     get firewallScanResult(): any {
         return this._firewallScanResult;
     }
@@ -174,6 +175,15 @@ export class HostingSettings extends Serializable {
         }
     }
 
+    get firewallScanId(): any {
+        return this._firewallScanId;
+    }
+
+    set firewallScanId(value: any) {
+        this._firewallScanId = value;
+    }
+    private _firewallScanId: any;
+
     private _scanErrors =  {
         searchError: false,
         permissionError: false,
@@ -216,20 +226,27 @@ export class HostingSettings extends Serializable {
         }
         if(this.domain) request['domain'] = this.domain;
 
+        request['connectionInfo'] = {
+            username:  this.hostUsername,
+            password:  this.hostPassword,
+            server:  this.hostAddress
+        };
+
         return request;
     }
 
     getFirewallScanData() {
         return {
-            siteId: this.site.id,
-            www: null,
-            protocol: null,
-            profiles: null,
-            letsencrypt: null,
-            mode: null,
-            copy: null,
-            names: null,
-            subdomains: null
+            id: this.firewallScanId,
+            domain: this.domain
+            // www: null,
+            // protocol: null,
+            // profiles: null,
+            // letsencrypt: null,
+            // mode: null,
+            // copy: null,
+            // names: null,
+            // subdomains: null
         }
     }
 }

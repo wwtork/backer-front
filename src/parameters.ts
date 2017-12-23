@@ -1,5 +1,6 @@
 export const baseUrls = {
-  backerBaseUrl: 'http://wwt-b.ddns.net'
+    backerBaseUrl: 'http://wwt-b.ddns.net'
+    // backerBaseUrl: 'http://backer.local'
 };
 
 export const parameters = {
@@ -9,5 +10,4 @@ export const parameters = {
     apiUrl: baseUrls.backerBaseUrl + '/api/',
     afterLoginUri: '/connection-wizard',
     backerUrl: baseUrls.backerBaseUrl + '/api/secured/hard_login'
-
 };

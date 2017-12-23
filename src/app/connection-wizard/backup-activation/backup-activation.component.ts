@@ -19,6 +19,8 @@ export class BackupActivationComponent extends HostingStage implements OnInit {
     }
 
     onSkip() {
+        this.hostingSettings.backupSupport = false;
+        this.hostingSettings.firewallSupport = false;
         this.hostingSettings.stage = 'auto-setup';
         this.onSubmit();
     }

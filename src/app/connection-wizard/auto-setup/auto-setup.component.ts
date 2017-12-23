@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
 import {BackendDataService} from "../backend-data.service";
 import {parameters} from "../../../parameters";
-import {Router} from "@angular/router";
 import {AuthenticationService} from "../../authentication/authentication.service";
+import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Component({
     selector: 'app-auto-setup',
@@ -29,7 +29,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         8: 'permissionError'
     };
 
-    constructor(private router: Router, private backendDataService: BackendDataService) {
+    constructor(private backendDataService: BackendDataService, public spinnerService: Ng4LoadingSpinnerService) {
         super();
     }
 
@@ -38,6 +38,8 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         if(this.hostingSettings.backupScanFinished)
             this.backupPercent = 100;
         if(this.hostingSettings.firewallScanFinished)
+            console.log(this.hostingSettings.firewallScanResult);
+            this.isDnsInfoBlank = !this.hostingSettings.firewallScanResult;
             this.firePercent = 100;
     }
 
@@ -48,14 +50,13 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         if (this.hostingSettings.firewallSupport && !this.hostingSettings.firewallScanFinished) {
             this.startFirewallScan();
         }
-
-
     }
 
     startBackupScan() {
         this.backendDataService.startBackupScan(this.hostingSettings.getHostScanData()).then((result: Response) => {
             if (result.status) {
                 setTimeout(() => {
+                        this.hostingSettings.id = result['id'];
                         this.checkBackupScan();
                     }
                     , 2000);
@@ -75,6 +76,7 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     startFirewallScan() {
         this.backendDataService.startFirewallScan(this.hostingSettings.getFirewallScanData()).then((result: Response) => {
             if (result.status) {
+                this.hostingSettings.firewallScanId = result['id'];
                 setTimeout(() => {
                         this.checkFirewallScan();
                     }
@@ -105,8 +107,16 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
     }
 
     public finish(){
-        // this.backendDataService.updateSiteSettings(this.hostingSettings.site);
-        window.location.href = parameters.backerUrl + '?api_key=' + AuthenticationService.getUser().apiKey;
+        this.spinnerService.show();
+        this.backendDataService.updateSiteSettings(this.hostingSettings).then((result: Response) => {
+            if (result.status) {
+                this.spinnerService.hide();
+                window.location.href = parameters.backerUrl + '?api_key=' + AuthenticationService.getUser().apiKey;
+            } else {
+                this.spinnerService.hide();
+            }
+
+        });
     }
 
     processBackupScanResults(result) {

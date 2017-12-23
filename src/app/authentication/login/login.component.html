@@ -8,7 +8,7 @@
                     <form name="form" (ngSubmit)="loginForm.form.valid && onSubmit(loginForm.value)" #loginForm="ngForm"
                           novalidate>
                         <!--<label class="one-line invalid-input" *ngIf="errors && ((errors.indexOf('email') != -1) || (errors.indexOf('password') != -1))">Неверное имя пользователя или пароль</label>-->
-                        <label class="one-line" [ngClass]="{true:'', false:'invalid-input'}[email.valid]">
+                        <label class="input-line" [ngClass]="{true:'', false:'invalid-input'}[email.valid]">
                             <span><i class="fa fa-envelope"></i></span>
                             <input type="email" placeholder="Email" [(ngModel)]="model.email" #email="ngModel"
                                    name="email"

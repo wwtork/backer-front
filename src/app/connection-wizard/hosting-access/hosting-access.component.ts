@@ -29,7 +29,9 @@ export class HostingAccessComponent extends HostingStage implements OnInit {
         this.spinnerService.show();
         this.backendDataService.checkAccess(this.hostingSettings.getHostAccessData()).then((result:Response) => {
             if(result.status){
-                this.saveHostingSettings();
+                //this.saveHostingSettings();
+                this.spinnerService.hide();
+                this.submit();
             }else{
                 this.spinnerService.hide();
                 this.error = result['error'];
