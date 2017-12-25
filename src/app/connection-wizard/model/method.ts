@@ -40,7 +40,7 @@ export class Method extends Serializable{
     private _name:string;
     private _description:string;
     private _price:number;
-    private _slug:string = 'professional';
+    private _slug:string = 'personal';
 
     constructor(){
         super();

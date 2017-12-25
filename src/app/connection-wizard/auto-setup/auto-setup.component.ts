@@ -37,10 +37,10 @@ export class AutoSetupComponent extends HostingStage implements OnInit {
         this.initialized = true;
         if(this.hostingSettings.backupScanFinished)
             this.backupPercent = 100;
-        if(this.hostingSettings.firewallScanFinished)
-            console.log(this.hostingSettings.firewallScanResult);
+        if(this.hostingSettings.firewallScanFinished) {
             this.isDnsInfoBlank = !this.hostingSettings.firewallScanResult;
             this.firePercent = 100;
+        }
     }
 
     ngAfterViewInit() {

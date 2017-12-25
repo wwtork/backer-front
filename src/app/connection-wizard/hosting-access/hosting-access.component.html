@@ -1,43 +1,47 @@
 <div class="wrapper middle-wrapper">
-  <div class="top">Укажите доступ к хостингу</div>
-  <div class="middle">
-    <form (ngSubmit)="hostingAccessForm.form.valid && checkAccess()" #hostingAccessForm="ngForm" novalidate>
-      <span class="name-input">Адрес сервера (FTP/SFTP) <i class="icn-inform" data-balloon="" data-balloon-pos="right" data-balloon-length="large"></i></span>
+    <div class="top">Укажите доступ к хостингу</div>
+    <div class="middle">
+        <form (ngSubmit)="hostingAccessForm.form.valid && checkAccess()" #hostingAccessForm="ngForm" novalidate>
+            <span class="name-input">Адрес сервера (FTP/SFTP) <i class="icn-inform" data-balloon=""
+                                                                 data-balloon-pos="right"
+                                                                 data-balloon-length="large"></i></span>
+            <span *ngIf="errors && (errors.indexOf('connect') != -1)">Ошибка соединения</span>
+            <label [ngClass]="{true:'', false:'invalid-input'}[hostAddress.valid.valid]" class="one-line">
+                <input type="text" [(ngModel)]="hostingSettings.hostAddress" #hostAddress="ngModel" name="hostAddress"
+                       required value="{{ hostingSettings.hostAddress }}">
+                <!--<span class="note">Вы не указали адрес сервера</span>-->
+            </label>
 
-      <label class="one-line" [ngClass]="{true:'validate', false:'novalidate'}[hostAddress.valid]">
-        <input type="text" [(ngModel)]="hostingSettings.hostAddress" #hostAddress="ngModel" name="hostAddress" required value="{{ hostingSettings.hostAddress }}">
-        <!--<span class="note">Вы не указали адрес сервера</span>-->
-      </label>
+            <span class="name-input">Имя пользователя</span>
+            <span *ngIf="errors && (errors.indexOf('login') != -1)">Неверный логин или пароль</span>
+            <label class="one-line" [ngClass]="{true:'', false:'invalid-input'}[hostUsername.valid.valid]">
+                <input type="text" [(ngModel)]="hostingSettings.hostUsername" #hostUsername="ngModel"
+                       name="hostUsername" required value="{{ hostingSettings.hostUsername }}"/>
+                <!--<span class="note">Вы не указали имя пользователя</span>-->
+            </label>
 
-      <span class="name-input">Имя пользователя</span>
+            <span class="name-input">Пароль </span>
+            <!--<label class="one-line novalidate">-->
+            <!--<span class="password-block">-->
+            <!--<input type="password" name="password" id="pass_id"  class="invalid-input" required>-->
+            <!--<span id="showpassword" class="showpassword"><img src="assets/images/eye.png" alt=""></span>-->
+            <!--</span>-->
+            <!--<span class="note">Вы не указали пароль</span>-->
+            <!--</label>-->
 
-      <label class="one-line"  [ngClass]="{true:'validate', false:'novalidate'}[hostUsername.valid]">
-        <input type="text" [(ngModel)]="hostingSettings.hostUsername" #hostUsername="ngModel" name="hostUsername" required value="{{ hostingSettings.hostUsername }}" />
-        <!--<span class="note">Вы не указали имя пользователя</span>-->
-      </label>
-
-      <span class="name-input">Пароль </span>
-      <!--<label class="one-line novalidate">-->
-                            <!--<span class="password-block">-->
-                                <!--<input type="password" name="password" id="pass_id"  class="invalid-input" required>-->
-                                <!--<span id="showpassword" class="showpassword"><img src="assets/images/eye.png" alt=""></span>-->
-                            <!--</span>-->
-        <!--<span class="note">Вы не указали пароль</span>-->
-      <!--</label>-->
-
-      <label class="one-line" [ngClass]="{true:'validate', false:'novalidate'}[hostPassword.valid]">
+            <label class="one-line" [ngClass]="{true:'', false:'invalid-input'}[hostPassword.valid.valid]">
             <span class="password-block">
-                <input type="{{show_password ? 'text' : 'password'}}" id="pass_id" [(ngModel)]="hostingSettings.hostPassword" #hostPassword="ngModel" name="password" required />
+                <input type="{{show_password ? 'text' : 'password'}}" id="pass_id"
+                       [(ngModel)]="hostingSettings.hostPassword" #hostPassword="ngModel" name="password" required/>
                 <span id="showpassword" (click)="showPassword()" class="showpassword">
                     <img src="assets/images/eye.png" alt=""/>
                 </span>
             </span>
-      </label>
+            </label>
 
 
-
-      <input type="submit" class="btn-orn" value="Подключить" data-fancybox data-src="#error">
-      <div class="lost-step" (click)="skip()"><a href="#">Пропустить этап и перейти дальше</a></div>
-    </form>
-  </div>
+            <input type="submit" class="btn-orn" value="Подключить" data-fancybox data-src="#error">
+            <div class="lost-step" (click)="skip()"><a href="#">Пропустить этап и перейти дальше</a></div>
+        </form>
+    </div>
 </div>

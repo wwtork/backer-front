@@ -34,7 +34,7 @@ export class ConnectWizardComponent implements OnInit {
 
     chooseComponent(){
         if(this.hostingSettings.stage == null && AuthenticationService.getUser().website)
-            this.hostingSettings.stage = 'choose-tariff';
+            this.hostingSettings.stage = 'choose-method';
         let stageComponent:HostingStateComponent = this.globalData.getStage(this.hostingSettings.stage);
         this.state = stageComponent.state;
         this.component = stageComponent.component;

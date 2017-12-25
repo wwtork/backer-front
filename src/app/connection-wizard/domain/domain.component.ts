@@ -16,7 +16,7 @@ export class DomainComponent extends HostingStage implements OnInit {
     }
 
     onFormSubmit() {
-        this.hostingSettings.stage = 'choose-tariff';
+        this.hostingSettings.stage = 'choose-method';
         this.onSubmit();
     }
 

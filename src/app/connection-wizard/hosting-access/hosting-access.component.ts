@@ -11,7 +11,7 @@ import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 })
 export class HostingAccessComponent extends HostingStage implements OnInit {
     show_password:boolean = false;
-    error:string;
+    errors;
 
     constructor(private backendDataService:BackendDataService, public spinnerService: Ng4LoadingSpinnerService) {
         super();
@@ -34,31 +34,31 @@ export class HostingAccessComponent extends HostingStage implements OnInit {
                 this.submit();
             }else{
                 this.spinnerService.hide();
-                this.error = result['error'];
+                this.errors = Object.keys(result['error']);
             }
         }, (err) => {
-            this.error = err;
+            this.errors = [err];
             return false;
         });
     }
 
-    saveHostingSettings() {
-        this.backendDataService.saveHostingSettings(this.hostingSettings).then((result:Response) => {
-            this.spinnerService.hide();
-            if(result.status){
-
-                this.hostingSettings.id = result['data']['serverId'];
-                this.hostingSettings.site = new Site();
-                this.hostingSettings.site.id = result['data']['siteId'];
-                this.submit();
-            }else{
-                this.error = result['error'];
-            }
-        }, (err) => {
-            this.error = err;
-            return false;
-        });
-    }
+    // saveHostingSettings() {
+    //     this.backendDataService.saveHostingSettings(this.hostingSettings).then((result:Response) => {
+    //         this.spinnerService.hide();
+    //         if(result.status){
+    //
+    //             this.hostingSettings.id = result['data']['serverId'];
+    //             this.hostingSettings.site = new Site();
+    //             this.hostingSettings.site.id = result['data']['siteId'];
+    //             this.submit();
+    //         }else{
+    //             this.errors = result['error'];
+    //         }
+    //     }, (err) => {
+    //         this.errors = err;
+    //         return false;
+    //     });
+    // }
 
     submit(){
         this.hostingSettings.stage = (!this.hostingSettings.firewallSupport) ? 'firewall-activation' : 'auto-setup';

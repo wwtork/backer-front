@@ -36,7 +36,7 @@ export class ChooseMethodComponent extends HostingStage implements OnInit {
 
     selectMethod(method:Method) {
         this.hostingSettings.methodId = method.id;
-        this.hostingSettings.stage = 'backup-activation';
+        this.hostingSettings.stage = 'choose-tariff';
         this.onSubmit();
     }
 

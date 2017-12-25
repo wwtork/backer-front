@@ -40,6 +40,10 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
     }
 
+    returnToLogin(){
+
+    }
+
     togglePromo(){
         this.showpromo = !this.showpromo;
     }

@@ -33,7 +33,9 @@
                         <div class="result-password" [hidden]="password.pristine || password.invalid">Уровень сложности
                             пароля: <span id='pswdcheck'
                                           class="{{ getComplexityClass() }}">{{ getComplexityText() }}</span></div>
-                        <div class="promocod"><a (click)="togglePromo()">У меня есть промокод <i
+                        <div class="promocod" style="padding-bottom:0;"><a [routerLink]="['/login']">У меня есть аккаунт <i
+                                class="fa fa-angle-right"></i></a></div>
+                        <div class="promocod" style="padding-top:10px;"><a (click)="togglePromo()">У меня есть промокод <i
                                 class="fa fa-angle-right"></i></a>
                         </div>
                         <label class="input-line promocod-input" *ngIf="showpromo">

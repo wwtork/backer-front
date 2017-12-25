@@ -42,7 +42,7 @@ export class ChooseTariffComponent extends HostingStage implements OnInit {
 
 
     next() {
-        this.hostingSettings.stage = 'choose-method';
+        this.hostingSettings.stage = 'backup-activation';
         this.hostingSettings.tariffId = this.currentTariff.id;
         this.onSubmit();
     }
@@ -51,7 +51,7 @@ export class ChooseTariffComponent extends HostingStage implements OnInit {
         if(this.currentTariff){
             this.hostingSettings.tariffPay = true;
             this.hostingSettings.tariffId = this.currentTariff.id;
-            this.hostingSettings.stage = 'choose-method';
+            this.hostingSettings.stage = 'backup-activation';
             this.onSubmit();
         }
     }
@@ -60,7 +60,7 @@ export class ChooseTariffComponent extends HostingStage implements OnInit {
         if(this.currentTariff){
             this.hostingSettings.tariffRequest = true;
             this.hostingSettings.tariffId = this.currentTariff.id;
-            this.hostingSettings.stage = 'choose-method';
+            this.hostingSettings.stage = 'backup-activation';
             this.onSubmit();
         }
     }

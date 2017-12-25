@@ -1,11 +1,9 @@
 <div class="wrapper middle-wrapper beckup-antivirus-speedup">
   <div class="top">Изменение настроек DNS</div>
   <div class="middle">
-    <div style="padding: 15px 0; margin: 80px 15px; background: #fff">
       <ng-container>
         <wsr-rr-list [wsrDnsInfo]="dnsInfo"></wsr-rr-list>
       </ng-container>
-    </div>
     <div class="bottom-block-btn">
       <button (click)="onSave()" class="btn-orn">Сохранить</button>
       <button (click)="onSkip()" class="btn-def-blue">Отмена</button>
