@@ -1,0 +1,15 @@
+<div class="md md-sand unvalidate-sand " id="error">
+    <!--для того чтобы в форме была другая иконка с пометкой ошибки необходимо заменить класс validate-sand на unvalidate-sand -->
+    <button data-fancybox-close class="close-md" (click)="activeModal.close('skip')">X</button>
+    <img src="assets/images/blank.gif" alt="" class="validate-icn">
+    <div class="title-md">Ошибка!</div>
+    <p>Проверьте правильность указанных доступов</p>
+    <div class="btn-block-md error">
+        <button class="btn-orn" (click)="activeModal.close(null)">Изменить доступы</button>
+        <button class="btn-def-blue" (click)="activeModal.close('skip')">Пропустить</button>
+    </div>
+    <div class="txt-where-ftp">
+        <img src="assets/images/icn-question.png" alt="">
+        <a  href="#">Где взять доступ к FTP?</a>
+    </div>
+</div>

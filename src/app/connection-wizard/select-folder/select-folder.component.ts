@@ -26,7 +26,9 @@ export class SelectFolderComponent implements OnInit {
     };
 
     @Input() path = '';
-    @Input() serverId;
+    @Input() host;
+    @Input() username;
+    @Input() password;
     @Output() folderSelected: EventEmitter<any>;
     private error;
     private treeObject = [];
@@ -52,6 +54,7 @@ export class SelectFolderComponent implements OnInit {
                 if (!parent['children']) parent['children'] = {};
                 parent['children'][result[f]['name']] = {text: result[f]['name'], value: result[f]['name']};
             }
+            console.log(parent);
             this.updateTreeArray(null, parent['children']);
         }
     }
@@ -74,8 +77,8 @@ export class SelectFolderComponent implements OnInit {
             else treeItem.children.push(item);
             // treeItem.push({name: objects[i].text, type: "dir", children: [], expanded: false});
             if(objects[i].children){
-                // console.log(treeItem);
-                // console.log(treeItem[cnt]);
+                console.log(treeItem);
+                console.log(treeItem[cnt]);
                 this.updateTreeArray(treeItem.children[cnt], objects[i].children);
             }
             cnt++;
@@ -84,13 +87,14 @@ export class SelectFolderComponent implements OnInit {
 
     getDirectoryList(path = null){
         this.spinnerService.show();
-        this.backendDataService.getDirectoryList(this.serverId, path).then((result) => {
+        this.backendDataService.getDirectoryList(this.host, this.username, this.password, path).then((result) => {
             if(!result) result = [new TreeviewItem({text: '/', value:'/', children: [], checked: true})];
             // this.treeItems = result;
             this.updateTreeObject(result, path);
             this.spinnerService.hide();
             this.generated = true;
         }, (err) => {
+            this.spinnerService.hide();
             this.error = err;
             this.treeItems = [new TreeviewItem({text: '/', value:'/', children: [], checked: true})];
             return false;
@@ -103,7 +107,7 @@ export class SelectFolderComponent implements OnInit {
 
     ngOnInit() {
         this.path = '';
-       // this.getDirectoryList();
+        this.getDirectoryList();
 
     }
 

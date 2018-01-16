@@ -45,11 +45,11 @@
                         </label>
                         <label class="check-line solid">
                             <input type="checkbox" [(ngModel)]="model.agreement" #agreement="ngModel" name="agreement"
-                                   required checked>
+                                   required checked="checked">
                             <span class="text">Я ознакомлен с <a href="#">пользовательским соглашением</a> и <a
                                     href="#">политикой конфиденциальности</a></span>
                         </label>
-                        <input type="submit" name="submit" class="btn-orn" value="Создать аккаунт">
+                        <input type="submit" [disabled]="!registerForm.form.valid" name="submit" class="btn-orn" value="Создать аккаунт">
                         <div class="registration all-field">Все поля обязательны для заполнения</div>
                     </form>
                 </div>

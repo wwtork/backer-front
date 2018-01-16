@@ -36,8 +36,23 @@ export class ChooseMethodComponent extends HostingStage implements OnInit {
 
     selectMethod(method:Method) {
         this.hostingSettings.methodId = method.id;
-        this.hostingSettings.stage = 'choose-tariff';
-        this.onSubmit();
+        if(method.price > 0){
+            let data = {domain : this.hostingSettings.domain, method_id: method.product_id};
+            this.spinnerService.show();
+            this.backendDataService.buy(data).then((res) => {
+                if(res['status']) {
+                    this.spinnerService.hide();
+                    this.hostingSettings.stage = 'backup-activation';
+                    this.onSubmit();
+                }else{
+                    this.spinnerService.hide();
+                    BackendDataService.pay(method.price, method.product_id);
+                }
+            });
+        }else {
+            this.hostingSettings.stage = 'choose-tariff';
+            this.onSubmit();
+        }
     }
 
 }

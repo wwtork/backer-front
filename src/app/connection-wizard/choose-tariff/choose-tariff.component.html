@@ -3,9 +3,7 @@
     <div class="middle">
         <app-tariff  (buttonClick)="selectTariff(trf)" *ngFor="let trf of tariffs" [tariff]="trf"></app-tariff>
         <div class="bottom-block-btn btn-block-tariff" *ngIf="currentTariff">
-            <button *ngIf="currentTariff.isFree()" (click)="next()" href="#free" class="btn-orn" data-fancybox>Далее</button>
-            <button *ngIf="!currentTariff.isFree() && currentTariff.isPayable" (click)="payTariff()" href="#pay-now" class="btn-orn" data-fancybox [attr.disabled]="currentTariff?null:''">Оплатить</button>
-            <button *ngIf="!currentTariff.isFree() && currentTariff.isRequestable" (click)="requestTariff()" href="#submit" class="btn-orn" data-fancybox [attr.disabled]="currentTariff?null:''">Оставить заявку</button>
+            <button (click)="next()" href="#free" class="btn-orn" data-fancybox>{{ currentTariff.type == 'free' ? 'Далее' : (currentTariff.type == 'pay' ? 'Оплатить' : 'Оставить заявку') }}</button>
         </div>
     </div>
 </div>

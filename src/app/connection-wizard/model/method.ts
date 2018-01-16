@@ -36,6 +36,15 @@ export class Method extends Serializable{
         this._id = value;
     }
 
+    get product_id(): any {
+        return this._product_id;
+    }
+
+    set product_id(value: any) {
+        this._product_id = value;
+    }
+
+    private _product_id: any;
     private _id:number;
     private _name:string;
     private _description:string;

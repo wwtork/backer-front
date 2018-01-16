@@ -38,6 +38,12 @@ import {DnsSettingsModule} from '../dns-settings/dns-settings.module';
 import {DnsSettingsComponent} from './dns-settings/dns-settings.component';
 import {BottomPanelModule} from "../bottom-panel/bottom-panel.module";
 import { WsrTreeViewModule } from "../wsr-treeview/wsr-treeview.module";
+import { FtpErrorModalComponent } from './ftp-error-modal/ftp-error-modal.component';
+import { FreeTariffModalComponent } from './free-tariff-modal/free-tariff-modal.component';
+import { BuyTariffModalComponent } from './buy-tariff-modal/buy-tariff-modal.component';
+import { RequestTariffModalComponent } from './request-tariff-modal/request-tariff-modal.component';
+import { ModalComponent } from './modal/modal.component';
+import { ModalDirective } from './modal.directive';
 const connectionWizardRoutes: Routes = [
     {path: '', redirectTo: 'connection-wizard', pathMatch: 'full'},
     {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [LoggedInGuard]}
@@ -71,6 +77,7 @@ const connectionWizardRoutes: Routes = [
         UpdateDnsComponent,
         BackupActivationComponent,
         ConnectWizardComponent,
+        ModalComponent,
         TariffComponent,
         HostingStateDirective,
         ChooseMethodComponent,
@@ -79,7 +86,17 @@ const connectionWizardRoutes: Routes = [
         SelectFolderComponent,
         BackupActivationErrorComponent,
         IpErrorComponent,
-        DnsSettingsComponent
+        DnsSettingsComponent,
+        FtpErrorModalComponent,
+        FreeTariffModalComponent,
+        BuyTariffModalComponent,
+        RequestTariffModalComponent,
+        ModalComponent,
+        FtpErrorModalComponent,
+        RequestTariffModalComponent,
+        FreeTariffModalComponent,
+        BuyTariffModalComponent,
+        ModalDirective
     ],
     providers: [
         LoggedInGuard,
@@ -101,6 +118,11 @@ const connectionWizardRoutes: Routes = [
         IpErrorComponent,
         BackupActivationErrorComponent,
         DnsSettingsComponent,
+        FtpErrorModalComponent,
+        ModalComponent,
+        RequestTariffModalComponent,
+        FreeTariffModalComponent,
+        BuyTariffModalComponent
     ],
 })
 

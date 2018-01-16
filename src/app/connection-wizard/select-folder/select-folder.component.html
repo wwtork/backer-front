@@ -1,7 +1,7 @@
 <label class="one-line">
   <input type="text" [(ngModel)]="path" #pathField="ngModel" value="{{ path }}" (change)="folderSelect()" required/>
 </label>
-<!--<wsr-treeview [config]="twConfig" [items]="treeItems" (selectedChange)="onSelect($event)"></wsr-treeview>-->
+<wsr-treeview [config]="twConfig" [items]="treeItems" (selectedChange)="onSelect($event)"></wsr-treeview>
 <!--<directory-tree *ngIf="generated" [directory]="treeItems"-->
                 <!--(onChange)="onSelect($event)"-->
                 <!--[keyboardWatch]=true>-->

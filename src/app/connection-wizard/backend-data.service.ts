@@ -16,7 +16,11 @@ const BACKUP_SCAN_TERMINATE_URI = 'secured/backup_scan/terminate/';
 const BACKUP_START_SCAN_URI = 'secured/backup_scan/init';
 const FIREWALL_SCAN_DATA_URI = 'secured/firewall_scan/status/';
 const FIREWALL_START_SCAN_URI = 'secured/firewall_scan/init';
-const LIST_DIRECTORY_URI = 'secured/backup_scan/list_dir/';
+const LIST_DIRECTORY_URI = 'secured/backup_scan/list_dir';
+const REQUEST_TARIFF_URI = 'secured/tariff/request_tariff/';
+const BUY_URI = 'secured/payment/buy';
+const DEFAULT_METHOD_URI = 'secured/method/default';
+const PAY_URL = 'secured/payment/pay';
 
 @Injectable()
 export class BackendDataService {
@@ -87,8 +91,8 @@ export class BackendDataService {
         });
     }
 
-    getDirectoryList(serverId, path = null, needle_path = null) {
-        return  this.securedPost(LIST_DIRECTORY_URI + serverId, JSON.stringify({path: path, needle_path: needle_path})).then((result) => {
+    getDirectoryList(host, username, password, path = null, needle_path = null) {
+        return  this.securedPost(LIST_DIRECTORY_URI, JSON.stringify({host:host, username:username, password:password, path: path, needle_path: needle_path})).then((result) => {
             return result.hasOwnProperty('items') ? result['items'] : false;
         }, (err) => {
             console.log(err);
@@ -167,4 +171,42 @@ export class BackendDataService {
 
     }
 
+    public requestTariff(data){
+        return  this.securedPost(REQUEST_TARIFF_URI,JSON.stringify( {tariff_data: data})).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    public buy(data){
+        return  this.securedPost(BUY_URI,JSON.stringify(data)).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return {'status': false};
+        });
+    }
+
+    static pay(amount, productId){
+        return this.interkassaPay(amount, productId);
+    }
+
+    private static interkassaPay(amount, productId){
+        window.location.href = parameters.apiUrl + PAY_URL + '?api_key=' + AuthenticationService.getUser().apiKey + '&amount=' + amount + '&productId=' + productId + '&refirectUrl=' + parameters.interkassaReturnUrl;
+    }
+
+    private static cardinityPay(amount, productId){
+        //window.location.href = parameters.interkassaPaymentUrl + '?pay_amount=' + amount + '&pay_product=' + productId + '&api_pay_url' + parameters.interkassaReturnUrl;
+    }
+
+    getDefaultMethod() {
+        return  this.securedPost(DEFAULT_METHOD_URI).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
 }

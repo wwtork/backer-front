@@ -1,0 +1,51 @@
+<div class="md md-810" id="pay-now">
+  <button data-fancybox-close class="close-md" (click)="activeModal.close('skip')">X</button>
+  <div class="title-md">{{ tariff_name }}</div>
+  <div class="txt-md">
+    <form (ngSubmit)="buyForm.form.valid && onSubmit(buyForm.value)" #buyForm="ngForm"
+          novalidate>
+      <p>Выберите проплаченный период </p>
+      <div class="chose-radio-block">
+        <label *ngFor="let tariff of tariff_variants" class="chose-radio">
+          <input type="radio" [(ngModel)]="price" #tariffPrice="ngModel" name="sum" value="{{ tariff.price }}" (click)="onClick(tariff.id)">
+          <span class="check">Оплата за 1 месяц</span>
+          <span class="price-tariff">{{ tariff.price }}<i class="fa fa-rouble"></i>/мес.</span>
+        </label>
+      </div>
+      <label class="check-for-kay">
+        <input type="checkbox" [(ngModel)]="method_key" #methodKey="ngModel" name="method_key" checked>
+        <span class="text-checkbox">Подключение «под ключ» за {{ method_price }} <i class="fa fa-rouble"></i></span>
+      </label>
+      <div class="result-block">
+        <label class="result">
+          <span>Сумма к оплате (<i class="fa fa-rouble"></i>.):</span>
+          <input type="text" value="{{ convertString(price) + (method_key ? method_price : 0)}}" [(ngModel)]="total_price" #totalPrice="ngModel" name="total_price" class="result-input">
+        </label>
+        <input type="submit" class="btn-orn" value="Пополнить счет">
+      </div>
+    </form>
+
+  </div>
+  <div class="bottom-block logo">
+    <div class="base-logo"><img src="assets/images/logo/intercasa.png" alt=""></div>
+    <div class="text-logo">Более <span class="blue"> <span class="numeral">20</span> способов</span> оплаты</div>
+    <ul class="list-logo">
+      <li><img src="assets/images/logo/visa.png" alt=""></li>
+      <li><img src="assets/images/logo/mastercard.png" alt=""></li>
+      <li><img src="assets/images/logo/liqpay.png" alt=""></li>
+      <li><img src="assets/images/logo/privat24.png" alt=""></li>
+      <li><img src="assets/images/logo/pm.png" alt=""></li>
+      <li><img src="assets/images/logo/yandex-money.png" alt=""></li>
+      <li><img src="assets/images/logo/qiwi.png" alt=""></li>
+      <li><img src="assets/images/logo/bilain.png" alt=""></li>
+      <li><img src="assets/images/logo/megafon.png" alt=""></li>
+      <li><img src="assets/images/logo/advcash.png" alt=""></li>
+      <li><img src="assets/images/logo/ibox.png" alt=""></li>
+      <li><img src="assets/images/logo/mts.png" alt=""></li>
+      <li><img src="assets/images/logo/alfa-click.png" alt=""></li>
+      <li><img src="assets/images/logo/promsvyzbank.png" alt=""></li>
+      <li><img src="assets/images/logo/bitcoin.png" alt=""></li>
+      <li><img src="assets/images/logo/evroset.png" alt=""></li>
+    </ul>
+  </div>
+</div>

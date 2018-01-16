@@ -1,0 +1,16 @@
+<div class="md md-810" id="submit">
+  <button data-fancybox-close class="close-md" (click)="activeModal.close('skip')">X</button>
+  <div class="title-md">Тариф “Корпорация”</div>
+  <div class="txt-md">
+    <form>
+      <p>Напишите, пожалуйста, ваши пожелания насчет пакета услуг и требуемых ресурсов. <br>
+        Мы изучим требования и свяжемся с вами в ближайшее время.</p>
+      <textarea name="question" [(ngModel)]="question" #ques="ngModel" placeholder="Ваши пожелания">{{ question }}</textarea>
+      <p>Ответ придет на вашу почту: <strong>{{ email }}</strong></p>
+      <a href data-fancybox>Изменить почту <i class="fa fa-angle-right"></i></a>
+      <div class="btn-block-md">
+        <input type="submit" class="btn-orn" (click)="activeModal.close({'tariff_data':{'email':email, 'question':question}})" value="Получить предложение">
+      </div>
+    </form>
+  </div>
+</div>
