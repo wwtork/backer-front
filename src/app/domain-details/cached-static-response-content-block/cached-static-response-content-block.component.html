@@ -1,0 +1,23 @@
+<div *ngIf="data.status" class="card">
+    <div class="card-header">
+        Featured
+    </div>
+    <div class="card-body centered-content">
+        <h5 class="card-title">Special title treatment</h5>
+        <div class="progress" appPercentCircle  [updateEvent]="updateEvent">
+                                            <span class="progress-left">
+                                                <span class="progress-bar"></span>
+                                            </span>
+            <span class="progress-right">
+                                                <span class="progress-bar"></span>
+                                            </span>
+            <div class="progress-value">
+                <div>
+                    {{ data.percent }}%<br>
+                    <span>completed</span>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-circle btn-lg" style="width:50%;" *ngIf="data.percent < 50">Улучшить</a>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HostingStage} from "../model/hosting-stage";
 import {Method} from "../model/method";
-import {BackendDataService} from "../backend-data.service";
+import {BackendDataService} from "../../backend-data.service";
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 
 @Component({

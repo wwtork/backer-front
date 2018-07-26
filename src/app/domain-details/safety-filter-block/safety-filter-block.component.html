@@ -1,0 +1,41 @@
+<div class="row" *ngIf="has_content">
+  <div class="col block-title">
+    <h2>Title</h2>
+    <div class="btn-toolbar justify-content-between" role="toolbar"
+         aria-label="Toolbar with button groups">
+      <nav class="navbar navbar-expand-lg">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked>
+            Active
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+          </label>
+        </div>
+      </nav>
+      <div class="btn-group" role="group" aria-label="First group">
+        <button type="button" class="btn btn-secondary">text 1</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="has_content">
+  <div class="col-sm-4">
+    <app-blocked-requests-content-block [siteId]="siteId" [parent]="this" [filterEvent]="filterEvent"></app-blocked-requests-content-block>
+  </div>
+  <div class="col-sm-4">
+    <app-changes-control-content-block [siteId]="siteId" [parent]="this" [filterEvent]="filterEvent"></app-changes-control-content-block>
+  </div>
+  <div class="col-sm-4">
+    <app-inner-antivirus-content-block [siteId]="siteId" [parent]="this" [filterEvent]="filterEvent"></app-inner-antivirus-content-block>
+  </div>
+</div>
+<div class="row" *ngIf="has_content">
+  <div class="col">
+    <app-webscan-content-block [siteId]="siteId" [parent]="this" [filterEvent]="filterEvent"></app-webscan-content-block>
+  </div>
+</div>

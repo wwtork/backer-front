@@ -1,0 +1,13 @@
+<li *ngFor="let folderId of folders;" class="folder" [ngClass]="items[folderId].selected ? 'selected' : ''">
+    <span (click)="onExpand([items[folderId], items[folderId].expanded])" class="expand">{{ items[folderId].expanded ? '-' : '+' }}</span>
+    <input (click)="onSelect([items[folderId], items[folderId].selected])" class="select" type="checkbox"
+           [checked]="items[folderId].selected"/>
+    <span (click)="onSelect([items[folderId], items[folderId].selected])">{{ items[folderId].name }}</span>
+
+    <ul *ngIf="items[folderId].children" [style.marginLeft.px]="10 * (items[folderId].level + 1)">
+        <!--[hidden]="!items[folderId].expanded">-->
+        <app-directory-list-node (selected)="onSelect($event)" (expanded)="onExpand($event)" [items]="items"
+                                 [folders]="items[folderId].children"></app-directory-list-node>
+    </ul>
+
+</li>

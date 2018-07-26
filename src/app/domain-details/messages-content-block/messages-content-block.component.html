@@ -1,0 +1,9 @@
+<table *ngIf="data.status" class="table table-bordered message-table">
+  <tbody>
+  <tr *ngFor="let message of data.messages">
+    <th scope="row"><span class="badge badge-pill badge-{{ message.level }}">{{ message.level }}</span></th>
+    <td class="noborder date-col">{{ message.created }}</td>
+    <td class="noborder">{{ message.message.header }}<!-- <a href="#">what it means</a>--></td>
+  </tr>
+  </tbody>
+</table>

@@ -24,7 +24,7 @@ import {UpdateDnsComponent} from './update-dns/update-dns.component';
 import {BackupActivationComponent} from './backup-activation/backup-activation.component';
 import {ConnectWizardComponent} from './connect-wizard/connect-wizard.component';
 import {TariffComponent} from './tariff/tariff.component';
-import {BackendDataService} from "./backend-data.service";
+import {BackendDataService} from "../backend-data.service";
 import {HostingStateDirective} from './hosting-state.directive';
 import {GlobalDataService} from "./global-data.service";
 import {ChooseMethodComponent} from './choose-method/choose-method.component';
@@ -44,9 +44,11 @@ import { BuyTariffModalComponent } from './buy-tariff-modal/buy-tariff-modal.com
 import { RequestTariffModalComponent } from './request-tariff-modal/request-tariff-modal.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalDirective } from './modal.directive';
+import { DirectoryListNodeComponent } from './directory-list-node/directory-list-node.component';
+import { DirectoryListComponent } from './directory-list/directory-list.component';
 const connectionWizardRoutes: Routes = [
     {path: '', redirectTo: 'connection-wizard', pathMatch: 'full'},
-    {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [LoggedInGuard]}
+    {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [LoggedInGuard]},
 ];
 @NgModule({
     imports: [
@@ -96,7 +98,9 @@ const connectionWizardRoutes: Routes = [
         RequestTariffModalComponent,
         FreeTariffModalComponent,
         BuyTariffModalComponent,
-        ModalDirective
+        ModalDirective,
+        DirectoryListNodeComponent,
+        DirectoryListComponent
     ],
     providers: [
         LoggedInGuard,

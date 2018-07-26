@@ -38,7 +38,7 @@ export class AuthenticationService {
                 return user;
             }else{
                 this.spinnerService.hide();
-                this.errors = Object.keys(result["errorFields"]);
+                // this.errors = Object.keys(result["errorFields"]);
             }
             return false;
         }, (err) => {

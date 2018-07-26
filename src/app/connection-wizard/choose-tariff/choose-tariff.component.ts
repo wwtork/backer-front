@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Tariff} from "../model/tariff";
-import {BackendDataService} from "../backend-data.service";
+import {BackendDataService} from "../../backend-data.service";
 import {HostingStage} from "../model/hosting-stage";
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 import {ModalComponent} from "../modal/modal.component";

@@ -1,26 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Http} from "@angular/http";
-import {HostingSettings} from "./model/hosting-settings";
+import {HostingSettings} from "./connection-wizard/model/hosting-settings";
 import { parameters } from 'parameters';
-import {AuthenticationService} from "../authentication/authentication.service";
-import {Site} from "./model/site";
-
-const GET_METHODS_URI = 'secured/method/list';
-const GET_TARIFFS_URI = 'secured/tariff/list';
-const CHECK_ACCESS_URI = 'secured/check-hosting-access';
-const SAVE_HOSTING_SETTINGS_URI = 'secured/save-hosting-settings';
-const UPDATE_SITE_SETTINGS_URI = 'secured/update-site-settings';
-// const USER_KEY = 'user';
-const BACKUP_SCAN_DATA_URI = 'secured/backup_scan/status/';
-const BACKUP_SCAN_TERMINATE_URI = 'secured/backup_scan/terminate/';
-const BACKUP_START_SCAN_URI = 'secured/backup_scan/init';
-const FIREWALL_SCAN_DATA_URI = 'secured/firewall_scan/status/';
-const FIREWALL_START_SCAN_URI = 'secured/firewall_scan/init';
-const LIST_DIRECTORY_URI = 'secured/backup_scan/list_dir';
-const REQUEST_TARIFF_URI = 'secured/tariff/request_tariff/';
-const BUY_URI = 'secured/payment/buy';
-const DEFAULT_METHOD_URI = 'secured/method/default';
-const PAY_URL = 'secured/payment/pay';
+import {AuthenticationService} from "./authentication/authentication.service";
 
 @Injectable()
 export class BackendDataService {
@@ -34,7 +16,7 @@ export class BackendDataService {
     // }
 
     getMethods(){
-        return  this.securedPost(GET_METHODS_URI).then((result) => {
+        return  this.securedPost(parameters.getMethodsUri).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -44,7 +26,7 @@ export class BackendDataService {
     }
 
     checkAccess(hostAccessData){
-        return  this.securedPost(CHECK_ACCESS_URI, JSON.stringify( {hostAccessData: hostAccessData})).then((result) => {
+        return  this.securedPost(parameters.checkAccessUri, JSON.stringify( {hostAccessData: hostAccessData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -53,7 +35,7 @@ export class BackendDataService {
     }
 
     startFirewallScan(fireScanData) {
-        return  this.securedPost(FIREWALL_START_SCAN_URI, JSON.stringify({fireScanData: fireScanData})).then((result) => {
+        return  this.securedPost(parameters.firewallStartScanUri, JSON.stringify({fireScanData: fireScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -62,7 +44,7 @@ export class BackendDataService {
     }
 
     getFirewallScanData(fireScanData) {
-        return  this.securedPost(FIREWALL_SCAN_DATA_URI + fireScanData.id, JSON.stringify({fireScanData: fireScanData})).then((result) => {
+        return  this.securedPost(parameters.firewallScanDataUri + fireScanData.id, JSON.stringify({fireScanData: fireScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -73,7 +55,7 @@ export class BackendDataService {
 
     startBackupScan(hostScanData) {
         if(!hostScanData.domain) hostScanData.domain = AuthenticationService.getUser().website;
-        return  this.securedPost(BACKUP_START_SCAN_URI, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+        return  this.securedPost(parameters.backupStartScanUri, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -83,7 +65,7 @@ export class BackendDataService {
 
     getBackupScanData(hostScanData) {
         if(!hostScanData.domain) hostScanData.domain = AuthenticationService.getUser().website;
-        return  this.securedPost(BACKUP_SCAN_DATA_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+        return  this.securedPost(parameters.backupScanDataUri + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -91,8 +73,8 @@ export class BackendDataService {
         });
     }
 
-    getDirectoryList(host, username, password, path = null, needle_path = null) {
-        return  this.securedPost(LIST_DIRECTORY_URI, JSON.stringify({host:host, username:username, password:password, path: path, needle_path: needle_path})).then((result) => {
+    getDirectoryList(host, username, password, path, parent, level) {
+        return  this.securedPost(parameters.listDirectoryUri, JSON.stringify({host:host, username:username, password:password, path: path, parent, level})).then((result) => {
             return result.hasOwnProperty('items') ? result['items'] : false;
         }, (err) => {
             console.log(err);
@@ -102,7 +84,7 @@ export class BackendDataService {
 
     terminateBackupScan(hostScanData) {
         if(!hostScanData.domain) hostScanData.domain = AuthenticationService.getUser().website;
-        return  this.securedPost(BACKUP_SCAN_TERMINATE_URI + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
+        return  this.securedPost(parameters.backupScanTerminateUri + hostScanData.id, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -111,7 +93,7 @@ export class BackendDataService {
     }
 
     saveSettings(){
-        return  this.securedPost(SAVE_HOSTING_SETTINGS_URI).then((result) => {
+        return  this.securedPost(parameters.saveHostingSettingsUri).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -121,7 +103,7 @@ export class BackendDataService {
     }
 
     getTariffs(){
-        return this.securedPost(GET_TARIFFS_URI).then((result) => {
+        return this.securedPost(parameters.getTariffsUri).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -152,7 +134,7 @@ export class BackendDataService {
     }
 
     saveHostingSettings(hostingSettings: HostingSettings) {
-        return  this.securedPost(SAVE_HOSTING_SETTINGS_URI,JSON.stringify( {hostSettingsData: hostingSettings})).then((result) => {
+        return  this.securedPost(parameters.saveHostingSettingsUri,JSON.stringify( {hostSettingsData: hostingSettings})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -162,7 +144,7 @@ export class BackendDataService {
     }
 
     updateSiteSettings(hostingSettings : HostingSettings) {
-        return  this.securedPost(UPDATE_SITE_SETTINGS_URI,JSON.stringify( {hostSettingsData: hostingSettings})).then((result) => {
+        return  this.securedPost(parameters.updateSiteSettingsUri,JSON.stringify( {hostSettingsData: hostingSettings})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -172,7 +154,7 @@ export class BackendDataService {
     }
 
     public requestTariff(data){
-        return  this.securedPost(REQUEST_TARIFF_URI,JSON.stringify( {tariff_data: data})).then((result) => {
+        return  this.securedPost(parameters.requestTariffUri,JSON.stringify( {tariff_data: data})).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -181,7 +163,7 @@ export class BackendDataService {
     }
 
     public buy(data){
-        return  this.securedPost(BUY_URI,JSON.stringify(data)).then((result) => {
+        return  this.securedPost(parameters.buyUri,JSON.stringify(data)).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
@@ -194,7 +176,7 @@ export class BackendDataService {
     }
 
     private static interkassaPay(amount, productId){
-        window.location.href = parameters.apiUrl + PAY_URL + '?api_key=' + AuthenticationService.getUser().apiKey + '&amount=' + amount + '&productId=' + productId + '&refirectUrl=' + parameters.interkassaReturnUrl;
+        window.location.href = parameters.apiUrl + parameters.payUri + '?api_key=' + AuthenticationService.getUser().apiKey + '&amount=' + amount + '&productId=' + productId + '&refirectUrl=' + parameters.interkassaReturnUrl;
     }
 
     private static cardinityPay(amount, productId){
@@ -202,11 +184,23 @@ export class BackendDataService {
     }
 
     getDefaultMethod() {
-        return  this.securedPost(DEFAULT_METHOD_URI).then((result) => {
+        return  this.securedPost(parameters.defaultMethodUri).then((result) => {
             return result;
         }, (err) => {
             console.log(err);
             return [];
         });
+    }
+
+    getContentBlockData(uri, filter) {
+        let data = filter ? {filter: filter} : {};
+
+        return  this.securedPost(uri,JSON.stringify(data)).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+
     }
 }

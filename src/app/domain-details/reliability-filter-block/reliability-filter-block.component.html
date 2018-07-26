@@ -1,0 +1,21 @@
+<div class="row" *ngIf="has_content">
+  <div class="col block-title">
+    <h2>Title</h2>
+  </div>
+</div>
+<div class="row" *ngIf="has_content">
+  <div class="col-sm-4">
+    <app-hosting-errors-content-block [siteId]="siteId" [parent]="this" [filterEvent]="filterEvent"></app-hosting-errors-content-block>
+  </div>
+  <div class="col-sm-4">
+    <app-fixed-website-content-block [siteId]="siteId" [parent]="this" [filterEvent]="filterEvent"></app-fixed-website-content-block>
+  </div>
+  <div class="col-sm-4">
+    <app-monitoring-content-block [siteId]="siteId" [parent]="this" [filterEvent]="filterEvent"></app-monitoring-content-block>
+  </div>
+</div>
+<div class="row" *ngIf="has_content">
+  <div class="col">
+    <app-ssl-content-block [parent]="this" [siteId]="siteId"></app-ssl-content-block>
+  </div>
+</div>

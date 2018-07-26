@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-body centered-content">
+        <div class="row">
+            <div class="col-sm-4" style="text-align: left;">
+                <span>Интервал</span>
+                <span class="dropdown show" style="display: inline-block !important;">
+                    <a class="dropdown-toggle" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ data.current_file_interval }}
+                    </a>
+                    <span class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+                        <a class="dropdown-item" *ngFor="let storKey of data.file_interval_values | objectKeys" (click)="updateInfo('file_interval',storKey)">{{ data.file_interval_values[storKey] }}</a>
+                    </span>
+                </span>
+            </div>
+            <div class="col-sm-4" style="text-align: center;">
+                <span>Срок хранения</span>
+                <span class="dropdown show" style="display: inline-block !important;">
+                    <a class="dropdown-toggle" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       {{ data.current_storage_time }}
+                    </a>
+                    <span class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+                        <a class="dropdown-item" *ngFor="let storKey of data.storage_time_values | objectKeys" (click)="updateInfo('storage_time',storKey)">{{ data.storage_time_values[storKey] }}</a>
+                    </span>
+                </span>
+            </div>
+            <div class="col-sm-4" style="text-align: right;">
+                <span>Интервал</span>
+                <span class="dropdown show" style="display: inline-block !important;">
+                    <a class="dropdown-toggle" role="button" id="dropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ data.current_db_interval }}
+                    </a>
+                    <span class="dropdown-menu" aria-labelledby="dropdownMenuLink3">
+                        <a class="dropdown-item" *ngFor="let storKey of data.db_interval_values | objectKeys" (click)="updateInfo('db_interval',storKey)">{{ data.db_interval_values[storKey] }}</a>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

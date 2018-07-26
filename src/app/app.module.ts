@@ -7,10 +7,16 @@ import {ConnectionWizardModule} from "./connection-wizard/connection-wizard.modu
 import {RouterModule, Routes} from "@angular/router";
 import {PanelComponent} from "./panel/panel.component";
 import {DnsSettingsModule} from "./dns-settings/dns-settings.module";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FixedfileContentBlockComponent } from './fixedfile-content-block/fixedfile-content-block.component';
+import {TicketModule} from "./ticket/ticket.module";
 const routes:Routes = [
     { path: '', loadChildren: './authentication/authentication.module#AuthenticationModule'},
+    { path: '', loadChildren: './ticket/ticket-module#TicketModule'},
+    { path: '', loadChildren: './domain-details/domain-details.module#DomainDetailsModule'},
     { path: '', loadChildren: './connection-wizard/connection-wizard.module#ConnectionWizardModule'},
-    { path: '', loadChildren: './dns-settings/dns-settings.module#DnsSettingsModule'}
+    { path: '', loadChildren: './dns-settings/dns-settings.module#DnsSettingsModule'},
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -18,12 +24,15 @@ const routes:Routes = [
         AuthenticationModule,
         ConnectionWizardModule,
         DnsSettingsModule,
+        TicketModule,
         RouterModule.forRoot(routes),
         BrowserModule,
     ],
     declarations: [
         PanelComponent,
         AppComponent,
+        PageNotFoundComponent,
+        FixedfileContentBlockComponent
     ],
     entryComponents: [],
     providers: [

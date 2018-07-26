@@ -1,0 +1,46 @@
+<ng4-loading-spinner></ng4-loading-spinner>
+<main class="domain-details">
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col menu-col">
+                <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
+                    <button type="button" class="btn btn-secondary">1</button>
+                    <button type="button" class="btn btn-secondary">2</button>
+
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="#">Dropdown link</a>
+                            <a class="dropdown-item" href="#">Dropdown link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col content-col">
+                <app-domain-navigation [currentSiteId]="siteId"></app-domain-navigation>
+                <div class="container content-container">
+                    <div class="row">
+                        <div class="col">
+                            <app-firecdn-content-block [siteId]="siteId"></app-firecdn-content-block>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <app-fixedfile-content-block [siteId]="siteId"></app-fixedfile-content-block>
+                        </div>
+                    </div>
+                    <app-speed-filter-block [siteId]="siteId"></app-speed-filter-block>
+                    <app-reliability-filter-block [siteId]="siteId"></app-reliability-filter-block>
+                    <app-safety-filter-block [siteId]="siteId"></app-safety-filter-block>
+                    <app-backup-filter-block [siteId]="siteId"></app-backup-filter-block>
+                    <app-messages-filter-block [siteId]="siteId"></app-messages-filter-block>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

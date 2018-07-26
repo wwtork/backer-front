@@ -1,0 +1,103 @@
+
+    <div *ngIf="data.status" class="card">
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-body with-navbar">
+        <div class="row nav-row">
+          <div class="col-4" style="text-align: left;">
+            {{ data.date }}
+          </div>
+          <div class="col-4" style="text-align: center;">
+            {{ data.files_counters.all }}
+          </div>
+          <div class="col-4" style="text-align: right;">
+            {{ data.size }} + {{ data.size_delta }}
+          </div>
+        </div>
+        <div class="row content-row">
+          <div class="col-8">
+            <h5><span class="btn btn-circle btn-sm"><i class="fas fa-file"></i></span>Title
+            </h5>
+            <div class="row">
+              <div class="col-6">
+                <div class="info-box">
+                  <span class="info-box-title">Новые файлы</span>
+                  <div class="info-box-count">
+                    <div class="info-box-count-new"><i
+                            class="fas fa-plus-circle"></i>{{ data.files_counters.newSimple}}
+                    </div>
+                    <div class="info-box-count-all warning"><i
+                            class="fas fa-exclamation-triangle"></i>{{ data.files_counters.newDangerous}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="info-box">
+                  <span class="info-box-title">Измененные файлы</span>
+                  <div class="info-box-count">
+                    <div class="info-box-count-new"><i
+                            class="fas fa-plus-circle"></i>{{ data.files_counters.changedSimple }}
+                    </div>
+                    <div class="info-box-count-all warning"><i
+                            class="fas fa-exclamation-triangle"></i>{{ data.files_counters.changedDangerous}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="info-box">
+                  <span class="info-box-title">Удаленные файлы</span>
+                  <div class="info-box-count">
+                    <div class="info-box-count-new"><i
+                            class="fas fa-plus-circle"></i>{{ data.files_counters.deleted}}
+                    </div>
+                    <!--<div class="info-box-count-all warning"><i-->
+                            <!--class="fas fa-exclamation-triangle"></i>{{ data.files_counters.newDangerous}}-->
+                    <!--</div>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 one-row">
+            <h5 class="green-title"><span class="btn btn-circle btn-sm"><i
+                    class="fas fa-briefcase-medical"></i></span>Title</h5>
+            <div class="row">
+              <div class="col-12">
+                <div class="info-box">
+                  <span class="info-box-title">Угрозы</span>
+                  <div class="info-box-count">
+                    <div class="info-box-count-new"><i
+                            class="fas fa-plus-circle"></i>{{ data.antivirus.virus }}
+                    </div>
+                    <!--<div class="info-box-count-all warning"><i-->
+                            <!--class="fas fa-exclamation-triangle"></i>{{ data.antivirus.virus_all }}-->
+                    <!--</div>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="info-box">
+                  <span class="info-box-title">Предупреждения</span>
+                  <div class="info-box-count">
+                    <div class="info-box-count-new"><i
+                            class="fas fa-plus-circle"></i>{{ data.antivirus.warning }}
+                    </div>
+                    <!--<div class="info-box-count-all warning"><i-->
+                            <!--class="fas fa-exclamation-triangle"></i>{{ data.antivirus.warning_all }}-->
+                    <!--</div>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

@@ -1,9 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
-import {BackendDataService} from "../backend-data.service";
-import {WsrTreeViewComponent} from "../../wsr-treeview/wsr-treeview.component";
-import {TreeviewItem} from "ngx-treeview";
-import {isString} from "util";
+import {BackendDataService} from "../../backend-data.service";
 
 @Component({
     selector: 'app-select-folder',
@@ -11,19 +8,7 @@ import {isString} from "util";
     styleUrls: ['./select-folder.component.css']
 })
 export class SelectFolderComponent implements OnInit {
-    @ViewChild(WsrTreeViewComponent) treeviewComponent: WsrTreeViewComponent;
-    public treeItems = [new TreeviewItem({text: '/', value:'/', children: [], checked: true})];
-    // value: NodeRegion[];
-
-    public
-
-    readonly twConfig = {
-        hasAllCheckBox: false,
-        hasFilter: false,
-        hasCollapseExpand: true,
-        decoupleChildFromParent: false,
-        maxHeight: 500
-    };
+    public treeItems = [];
 
     @Input() path = '';
     @Input() host;
@@ -31,119 +16,107 @@ export class SelectFolderComponent implements OnInit {
     @Input() password;
     @Output() folderSelected: EventEmitter<any>;
     private error;
-    private treeObject = [];
+    baseFolderIds;
     private generated = false;
-    private currentItem;
 
-    updateTreeObject(result, path = null) {
-        console.log(path);
-        let parent = this.treeObject;
-        let keys = path ? path.split('/') : null;
-        if(keys){
-            for(let i in keys){
-                if(!keys.hasOwnProperty(i)) continue;
-                if(keys[i] == "") continue;
-                if(parent['children'] && parent['children'].hasOwnProperty(keys[i]))
-                    parent = parent['children'][keys[i]];
-            }
+    getPath(object){
+        let paths = [object.name];
+        while(object.parent){
+            object = this.treeItems[object.parent];
+            paths.push(object.name);
         }
-        result = result.children;
-        if(result) {
-            for (let f in result) {
-                if (!result.hasOwnProperty(f)) continue;
-                if (!parent['children']) parent['children'] = {};
-                parent['children'][result[f]['name']] = {text: result[f]['name'], value: result[f]['name']};
-            }
-            console.log(parent);
-            this.updateTreeArray(null, parent['children']);
-        }
+        paths.push('');
+        return paths.reverse().join('/');
     }
 
-    updateTreeArray(treeItem = null, objects = null){
-        if(treeItem === null){
-            // this.treeItems = {name: '/', type: "dir", children: [], expanded: true};
-            treeItem = this.currentItem ? this.currentItem : this.treeItems[0];
-        }
-
-        if(!objects) objects = this.treeObject['children'];
-        let cnt = 0;
-        let item;
-        for(let i in objects){
-            if(!objects.hasOwnProperty(i)) continue;
-            item = new TreeviewItem({text: objects[i].text, value: objects[i].value, checked: false});
-            if(!treeItem.children) {
-                treeItem.children = [item];
-            }
-            else treeItem.children.push(item);
-            // treeItem.push({name: objects[i].text, type: "dir", children: [], expanded: false});
-            if(objects[i].children){
-                console.log(treeItem);
-                console.log(treeItem[cnt]);
-                this.updateTreeArray(treeItem.children[cnt], objects[i].children);
-            }
-            cnt++;
-        }
-    }
-
-    getDirectoryList(path = null){
+    getDirectoryList(object = null){
         this.spinnerService.show();
-        this.backendDataService.getDirectoryList(this.host, this.username, this.password, path).then((result) => {
-            if(!result) result = [new TreeviewItem({text: '/', value:'/', children: [], checked: true})];
-            // this.treeItems = result;
-            this.updateTreeObject(result, path);
+        let path = object ? this.getPath(object) : '/';
+        this.backendDataService.getDirectoryList(this.host, this.username, this.password, path, object ? object.id : null, object ? object.level + 1 : 0).then((result) => {
+            let minIndex = this.treeItems.length;
+            let maxIndex = minIndex + result.length;
+            let items = this.treeItems.concat(result);
+
+            if(object && object.id) {
+                for(let i = minIndex; i < maxIndex; i++){
+                    items[object.id].children.push(i);
+                }
+                items[object.id].extended = true;
+            }else{
+                this.baseFolderIds = Object.keys(items);
+            }
+
+            for(let i = minIndex; i < maxIndex; i++){
+                items[i].id = i;
+            }
+
+            this.treeItems = items;
             this.spinnerService.hide();
             this.generated = true;
         }, (err) => {
             this.spinnerService.hide();
             this.error = err;
-            this.treeItems = [new TreeviewItem({text: '/', value:'/', children: [], checked: true})];
             return false;
         });
     }
 
-    constructor(private backendDataService:BackendDataService, public spinnerService: Ng4LoadingSpinnerService) {
+    hideDirectory(object) {
+        this.treeItems[object.id].selected = false;
+        while(object.parent){
+            object = this.treeItems[object.parent];
+            this.treeItems[object.id].selected = false;
+        }
+    }
+
+    selectDirectory(object) {
+        this.treeItems[object.id].selected = true;
+        if(object.parent){
+            this.selectDirectory(this.treeItems[object.parent]);
+        }
+    }
+
+    deselectDirectory(object) {
+        this.treeItems[object.id].selected = false;
+        if(object.children){
+            for(let c in object.children) {
+                if(!object.children.hasOwnProperty(c)) continue;
+                this.deselectDirectory(this.treeItems[object.children[c]]);
+            }
+        }
+    }
+
+    //
+    constructor(private backendDataService: BackendDataService, public spinnerService: Ng4LoadingSpinnerService) {
         this.folderSelected = new EventEmitter();
     }
 
     ngOnInit() {
         this.path = '';
         this.getDirectoryList();
-
+        //this.onExpand(['/', '/', 0])
     }
 
+    //
     folderSelect() {
         this.folderSelected.emit(this.path);
     }
 
-    onSelect(node: TreeviewItem[]){
-        if(node.length == 0) return;
-
-        this.path = '';
-
-        let node_text = isString(node[node.length - 1]) ? node[node.length - 1] : node[node.length - 1].text;
-        if(node_text == '/') return;
-
-        let checked = this.treeviewComponent.selection.checkedItems;
-
-        this.currentItem = checked[checked.length - 1];
-
-        for(let i in node){
-            if(node[i]) {
-                this.path += node[i] + '/';
-            }
+    //
+    onExpand(params) {
+        if (params[1]) {
+            this.hideDirectory(params[0])
+        } else {
+            this.getDirectoryList(params[0])
         }
-
-        this.getDirectoryList('/' + this.path);
-
-        // let path = node.name;
-        // let parent = node._parent;
-        // while(parent != null){
-        //     console.log(parent);
-        //     path = parent.name + '/' + path;
-        //     parent = parent._parent;
-        // }
-        // this.path = path;
-        //this.getDirectoryList('/' + node.name);
     }
 
+    onSelect(params) {
+        if (params[1]) {
+            this.deselectDirectory(params[0]);
+        }
+        else {
+            this.path = this.getPath(params[0]);
+            this.selectDirectory(params[0]);
+        }
+    }
 }

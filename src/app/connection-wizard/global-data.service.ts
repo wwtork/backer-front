@@ -1,4 +1,4 @@
-import {Injectable, Type} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Hosting} from "./model/hosting";
 import {DomainComponent} from "./domain/domain.component";
 import {FirewallActivationComponent} from "./firewall-activation/firewall-activation.component";

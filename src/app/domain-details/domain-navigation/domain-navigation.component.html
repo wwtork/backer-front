@@ -1,0 +1,9 @@
+<ul class="navbar navbar-green nav">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+       aria-haspopup="true" aria-expanded="false">{{ sites[currentSiteId] }}</a>
+    <div class="dropdown-menu">
+      <a *ngFor="let siteId of sites | objectKeys" class="dropdown-item" (click)="navigate(siteId)">{{ sites[siteId] }}</a>
+    </div>
+  </li>
+</ul>

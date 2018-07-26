@@ -1,0 +1,408 @@
+main.domain-details .card-header {
+    background: #153e5c;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+main.domain-details .card {
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+main.domain-details .card-title {
+    color: #515151;
+}
+
+main.domain-details .container .row {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+main.domain-details .card .btn {
+    background: #59adc7;
+    color: #fefefe;
+    border: none;
+}
+
+main.domain-details .card-header-pills {
+    border: 1px solid #fefefe;
+    -webkit-border-radius: .25rem !important;
+    -moz-border-radius: .25rem !important;
+    border-radius: .25rem !important;
+}
+
+main.domain-details .card-header-pills .btn {
+    background: #153e5c;
+    color: #fefefe;
+}
+
+main.domain-details .card-header-pills .btn.active {
+    color: #153e5c !important;
+    background-color: #fefefe !important;
+}
+
+main.domain-details .card-header {
+    color: #fefefe;
+}
+
+main.domain-details .btn-group-vertical {
+    background: #021c2d;
+}
+
+main.domain-details .btn-group-vertical .btn {
+    border: none;
+    height: 49px;
+    color: #3e8aa2;
+    background: #021c2d;
+}
+
+main.domain-details .content-col {
+    padding: 0;
+    background: #3099b9;
+}
+
+main.domain-details .navbar-green {
+    background: #93be39;
+    height: 49px;
+    color: #fefefe;
+}
+
+main.domain-details .navbar-green .nav-link {
+    color: #fefefe;
+}
+
+main.domain-details .header-container a {
+    color: #0166b4;
+}
+
+main.domain-details .btn-orange {
+    background: #f38e22;
+    color: #fefefe;
+}
+
+main.domain-details .btn-white {
+    background: #fefefe;
+    color: #3e8aa2;
+    border: 1px solid #3e8aa2;
+    -webkit-border-radius: .25rem !important;
+    -moz-border-radius: .25rem !important;
+    border-radius: .25rem !important;
+    margin-left: 30px;
+}
+
+main.domain-details .header-buttons {
+    margin-left: 15px;
+}
+
+main.domain-details .header-buttons .btn {
+    height: 40px;
+    margin-top: 24px;
+    min-width: 157px;
+}
+
+main.domain-details .add-domain-block {
+    width: 190px;
+    height: 85px;
+    border-right: 1px solid #e6e6e6;
+    float: left;
+}
+
+main.domain-details .header-container .logo-col {
+    padding: 0;
+    margin: 0;
+    max-width: 255px;
+    width: 255px;
+    background: #021c2d;
+    height: 85px;
+}
+
+main.domain-details .header-container .panel-col {
+    background: #fefefe;
+}
+
+main.domain-details .block-title h2 {
+    color: #fefefe;
+}
+
+main.domain-details .block-title .btn {
+    background: #3099b9;
+    border-color: #fefefe;
+}
+
+main.domain-details .card-footer a {
+    color: #0065b3;
+}
+
+main.domain-details .block-title .nav-link {
+    color: #fefefe;
+}
+
+main.domain-details .block-title .btn {
+    background: #3099b9;
+    border: none;
+}
+
+main.domain-details .block-title .btn.active {
+    border: 1px solid #fefefe !important;
+    margin-right: 10px;
+    background-color: #3099b9 !important;
+    -webkit-border-radius: .25rem !important;
+    -moz-border-radius: .25rem !important;
+    border-radius: .25rem !important;
+}
+
+main.domain-details .block-title .btn:active {
+    background-color: #3099b9 !important;
+}
+
+main.domain-details .block-title .navbar {
+    margin: 0;
+    padding: 0;
+}
+
+main.domain-details .menu-col {
+    padding: 0;
+    margin: 0;
+    max-width: 255px;
+    width: 255px;
+}
+
+main.domain-details .menu-col .btn-group-vertical {
+    width: 255px;
+}
+
+main.domain-details .card-title .btn-primary {
+    float: right;
+}
+
+main.domain-details .centered-content {
+    text-align: center;
+}
+
+main.domain-details .floated-right {
+    float: right;
+}
+
+main.domain-details .message-table th {
+    width: 120px;
+    padding-right: 0;
+}
+
+main.domain-details .message-table th span {
+    float: right;
+    width: 100%;
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-top-right-radius: 0;
+    -moz-border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+main.domain-details .message-table {
+    background: #fefefe;
+}
+
+main.domain-details .noborder {
+    border: 0 !important;
+}
+
+main.domain-details .date-col {
+    width: 120px;
+    color: #8f8f8f;
+}
+
+main.domain-details .message-table a {
+    color: #0065b3;
+    margin-left: 20px;
+    border-color: #cfcfcf;
+}
+
+main.domain-details .btn {
+    text-align:left;
+}
+
+main.domain-details .body-with-nav {
+    margin: 0;
+    padding: 0;
+}
+
+main.domain-details .body-with-nav .card-text {
+    padding: 0 1.25rem 1.25rem;
+}
+
+main.domain-details .body-with-nav .nav-item {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background: #fefefe;
+    color: #515151;
+    border: 1px solid #cfcfcf;
+    border-left: 0;
+    border-top: 0;
+}
+
+main.domain-details .body-with-nav .nav-item.active {
+    background: #d95b45;
+    color: #fefefe;
+    border: 0;
+}
+
+main.domain-details .info-box {
+    height: 90px;
+    border: 1px solid #cfcfcf;
+    -webkit-border-radius: .25rem;
+    -moz-border-radius: .25rem;
+    border-radius: .25rem;
+}
+
+main.domain-details .info-box.fullframe {
+    width: 91%;
+}
+
+main.domain-details .info-box-count {
+    text-align: right;
+    float: right;
+    width: 40%;
+}
+
+main.domain-details .info-box-title {
+    float: left;
+    color: #515151;
+    padding-left: 10px;
+    padding-top: 20px;
+    width: 60%;
+}
+
+main.domain-details .info-box-count-new i {
+    font-size: 13pt;
+    vertical-align: top;
+    margin-top: 17px;
+}
+
+main.domain-details .info-box-count-new {
+    padding-top: 10px;
+    margin-right: 10px;
+    color: #d95b45;
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+main.domain-details .info-box-count-all {
+    color: #737373;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+main.domain-details .info-box-count-all.warning {
+    color: #db5a45;
+}
+
+main.domain-details .info-box-count-all.warning i {
+    font-size: 9pt;
+    margin-right: 5px;
+}
+
+main.domain-details .nav-count-new {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+main.domain-details .nav-count-all {
+    margin-left: 10px;
+    color: #a8a8a8;
+}
+
+main.domain-details .active .nav-count-all {
+    color: #feab9d;
+}
+
+main.domain-details .card-body-link {
+    color: #0066b3;
+}
+
+main.domain-details .btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+main.domain-details .btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+
+main.domain-details .btn-circle.btn-sm {
+    font-size: 13pt;
+    padding-top: 0;
+}
+
+main.domain-details .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+}
+
+main.domain-details .card-body h1 {
+    color: #59adc7;
+}
+
+main.domain-details .btn-circle i {
+    margin-top: 5px;
+}
+
+main.domain-details .card-body.one-row {
+    padding-top: 0;
+}
+
+main.domain-details .card-body.with-navbar {
+    padding: 0;
+}
+
+main.domain-details .card-body.with-navbar .content-row {
+    padding-left: 20px;
+    padding-top: 0;
+    margin-top: 0;
+    padding-right: 20px;
+}
+
+main.domain-details .card-body.with-navbar .nav-row {
+    background: #eff3f2;
+    width: 100%;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+main.domain-details .card-body.with-navbar h5 {
+    margin-top: 15px;
+    color: #58aec5;
+}
+
+main.domain-details .card-body.with-navbar h5.green-title {
+    margin-top: 15px;
+    color: #92be37;
+}
+
+main.domain-details .card-body.with-navbar h5 .btn-circle {
+    cursor: auto;
+    margin-right: 10px;
+}
+
+main.domain-details .card-body.with-navbar h5.green-title .btn-circle {
+    background: #92be37;
+}

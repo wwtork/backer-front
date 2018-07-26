@@ -1,7 +1,8 @@
 <label class="one-line">
   <input type="text" [(ngModel)]="path" #pathField="ngModel" value="{{ path }}" (change)="folderSelect()" required/>
 </label>
-<wsr-treeview [config]="twConfig" [items]="treeItems" (selectedChange)="onSelect($event)"></wsr-treeview>
+<app-directory-list style="text-align:left;margin:10px;" [folders]="baseFolderIds" [items]="treeItems" (selected)="onSelect($event)" (expanded)="onExpand($event)"></app-directory-list>
+<!--<wsr-treeview [config]="twConfig" [items]="treeItems" (selectedChange)="onSelect($event)"></wsr-treeview>-->
 <!--<directory-tree *ngIf="generated" [directory]="treeItems"-->
                 <!--(onChange)="onSelect($event)"-->
                 <!--[keyboardWatch]=true>-->
@@ -13,10 +14,11 @@
             <!--<div class="field-select-folder">-->
               <!--<div id="tree" class="tree scrollbar-inner">-->
                 <!--<ul>-->
-                  <!--<li id="key1" class="folder selected">Название папки</li>-->
-                  <!--<li id="key2" class="folder"> Очень длинное название папки</li>-->
-                  <!--<li id="key3" class="folder"> Очень длинное название папки</li>-->
-                  <!--<li id="key4" class="folder"> Открытая папка. Название-->
+                  <!--<li *ngFor="let folder of folders" class="folder" [ngClass]="folder.selected ? 'selected' : ''">folder.name-->
+                    <!--<ul *ngIf="folder.subfolders">-->
+                      <!--<li *ngFor="let folder of folders" class="folder" [ngClass]="folder.selected ? 'selected' : ''">folder.name-->
+                    <!--</ul>-->
+                  <!--</li>-->
                     <!--<ul>-->
                       <!--<li id="key4.1" class="folder">Название папки</li>-->
                       <!--<li id="key4.2" class="folder">Название папки</li>-->
