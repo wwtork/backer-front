@@ -8,8 +8,4 @@ import {NofilterBlockComponent} from "../nofilter-block/nofilter-block.component
 })
 export class MessagesFilterBlockComponent extends NofilterBlockComponent implements OnInit {
 
-  constructor() {
-    super();
-  }
-
 }

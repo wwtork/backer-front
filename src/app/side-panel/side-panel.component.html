@@ -1,0 +1,16 @@
+<div class="col menu-col" style="background:#021c2d;">
+  <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-secondary" [ngClass]="{true:'current-place', false:''}[currentPage == 'domain-details']" [routerLink]="['/domain-details', lastSiteId]">Domain detials</button>
+    <button type="button" class="btn btn-secondary" [ngClass]="{true:'current-place', false:''}[currentPage == 'ticket-list']" [routerLink]="['/ticket/list']">Ticket list</button>
+    <button type="button" class="btn btn-secondary" [ngClass]="{true:'current-place', false:''}[currentPage == 'connection-wizard']" [routerLink]="['/connection-wizard']">Connection wizard</button>
+    <!--<div class="btn-group" role="group">-->
+      <!--<button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle"-->
+              <!--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+        <!--Domain details-->
+      <!--</button>-->
+      <!--<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">-->
+        <!--<a class="dropdown-item" *ngFor="let domain of domains" [routerLink]="['/domain-details', domain.id]">{{ domain.url }}</a>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+</div>

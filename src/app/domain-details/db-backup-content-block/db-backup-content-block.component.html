@@ -1,7 +1,8 @@
 
     <div *ngIf="data.status" class="card">
-      <div class="card-header">
-        Featured
+      <div class="card-header backup-card-header">
+        SQL-бэкапы
+        <span class="backup-count">{{ data.backup_count }}</span>
       </div>
       <div class="card-body with-navbar one-row">
         <div class="row nav-row">
@@ -9,7 +10,7 @@
             {{ data.date }}
           </div>
           <div class="col-7" style="text-align:right;">
-            {{ data.size }} + {{ data.size_delta }}
+            Размер {{ data.size }}<span class="backup-count">+{{ data.size_delta }}</span>
           </div>
         </div>
         <h5 style="margin-left: 20px;" class="green-title"><span

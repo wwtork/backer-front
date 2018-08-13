@@ -1,5 +1,5 @@
 export const baseUrls = {
-    backerBaseUrl: 'http://backer-api.local',
+    backerBaseUrl: 'http://backer-api.local/app_dev.php',
     // backerBaseUrl: 'http://backer.local'
     selfBaseUrl:  'localhost:4200'
 };
@@ -43,14 +43,24 @@ export const parameters = {
     blockedRequestsUri: 'secured/safety/blocked_requests/{siteId}',
     changesUri: 'secured/safety/changes/{siteId}',
     innerAntivirusUri: 'secured/safety/inner_antivirus/{siteId}',
-    restoreBackupUri: 'secured/wsr/restore_backup/{siteId}',
+    restoreBackupUri: 'secured/backup/restore_backup/{siteId}',
     scanInfoUri: 'secured/wsr/scan_info/{siteId}',
     acceleratedRequestsUri: 'secured/speed/accelerated_requests/{siteId}',
     monitoringUri: 'secured/reliability/uptime/{siteId}',
+    getStorageLimitInfoUri: 'secured/backup/get_storage_limit_info',
+    getTrafficLimitInfoUri: 'secured/speed/get_traffic_limit_info',
     loadSpeedUri: 'secured/speed/load_speed/{siteId}',
     changesControlUri: 'secured/safety/changes/{siteId}',
     chartUri: 'secured/speed/chart/{siteId}',
     sslUri: 'secured/safety/changes/{siteId}',
     webscanUri: 'secured/safety/webscan/{siteId}',
-    getSiteListUri: 'secured/sites_list'
+    getSiteListUri: 'secured/sites_list',
+    getUserUri: 'secured/user',
+    getTicketUri: 'secured/ticket/details/{ticketId}',
+    ticketUpdateUri: 'secured/ticket/update/{ticketId}',
+    ticketCreateUri: 'secured/ticket/create',
+    getTicketListUri: 'secured/ticket/list',
+    switchFixedFileUri: 'secured/safety/switch_fixed_file/{siteId}',
+    fixedFileUri: 'secured/safety/fixed_file/{siteId}',
+    getBackupListUri: 'secured/backup/list/{siteId}'
 };

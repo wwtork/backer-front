@@ -3,6 +3,8 @@ import {Http} from "@angular/http";
 import {HostingSettings} from "./connection-wizard/model/hosting-settings";
 import { parameters } from 'parameters';
 import {AuthenticationService} from "./authentication/authentication.service";
+import {Restore} from "./domain-details/restore";
+import {Backup} from "./domain-details/backup";
 
 @Injectable()
 export class BackendDataService {
@@ -57,6 +59,51 @@ export class BackendDataService {
         if(!hostScanData.domain) hostScanData.domain = AuthenticationService.getUser().website;
         return  this.securedPost(parameters.backupStartScanUri, JSON.stringify({hostScanData: hostScanData})).then((result) => {
             return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    restoreBackup(restore: Restore, siteId) {
+        return  this.securedPost(parameters.restoreBackupUri.replace('{siteId}', siteId), JSON.stringify(restore)).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    createBackup(backup: Backup, siteId) {
+        return  this.securedPost(parameters.createBackupUri.replace('{siteId}', siteId), JSON.stringify(backup)).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    getTrafficLimitInfo(siteId: number) {
+        return  this.securedPost(parameters.getTrafficLimitInfoUri, null).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    getStorageLimitInfo(siteId: number) {
+        return  this.securedPost(parameters.getStorageLimitInfoUri, null).then((result) => {
+            return result;
+        }, (err) => {
+            console.log(err);
+            return [];
+        });
+    }
+
+    getBackupList(type: string, siteId) {
+        return  this.securedPost(parameters.getBackupListUri.replace('{siteId}', siteId), JSON.stringify({type: type})).then((result) => {
+            return result['backups'].map((backup: Backup) => new Backup().deserialize(backup))
         }, (err) => {
             console.log(err);
             return [];

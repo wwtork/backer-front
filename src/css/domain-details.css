@@ -57,6 +57,7 @@ main.domain-details .btn-group-vertical .btn {
     height: 49px;
     color: #3e8aa2;
     background: #021c2d;
+    font-weight: 500;
 }
 
 main.domain-details .content-col {

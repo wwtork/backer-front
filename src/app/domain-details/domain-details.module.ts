@@ -41,16 +41,29 @@ import { NofilterBlockComponent } from './nofilter-block/nofilter-block.componen
 import {ObjectKeysPipe} from "../object-keys.pipe";
 import { DomainNavigationComponent } from './domain-navigation/domain-navigation.component';
 import {FilterKeysPipe} from "../filter-keys.pipe";
+import {AppModule} from "../app.module";
+import {PanelComponent} from "../panel/panel.component";
+import {SharedModule} from "app/shared/shared.module";
+import { DateFilterComponent } from './date-filter/date-filter.component';
+import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { NewBackupModalComponent } from './new-backup-modal/new-backup-modal.component';
+import { RestoreBackupModalComponent } from './restore-backup-modal/restore-backup-modal.component';
+import { NewDomainModalComponent } from './new-domain-modal/new-domain-modal.component';
+import { FirecdnModalComponent } from './firecdn-modal/firecdn-modal.component';
+import { FixedfileModalComponent } from './fixedfile-modal/fixedfile-modal.component';
 
 const domainDetailsRoutes: Routes = [
-  {path: 'domain-details/:siteId', component: DomainDetailsComponent, canActivate: [LoggedInGuard]}
+  {path: ':siteId', component: DomainDetailsComponent, canActivate: [LoggedInGuard]}
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
+    NgbModalModule.forRoot(),
     RouterModule.forChild(domainDetailsRoutes),
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+      NgbModule.forRoot()
   ],
   providers: [
     LoggedInGuard,
@@ -92,7 +105,20 @@ const domainDetailsRoutes: Routes = [
     NofilterBlockComponent,
       ObjectKeysPipe,
       DomainNavigationComponent,
-      FilterKeysPipe
-  ]
+      FilterKeysPipe,
+      DateFilterComponent,
+      NewBackupModalComponent,
+      RestoreBackupModalComponent,
+      NewDomainModalComponent,
+      FirecdnModalComponent,
+      FixedfileModalComponent
+  ],
+    entryComponents: [
+        NewBackupModalComponent,
+        RestoreBackupModalComponent,
+        FirecdnModalComponent,
+        FixedfileModalComponent,
+        NewDomainModalComponent
+    ],
 })
 export class DomainDetailsModule { }

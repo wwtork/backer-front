@@ -7,7 +7,11 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
+    wizard;
+
     constructor(private router:Router) {
+
+        this.wizard = this.router.url === '/connection-wizard' || this.router.url ===  '/';
     }
 
     ngOnInit() {

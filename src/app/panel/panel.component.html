@@ -1,4 +1,4 @@
-<header class="header">
+<header *ngIf="wizard "class="header">
   <div class="container">
     <div class="row">
       <div class="wrapper">
@@ -34,4 +34,55 @@
       </div>
     </div>
   </div>
+</header>
+<header *ngIf="!wizard" class="header nonwizard" style="padding-top:0;">
+  <div class="container-fluid header-container">
+    <div class="row">
+
+      <div class="col logo-col">
+        <a href="#" class="logo">
+          <img style="margin-left:25px;margin-top:20px;" src="assets/images/logo.png" alt="Web Support Revolution">
+        </a>
+      </div>
+      <div class="col panel-col">
+        <div class="header-buttons">
+          <div class="add-domain-block">
+            <button class="btn btn-orange">Добавить сайт</button>
+          </div>
+          <button class="btn btn-white">Помощь</button>
+        </div>
+
+
+      </div>
+      <div class="col">
+          <div class="wrapper">
+          <div class="enter-lang">
+              <div class="enter" *ngIf="!isLoggedIn()">
+                  <a [routerLink]="['/login']"><span>Вход</span></a>
+              </div>
+              <div class="enter" *ngIf="isLoggedIn()">
+                  <a [routerLink]="['/logout']"><span>Выход</span></a>
+              </div>
+              <div class="enter" *ngIf="isLoggedIn()">
+                  {{ getUser().email }}
+              </div>
+              <div class="lang">
+                  <div class="drop-block">
+                      <div class="drop-name"><img src="assets/images/blank.gif" class="sprite sprite-Russian-Federation" alt=""> <span>RU <i class="fa fa-angle-down"></i></span></div>
+                      <ul class="list-lang">
+                          <li class="active"><a href="#"><img src="assets/images/blank.gif" class="sprite sprite-Russian-Federation " alt="">Русский</a></li>
+                          <li><a href="#"><img src="assets/images/blank.gif" class="sprite sprite-United-Kingdom-Great-Britain" alt="">English</a></li>
+                          <li><a href="#"><img src="assets/images/blank.gif" class="sprite sprite-Germany" alt="">Deutsch</a></li>
+                          <li><a href="#"><img src="assets/images/blank.gif" class="sprite sprite-France" alt="">Français</a></li>
+                          <li><a href="#"><img src="assets/images/blank.gif" class="sprite sprite-Portugal" alt="">Português</a></li>
+                          <li><a href="#"><img src="assets/images/blank.gif" class="sprite sprite-China" alt="">中国</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
 </header>

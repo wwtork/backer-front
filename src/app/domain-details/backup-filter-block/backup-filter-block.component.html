@@ -1,29 +1,12 @@
-<div class="row" *ngIf="has_content">
+<div class="row with-limit-block" *ngIf="has_content">
     <div class="col block-title">
-        <h2>Title</h2>
-        <div class="btn-toolbar justify-content-between" role="toolbar"
-             aria-label="Toolbar with button groups">
-            <nav class="navbar navbar-expand-lg">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
-                        Active
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> Radio
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Radio
-                    </label>
-                </div>
-            </nav>
-            <div class="btn-group" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary">text 1</button>
-            </div>
-        </div>
+        <h2 class="float-left">Бэкапы
+        </h2>
+        <ngb-progressbar *ngIf="cnt_limit > 0" type="info" [value]="cnt ? 100 * round(cnt/cnt_limit) : 0" [striped]="true"></ngb-progressbar>
+        <button type="button" class="btn btn-secondary backup-settings-button float-right">Управление бэкапами<i class="fas fa-cog"></i></button>
     </div>
 </div>
-<div class="row" *ngIf="has_content">
+<div class="row backup-filter-block-row first-row" *ngIf="has_content">
 
 
     <div class="col-sm-8">
@@ -33,12 +16,12 @@
         <app-db-backup-content-block [parent]="this" [siteId]="siteId"></app-db-backup-content-block>
     </div>
 </div>
-<div class="row" *ngIf="has_content">
+<div class="row backup-filter-block-row" *ngIf="has_content">
     <div class="col">
         <app-backup-interval-content-block [parent]="this" [siteId]="siteId"></app-backup-interval-content-block>
     </div>
 </div>
-<div class="row" *ngIf="has_content">
+<div class="row backup-filter-block-row" *ngIf="has_content">
     <div class="col">
         <app-new-backup-content-block [parent]="this" [siteId]="siteId"></app-new-backup-content-block>
     </div>

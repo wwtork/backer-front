@@ -10,12 +10,15 @@ import {DnsSettingsModule} from "./dns-settings/dns-settings.module";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FixedfileContentBlockComponent } from './fixedfile-content-block/fixedfile-content-block.component';
 import {TicketModule} from "./ticket/ticket.module";
+import {HttpClientModule} from "@angular/common/http";
+import {HttpModule} from "@angular/http";
+import { SidePanelComponent } from './side-panel/side-panel.component';
 const routes:Routes = [
     { path: '', loadChildren: './authentication/authentication.module#AuthenticationModule'},
-    { path: '', loadChildren: './ticket/ticket-module#TicketModule'},
-    { path: '', loadChildren: './domain-details/domain-details.module#DomainDetailsModule'},
-    { path: '', loadChildren: './connection-wizard/connection-wizard.module#ConnectionWizardModule'},
-    { path: '', loadChildren: './dns-settings/dns-settings.module#DnsSettingsModule'},
+    { path: 'domain-details', loadChildren: './domain-details/domain-details.module#DomainDetailsModule'},
+    { path: 'ticket', loadChildren: './ticket/ticket.module#TicketModule'},
+    { path: 'connection-wizard', loadChildren: './connection-wizard/connection-wizard.module#ConnectionWizardModule'},
+    // { path: '', loadChildren: './dns-settings/dns-settings.module#DnsSettingsModule'},
     { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -27,9 +30,10 @@ const routes:Routes = [
         TicketModule,
         RouterModule.forRoot(routes),
         BrowserModule,
+        HttpClientModule,
+        HttpModule
     ],
     declarations: [
-        PanelComponent,
         AppComponent,
         PageNotFoundComponent,
         FixedfileContentBlockComponent

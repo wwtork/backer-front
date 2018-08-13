@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../authentication/user";
 import {AuthenticationService} from "../authentication/authentication.service";
 
@@ -10,7 +10,7 @@ import {AuthenticationService} from "../authentication/authentication.service";
 export class PanelComponent implements OnInit {
 
   user:User;
-
+  @Input() wizard = false;
   constructor() {
   }
 

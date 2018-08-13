@@ -10,7 +10,15 @@ import {NofilterContentBlockComponent} from "../nofilter-content-block/nofilter-
 export class FixedfileContentBlockComponent extends NofilterContentBlockComponent implements OnInit {
 
   protected setDataUri(){
-    this.data_uri = parameters.fixedWebsiteUri;
+    this.data_uri = parameters.fixedFileUri;
   }
+
+    protected updateInfo(key, value) {
+        let result = this.backendDataService.securedPost(parameters.switchFixedFileUri.replace('{siteId}', this.siteId.toString()), JSON.stringify({interval: value})).then((result) => {
+            this.updateContent();
+        }, (err) => {
+            return [];
+        });
+    }
 
 }

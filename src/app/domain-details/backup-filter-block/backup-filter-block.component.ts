@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NofilterBlockComponent} from "../nofilter-block/nofilter-block.component";
+import {BackendDataService} from "app/backend-data.service";
 
 @Component({
     selector: 'app-backup-filter-block',
@@ -8,8 +9,20 @@ import {NofilterBlockComponent} from "../nofilter-block/nofilter-block.component
 })
 export class BackupFilterBlockComponent extends NofilterBlockComponent implements OnInit {
 
-    constructor() {
-        super();
+    public has_count_limit = true;
+
+    constructor(protected backendDataService: BackendDataService){
+        super(backendDataService);
+        this.getLimits();
+    }
+
+    protected getLimits(){
+        this.backendDataService.getStorageLimitInfo(this.siteId).then((result) => {
+            this.cnt = result['count'];
+            this.cnt_limit = result['count_limit']
+        }, (err) => {
+            return false;
+        });
     }
 
 }

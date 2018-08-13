@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title">Новый бэкап</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss(null)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" >
+    <label>
+       SQL-бэкап
+        <input type="checkbox" [checked]="entity.sql">
+    </label>
+    <label>
+        Файловый бэкап
+        <input type="checkbox" [checked]="entity.ftp">
+    </label>
+    <label>
+        Название
+        <input type="text" [checked]="entity.name">
+    </label>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-orange" (click)="activeModal.close(entity)">Создать</button>
+</div>

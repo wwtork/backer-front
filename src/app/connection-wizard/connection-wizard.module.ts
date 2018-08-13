@@ -46,9 +46,11 @@ import { ModalComponent } from './modal/modal.component';
 import { ModalDirective } from './modal.directive';
 import { DirectoryListNodeComponent } from './directory-list-node/directory-list-node.component';
 import { DirectoryListComponent } from './directory-list/directory-list.component';
+import {AppModule} from "../app.module";
+import {PanelComponent} from "../panel/panel.component";
+import {SharedModule} from "app/shared/shared.module";
 const connectionWizardRoutes: Routes = [
-    {path: '', redirectTo: 'connection-wizard', pathMatch: 'full'},
-    {path: 'connection-wizard', component: ConnectWizardComponent, canActivate: [LoggedInGuard]},
+    {path: '', component: ConnectWizardComponent, canActivate: [LoggedInGuard]},
 ];
 @NgModule({
     imports: [
@@ -58,10 +60,10 @@ const connectionWizardRoutes: Routes = [
         Ng2DirectoryTreeModule,
         CommonModule,
         FormsModule,
+        SharedModule,
         HttpModule,
         JsonpModule,
         RouterModule.forChild(connectionWizardRoutes),
-        FormsModule,
         ReactiveFormsModule,
         NgbModule.forRoot(),
         Ng4LoadingSpinnerModule.forRoot()

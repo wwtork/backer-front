@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">Восстановение бэкапа</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss(null)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" >
+    <label>
+        Выберите тип бэкапа
+        <select (change)="onTypeChange($event)">
+            <option value="ftp">Файловый бэкап</option>
+            <option value="sql">SQL-бэкап</option>
+        </select>
+    </label>
+    <label>
+        Выберите бэкап для восстановления
+        <select (change)="onBackupChange($event)">
+            <option *ngFor="let backup of backups" value="{{ backup.id }}">{{ backup.name }} - {{ backup.date }}
+            </option>
+        </select>
+    </label>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-orange" (click)="activeModal.close(entity)">Восстановить</button>
+</div>

@@ -1,7 +1,8 @@
 
     <div *ngIf="data.status" class="card">
-      <div class="card-header">
-        Featured
+      <div class="card-header backup-card-header">
+        Файловые бэкапы
+        <span class="backup-count">{{ data.backup_count }}</span>
       </div>
       <div class="card-body with-navbar">
         <div class="row nav-row">
@@ -9,10 +10,10 @@
             {{ data.date }}
           </div>
           <div class="col-4" style="text-align: center;">
-            {{ data.files_counters.all }}
+            Файлов и папок {{ data.files_counters.all }}
           </div>
           <div class="col-4" style="text-align: right;">
-            {{ data.size }} + {{ data.size_delta }}
+            Размер {{ data.size }}<span class="backup-count">+{{ data.size_delta }}</span>
           </div>
         </div>
         <div class="row content-row">

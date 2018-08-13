@@ -1,4 +1,6 @@
 import {Component, OnInit, EventEmitter, Input} from '@angular/core';
+import {Filter} from "../filter";
+import {BackendDataService} from "../../backend-data.service";
 
 @Component({
     selector: 'app-filter-block',
@@ -10,7 +12,17 @@ export class FilterBlockComponent implements OnInit {
 
     @Input() siteId: number;
     public has_content: boolean = true;
+    public cnt_limit;
+    public cnt;
+    public has_count_limit = false;
 
+    constructor(protected backendDataService: BackendDataService){
+        if(this.has_count_limit){
+            this.getLimits();
+        }
+    }
+
+    protected getLimits(){};
 
     ngOnInit() {
 
@@ -18,8 +30,8 @@ export class FilterBlockComponent implements OnInit {
 
     public filterEvent: EventEmitter<any> = new EventEmitter();
 
-    protected submitFilter(filter: string = null) {
-        this.filterEvent.emit(filter)
+    protected submitFilter(filter: Filter = null) {
+        this.filterEvent.emit(JSON.stringify(filter));
     }
 
 }

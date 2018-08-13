@@ -8,8 +8,5 @@ import {FilterBlockComponent} from "../filter-block/filter-block.component";
 })
 export class SafetyFilterBlockComponent extends FilterBlockComponent implements OnInit {
 
-  constructor() {
-    super();
-  }
 
 }

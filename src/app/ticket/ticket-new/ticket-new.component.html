@@ -1,0 +1,335 @@
+<ng4-loading-spinner></ng4-loading-spinner>
+
+<style>
+    .card-header {
+        background: #153e5c;
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+        border-radius: 0 !important;
+    }
+
+    .card {
+        border: none;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .container .row {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .card .btn {
+        background: #59adc7;
+        color: #fefefe;
+        border: none;
+    }
+
+    .card-header-pills .btn {
+        background: #153e5c;
+        color: #fefefe;
+    }
+
+    .card-header {
+        color: #fefefe;
+    }
+
+    .btn-group-vertical {
+        background: #021c2d;
+    }
+
+    .btn-group-vertical .btn {
+        border: none;
+        height: 49px;
+        color: #3e8aa2;
+        background: #021c2d;
+    }
+
+    .content-col {
+        padding: 0;
+        background: #3099b9;
+    }
+
+    .navbar-green {
+        background: #93be39;
+        height: 49px;
+        color: #fefefe;
+    }
+
+    .navbar-green .nav-link {
+        color: #fefefe;
+    }
+
+    .header-container a {
+        color: #0166b4;
+    }
+
+    .btn-orange {
+        background: #f38e22 !important;
+        color: #fefefe;
+    }
+
+    .btn-white {
+        background: #fefefe;
+        color: #3e8aa2;
+        border: 1px solid #3e8aa2;
+        -webkit-border-radius: .25rem !important;
+        -moz-border-radius: .25rem !important;
+        border-radius: .25rem !important;
+        margin-left: 30px;
+    }
+
+    .header-buttons {
+        margin-left: 15px;
+    }
+
+    .header-buttons .btn {
+        height: 40px;
+        margin-top: 24px;
+        min-width: 157px;
+    }
+
+    .add-domain-block {
+        width: 190px;
+        height: 85px;
+        border-right: 1px solid #e6e6e6;
+        float: left;
+    }
+
+    .header-container .logo-col {
+        padding: 0;
+        margin: 0;
+        max-width: 255px;
+        width: 255px;
+        background: #021c2d;
+        height: 85px;
+    }
+
+    .header-container .panel-col {
+        background: #fefefe;
+    }
+
+    .block-title h2 {
+        color: #fefefe;
+    }
+
+    .block-title .btn {
+        background: #3099b9;
+        border-color: #fefefe;
+    }
+
+    .card-footer a {
+        color: #0065b3;
+    }
+
+    .block-title .nav-link {
+        color: #fefefe;
+    }
+
+    .block-title .btn {
+        background: #3099b9;
+        border: none;
+    }
+
+    .block-title .btn:active {
+        background-color: #3099b9 !important;
+    }
+
+    .menu-col {
+        padding: 0;
+        margin: 0;
+        max-width: 255px;
+        width: 255px;
+    }
+
+    .menu-col .btn-group-vertical {
+        width: 255px;
+    }
+
+    .message-table th {
+        width: 120px;
+        padding-right: 0;
+    }
+
+    .message-table th span {
+        float: right;
+        width: 100%;
+        -webkit-border-top-right-radius: 0;
+        -webkit-border-bottom-right-radius: 0;
+        -moz-border-top-right-radius: 0;
+        -moz-border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .message-table a {
+        color: #0065b3;
+        margin-left: 20px;
+        border-color: #cfcfcf;
+    }
+
+    .info-box-count-new i {
+        font-size: 13pt;
+        vertical-align: top;
+        margin-top: 17px;
+    }
+
+    .info-box-count-all.warning i {
+        font-size: 9pt;
+        margin-right: 5px;
+    }
+
+    .card-body h1 {
+        color: #59adc7;
+    }
+
+    .btn-circle i {
+        margin-top: 5px;
+    }
+
+    .card-body.with-navbar h5 {
+        margin-top: 15px;
+        color: #58aec5;
+    }
+
+    .scrollbar-cyan::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        background-color: #F5F5F5;
+        border-radius: 10px;
+    }
+
+    .scrollbar-cyan::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
+
+    .scrollbar-cyan::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        background-color: #00bcd4;
+    }
+
+    .thin::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .example-1 {
+        position: relative;
+        overflow-y: scroll;
+        height: 200px;
+    }
+
+    .odd-even-block li:nth-child(odd) .card {
+        background: #fff;
+        padding-left: 5px;
+    }
+
+    .odd-even-block .card {
+        text-align: left;
+    }
+
+    .odd-even-block li:nth-child(even) .card {
+        background: #ccc;
+        border-left: 5px solid #999;
+    }
+
+    .user-specification {
+        color: darkgrey;
+        margin-bottom: 10px;
+    }
+
+    .user-username {
+        font-size: 1.1rem;
+        margin-bottom: 0;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .add-comment-button {
+        float: right;
+        margin-top: 31px;
+        padding: 10px;
+    }
+
+    .add-comment-form {
+        text-align: left;
+        margin: 20px 19px 20px 49px;
+    }
+
+    .add-comment-form textarea {
+        border: 1px solid #ddd;
+        min-height: 200px;
+    }
+
+    input.btn-orange {
+        width: auto;
+
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
+<panel></panel>
+<main>
+    <div class="container-fluid">
+
+        <div class="row">
+            <side-panel [currentPage]="'ticket-list'"></side-panel>
+            <div class="col content-col">
+                <ul class="navbar navbar-green nav"></ul>
+                <div class="container content-container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card" style="padding:0;margin:0;">
+                                <div class="card-header">
+                                    title text
+                                </div>
+                                <div class="card-body" style="text-align: center;padding: 0 0 20px;">
+                                    <form [formGroup]="ticketForm" (ngSubmit)="saveMessage()" class="add-comment-form">
+                                        <label>Тема</label>
+                                        <input type="text"
+                                               placeholder="subject text"
+                                               formControlName="subject">
+                                        <div *ngFor="let message of ticketForm?.controls['messages'].controls; let i = index;">
+                                            <div class="form-group" [formGroup]="message">
+                                                <label>Сообщение</label>
+                                                <textarea formControlName="message" class="form-control-plaintext"
+                                                          type="text"
+                                                          placeholder="message text">{{ message }}</textarea>
+                                            </div>
+                                        </div>
+                                        <input class="btn btn-orange add-comment-button" type="submit"
+                                               value="Создать"/>
+
+                                        <!--<div class="form-group add-comment-form">-->
+                                        <!--<textarea [(ngModel)]="message" #messageText="ngModel" name="messageText" class="form-control-plaintext" type="text" placeholder="message text">{{ message }}</textarea>-->
+                                        <!--<input class="btn btn-orange add-comment-button" type="submit" value="Add comment" />-->
+                                        <!--</div>-->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

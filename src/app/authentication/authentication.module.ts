@@ -8,6 +8,9 @@ import {EmailConfirmationWarningComponent} from "./email-confirmation-warning/em
 import {FormsModule}   from '@angular/forms';
 import {CommonModule} from "@angular/common";
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
+import {PanelComponent} from "../panel/panel.component";
+import {ConnectionWizardModule} from "../connection-wizard/connection-wizard.module";
+import {TicketModule} from "../ticket/ticket.module";
 // import {BrowserModule} from "@angular/platform-browser";
 const authRoutes: Routes = [
     {path: 'register', component: RegisterComponent},

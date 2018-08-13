@@ -1,14 +1,15 @@
 <div class="card">
 
   <div class="card-body">
-    <h5 class="card-title">Special title treatment
+    <h5 class="card-title">Защитный режим FixedFile
       <span class="switch floated-right">
-                                          <input type="checkbox" class="switch" id="switch-id" checked>
+                                          <input type="checkbox" class="switch" id="switch-id" [checked]="data?.ff_on" (change)="updateInfo()">
                                           <label for="switch-id"></label>
                                         </span>
     </h5>
+      Отключите режим, если необходимо внести изменения на сайте, иначе они будут заблокированы
   </div>
-  <div class="card-footer centered-content">
-    <a href="#">Go somewhere</a>
-  </div>
+  <!--<div class="card-footer centered-content">-->
+    <!--<a href="#">Go somewhere</a>-->
+  <!--</div>-->
 </div>

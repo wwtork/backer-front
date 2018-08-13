@@ -1,12 +1,10 @@
 <div class="card">
 
   <div class="card-body">
-    <h5 class="card-title">Special title treatment<a href="#" class="btn btn-primary">Go
-      somewhere</a></h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional
-      content.</p>
+    <h5 class="card-title">FireCDN<span [ngClass]="{true:'firecdn-on', false:'firecdn-off'}[data?.fcdn_on]"><i class="fas fa-cloud"></i>{{ data.status }}</span><a class="btn btn-primary">Диагностика настроек</a></h5>
+
   </div>
   <div class="card-footer centered-content">
-    <a href="#">Go somewhere</a>
+    <a href="#">Показать дополнительные настройки</a>
   </div>
 </div>

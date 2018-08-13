@@ -1,0 +1,20 @@
+<div class="btn-toolbar justify-content-between" role="toolbar"
+     aria-label="Toolbar with button groups">
+  <nav class="navbar navbar-expand-lg">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active">
+        <input type="radio" name="options" id="option1" autocomplete="off" [checked]="current_period == 'day'" (onclick)="submitFilter(null, null, '-1 day')">
+        День
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option2" autocomplete="off" [checked]="current_period == 'week'" (onclick)="submitFilter(null, null, '-7 day')"> Неделя
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option3" autocomplete="off" [checked]="current_period == 'month'" (onclick)="submitFilter(null, null, '-1 month')"> Месяц
+      </label>
+    </div>
+  </nav>
+  <div class="btn-group" role="group" aria-label="First group">
+    <button type="button" class="btn btn-secondary">text 1</button>
+  </div>
+</div>
