@@ -18,7 +18,6 @@ export class DomainDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      console.log('routed');
       this.siteId = +params['siteId'];
       this.changeDetectionRef
     });

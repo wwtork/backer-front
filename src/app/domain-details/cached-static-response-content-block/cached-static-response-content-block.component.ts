@@ -10,7 +10,6 @@ import {parameters} from "../../../parameters";
 export class CachedStaticResponseContentBlockComponent extends ContentBlockComponent implements OnInit {
 
     protected setDataUri() {
-        this.data['percent'] = 0;
         this.data_uri = parameters.cachedStaticUri;
     }
 }

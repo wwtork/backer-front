@@ -5,19 +5,28 @@
   </button>
 </div>
 <div class="modal-body" >
-    <label>
-       SQL-бэкап
-        <input type="checkbox" [checked]="entity.sql">
-    </label>
-    <label>
-        Файловый бэкап
-        <input type="checkbox" [checked]="entity.ftp">
-    </label>
-    <label>
-        Название
-        <input type="text" [checked]="entity.name">
-    </label>
+    <form [formGroup]="backupForm" class="add-comment-form">
+        <label>
+           SQL-бэкап
+            <input type="checkbox" formControlName="sql">
+        </label>
+        <label>
+            Файловый бэкап
+            <input type="checkbox" formControlName="ftp">
+        </label>
+        <label>
+            Название
+            <input type="text" formControlName="name">
+        </label>
+        <label>
+            Режим сканирования
+            <select type="text" formControlName="scanMode">
+                <option [value]="0">Обычный</option>
+                <option [value]="1">Глубокое сканирование</option>
+            </select>
+        </label>
+    </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-orange" (click)="activeModal.close(entity)">Создать</button>
+  <button type="button" class="btn btn-orange" (click)="activeModal.close(createEntity(entity))">Создать</button>
 </div>

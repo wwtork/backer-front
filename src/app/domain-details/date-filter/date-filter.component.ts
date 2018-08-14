@@ -2,33 +2,36 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Filter} from "../filter";
 
 @Component({
-  selector: 'app-date-filter',
-  templateUrl: './date-filter.component.html',
-  styleUrls: ['./date-filter.component.css']
+    selector: 'app-date-filter',
+    templateUrl: './date-filter.component.html',
+    styleUrls: ['./date-filter.component.css']
 })
 export class DateFilterComponent implements OnInit {
 
-  constructor() { }
+    current_period = 'day';
+    static periods = {
+        'day': '-1 day',
+        'week': '-7 days',
+        'month': '-1 month'
+    };
 
-  current_period = 'day';
+    @Output() filterSubmitted = new EventEmitter<Filter>();
 
-  static periods = {
-      '-1 day': 'day',
-      '-7 days': 'week',
-      '-1 month': 'month'
-  };
+    constructor() {
+    }
 
-  @Output() filterSubmitted = new EventEmitter<Filter>();
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        let filter = new Filter(null, null, DateFilterComponent.periods[this.current_period]);
+        this.filterSubmitted.emit(filter);
+    }
 
-  submitFilter(since:string, till:string, period:string){
-      if(period){
-          this.current_period = DateFilterComponent.periods[period];
-      }
-      let filter = new Filter(since, till, period);
-      this.filterSubmitted.emit(filter);
-  }
+    submitFilter(since: string, till: string, period: string) {
+        if (period) {
+            this.current_period = period;
+        }
+        let filter = new Filter(since, till, DateFilterComponent.periods[period]);
+        this.filterSubmitted.emit(filter);
+    }
 
 }

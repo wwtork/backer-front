@@ -2,15 +2,15 @@
      aria-label="Toolbar with button groups">
   <nav class="navbar navbar-expand-lg">
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-secondary active">
-        <input type="radio" name="options" id="option1" autocomplete="off" [checked]="current_period == 'day'" (onclick)="submitFilter(null, null, '-1 day')">
+      <label class="btn btn-secondary" [ngClass]="{true:'active', false:''}[current_period == 'day']" (click)="submitFilter(null, null, 'day')">
+        <input type="radio" name="options" id="option1" autocomplete="off">
         День
       </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="options" id="option2" autocomplete="off" [checked]="current_period == 'week'" (onclick)="submitFilter(null, null, '-7 day')"> Неделя
+      <label class="btn btn-secondary" [ngClass]="{true:'active', false:''}[current_period == 'week']" (click)="submitFilter(null, null, 'week')">
+        <input type="radio" name="options" id="option2" autocomplete="off"> Неделя
       </label>
-      <label class="btn btn-secondary">
-        <input type="radio" name="options" id="option3" autocomplete="off" [checked]="current_period == 'month'" (onclick)="submitFilter(null, null, '-1 month')"> Месяц
+      <label class="btn btn-secondary" [ngClass]="{true:'active', false:''}[current_period == 'month']" (click)="submitFilter(null, null, 'month')">
+        <input type="radio" name="options" id="option3" autocomplete="off"> Месяц
       </label>
     </div>
   </nav>

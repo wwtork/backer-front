@@ -10,8 +10,6 @@ import {NofilterContentBlockComponent} from "../nofilter-content-block/nofilter-
 export class FileBackupContentBlockComponent extends NofilterContentBlockComponent implements OnInit {
 
     protected setDataUri(){
-        this.data['files_counters'] = {};
-        this.data['antivirus'] = {};
         this.data_uri = parameters.fileBackupUri;
     }
 

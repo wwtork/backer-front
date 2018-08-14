@@ -1,7 +1,8 @@
-<div class="row with-limit-block" *ngIf="has_content">
+<div class="row with-limit-block speed-block" *ngIf="has_content">
   <div class="col block-title">
     <h2 class="float-left">Скорость</h2>
     <ngb-progressbar *ngIf="cnt_limit > 0" type="info" [value]="cnt ? 100 * round(cnt/cnt_limit) : 0" [striped]="true"></ngb-progressbar>
+      <div class="clearfix"></div>
     <app-date-filter (filterSubmitted)="submitFilter($event)"></app-date-filter>
   </div>
 </div>

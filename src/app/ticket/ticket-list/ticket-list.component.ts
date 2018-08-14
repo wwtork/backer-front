@@ -14,11 +14,10 @@ export class TicketListComponent implements OnInit {
 
   constructor(ticketService: TicketService) {
     this.tickets = ticketService.getTicketList();
-    console.log(this.tickets);
   }
 
   ngOnInit() {
-      console.log(this.tickets);
+
   }
 
 }

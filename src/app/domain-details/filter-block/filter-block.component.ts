@@ -31,7 +31,7 @@ export class FilterBlockComponent implements OnInit {
     public filterEvent: EventEmitter<any> = new EventEmitter();
 
     protected submitFilter(filter: Filter = null) {
-        this.filterEvent.emit(JSON.stringify(filter));
+        this.filterEvent.emit(filter);
     }
 
 }

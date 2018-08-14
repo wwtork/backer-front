@@ -18,7 +18,6 @@ export class TicketService {
         return this.http.get(parameters.apiUrl + parameters.getTicketUri.replace('{ticketId}', id) + '?api_key=' + AuthenticationService.getUser().apiKey)
             .toPromise()
             .then(res => {
-                console.log(res.json().ticket);
                 return res.json().ticket ? new Ticket().deserialize(res.json().ticket) : null
             })
     }

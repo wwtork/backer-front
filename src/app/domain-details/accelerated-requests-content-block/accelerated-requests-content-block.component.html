@@ -1,12 +1,11 @@
-<div *ngIf="data.status" class="card">
+<div *ngIf="data?.status" class="card">
   <div class="card-header">
-    Geography
+    Ускоренные запросы
   </div>
   <div class="card-body centered-content">
-    <h1 class="card-title">{{ data.accelerated_requests }}</h1>
+    <h1 class="card-title">{{ data?.accelerated_requests }}</h1>
     <p class="card-text">
-      <a href="#" class="card-body-link">Go somewhere</a><br/><br/>
-      <a href="#" class="btn btn-circle btn-lg"><i class="fas fa-sliders-h"></i></a>
+      <a href="#" class="btn btn-circle btn-lg" style="font-weight: 400;font-size: 21pt !important;padding-top: 8px !important;padding-left: 13px !important;"><i class="fas fa-magic"></i></a>
     </p>
   </div>
 </div>

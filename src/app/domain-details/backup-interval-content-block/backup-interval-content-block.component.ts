@@ -17,9 +17,6 @@ export class BackupIntervalContentBlockComponent extends NofilterContentBlockCom
 
 
     protected setDataUri() {
-        this.data['file_interval_values'] = {};
-        this.data['storage_time_values'] = {};
-        this.data['db_interval_values'] = {};
         this.data_uri = parameters.storageInfoUri;
     }
 

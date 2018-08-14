@@ -12,7 +12,6 @@ import { DomainDetailsComponent } from './domain-details/domain-details.componen
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {BackendDataService} from "../backend-data.service";
 import {GlobalDataService} from "../connection-wizard/global-data.service";
-import {FilterEventService} from "./filter-event.service";
 import { SpeedFilterBlockComponent } from './speed-filter-block/speed-filter-block.component';
 import { CachedDynamicResponseContentBlockComponent } from './cached-dynamic-response-content-block/cached-dynamic-response-content-block.component';
 import { CachedStaticResponseContentBlockComponent } from './cached-static-response-content-block/cached-static-response-content-block.component';
@@ -41,8 +40,6 @@ import { NofilterBlockComponent } from './nofilter-block/nofilter-block.componen
 import {ObjectKeysPipe} from "../object-keys.pipe";
 import { DomainNavigationComponent } from './domain-navigation/domain-navigation.component';
 import {FilterKeysPipe} from "../filter-keys.pipe";
-import {AppModule} from "../app.module";
-import {PanelComponent} from "../panel/panel.component";
 import {SharedModule} from "app/shared/shared.module";
 import { DateFilterComponent } from './date-filter/date-filter.component';
 import {NgbModalModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
@@ -51,6 +48,7 @@ import { RestoreBackupModalComponent } from './restore-backup-modal/restore-back
 import { NewDomainModalComponent } from './new-domain-modal/new-domain-modal.component';
 import { FirecdnModalComponent } from './firecdn-modal/firecdn-modal.component';
 import { FixedfileModalComponent } from './fixedfile-modal/fixedfile-modal.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const domainDetailsRoutes: Routes = [
   {path: ':siteId', component: DomainDetailsComponent, canActivate: [LoggedInGuard]}
@@ -60,10 +58,12 @@ const domainDetailsRoutes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
+      FormsModule,
     NgbModalModule.forRoot(),
     RouterModule.forChild(domainDetailsRoutes),
     Ng4LoadingSpinnerModule.forRoot(),
-      NgbModule.forRoot()
+      NgbModule.forRoot(),
+      ReactiveFormsModule
   ],
   providers: [
     LoggedInGuard,

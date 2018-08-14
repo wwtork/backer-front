@@ -16,7 +16,7 @@ export class DnsSettingsComponent extends HostingStage implements OnInit {
     dnsInfo = {};
 
     onInit() {
-        console.log(this.hostingSettings.firewallScanResult)
+
     }
 
     onSave() {

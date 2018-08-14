@@ -29,7 +29,6 @@ export class NewBackupContentBlockComponent extends NofilterContentBlockComponen
     public processModalResult(result) {
         if(result instanceof Backup){
             this.backendDataService.createBackup(result, this.siteId).then((result) => {
-                console.log(result);
             }, (err) => {
                 this.error = err;
                 return false;
@@ -37,7 +36,6 @@ export class NewBackupContentBlockComponent extends NofilterContentBlockComponen
         }
         else if(result instanceof Restore){
             this.backendDataService.restoreBackup(result, this.siteId).then((result) => {
-                console.log(result);
             }, (err) => {
                 this.error = err;
                 return false;

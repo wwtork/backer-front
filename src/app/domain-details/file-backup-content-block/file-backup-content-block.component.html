@@ -1,19 +1,19 @@
 
-    <div *ngIf="data.status" class="card">
+    <div *ngIf="data?.status" class="card">
       <div class="card-header backup-card-header">
         Файловые бэкапы
-        <span class="backup-count">{{ data.backup_count }}</span>
+        <span class="backup-count">{{ data?.backup_count }}</span>
       </div>
       <div class="card-body with-navbar">
         <div class="row nav-row">
           <div class="col-4" style="text-align: left;">
-            {{ data.date }}
+            {{ data?.date }}
           </div>
           <div class="col-4" style="text-align: center;">
-            Файлов и папок {{ data.files_counters.all }}
+            Файлов и папок {{ data?.files_counters?.all }}
           </div>
           <div class="col-4" style="text-align: right;">
-            Размер {{ data.size }}<span class="backup-count">+{{ data.size_delta }}</span>
+            Размер {{ data?.size }}<span class="backup-count">+{{ data?.size_delta }}</span>
           </div>
         </div>
         <div class="row content-row">
@@ -26,10 +26,10 @@
                   <span class="info-box-title">Новые файлы</span>
                   <div class="info-box-count">
                     <div class="info-box-count-new"><i
-                            class="fas fa-plus-circle"></i>{{ data.files_counters.newSimple}}
+                            class="fas fa-plus-circle"></i>{{ data?.files_counters?.newSimple}}
                     </div>
                     <div class="info-box-count-all warning"><i
-                            class="fas fa-exclamation-triangle"></i>{{ data.files_counters.newDangerous}}
+                            class="fas fa-exclamation-triangle"></i>{{ data?.files_counters?.newDangerous}}
                     </div>
                   </div>
                 </div>
@@ -39,10 +39,10 @@
                   <span class="info-box-title">Измененные файлы</span>
                   <div class="info-box-count">
                     <div class="info-box-count-new"><i
-                            class="fas fa-plus-circle"></i>{{ data.files_counters.changedSimple }}
+                            class="fas fa-plus-circle"></i>{{ data?.files_counters?.changedSimple }}
                     </div>
                     <div class="info-box-count-all warning"><i
-                            class="fas fa-exclamation-triangle"></i>{{ data.files_counters.changedDangerous}}
+                            class="fas fa-exclamation-triangle"></i>{{ data?.files_counters?.changedDangerous}}
                     </div>
                   </div>
                 </div>
@@ -54,10 +54,10 @@
                   <span class="info-box-title">Удаленные файлы</span>
                   <div class="info-box-count">
                     <div class="info-box-count-new"><i
-                            class="fas fa-plus-circle"></i>{{ data.files_counters.deleted}}
+                            class="fas fa-plus-circle"></i>{{ data?.files_counters?.deleted}}
                     </div>
                     <!--<div class="info-box-count-all warning"><i-->
-                            <!--class="fas fa-exclamation-triangle"></i>{{ data.files_counters.newDangerous}}-->
+                            <!--class="fas fa-exclamation-triangle"></i>{{ data?.files_counters?.newDangerous}}-->
                     <!--</div>-->
                   </div>
                 </div>
@@ -73,10 +73,10 @@
                   <span class="info-box-title">Угрозы</span>
                   <div class="info-box-count">
                     <div class="info-box-count-new"><i
-                            class="fas fa-plus-circle"></i>{{ data.antivirus.virus }}
+                            class="fas fa-plus-circle"></i>{{ data?.antivirus?.virus }}
                     </div>
                     <!--<div class="info-box-count-all warning"><i-->
-                            <!--class="fas fa-exclamation-triangle"></i>{{ data.antivirus.virus_all }}-->
+                            <!--class="fas fa-exclamation-triangle"></i>{{ data?.antivirus?.virus_all }}-->
                     <!--</div>-->
                   </div>
                 </div>
@@ -88,10 +88,10 @@
                   <span class="info-box-title">Предупреждения</span>
                   <div class="info-box-count">
                     <div class="info-box-count-new"><i
-                            class="fas fa-plus-circle"></i>{{ data.antivirus.warning }}
+                            class="fas fa-plus-circle"></i>{{ data?.antivirus?.warning }}
                     </div>
                     <!--<div class="info-box-count-all warning"><i-->
-                            <!--class="fas fa-exclamation-triangle"></i>{{ data.antivirus.warning_all }}-->
+                            <!--class="fas fa-exclamation-triangle"></i>{{ data?.antivirus?.warning_all }}-->
                     <!--</div>-->
                   </div>
                 </div>

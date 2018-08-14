@@ -10,9 +10,6 @@ import {TicketService} from "./ticket.service";
 import {TicketResolve} from "./ticket.resolve";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TicketNewComponent } from './ticket-new/ticket-new.component';
-import {SidePanelComponent} from "app/side-panel/side-panel.component";
-import {PanelComponent} from "../panel/panel.component";
-import {AppModule} from "../app.module";
 import {SharedModule} from "../shared/shared.module";
 
 const ticketRoutes: Routes = [

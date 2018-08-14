@@ -4197,3 +4197,6 @@ main.domain-details .btn-white {
     height: 20px;
     border-radius: .90rem;
 }
+.speed-block .card {
+   height: 100% !important;
+}

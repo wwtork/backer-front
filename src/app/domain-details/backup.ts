@@ -4,6 +4,7 @@ export class Backup {
     name:string = '';
     date:string = '';
     id:number;
+    scanMode:number = 0;
 
     deserialize(input: any) {
         Object.assign(this, input);

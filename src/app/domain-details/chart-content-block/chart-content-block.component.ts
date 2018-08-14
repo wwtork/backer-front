@@ -21,10 +21,9 @@ export class ChartContentBlockComponent extends ContentBlockComponent implements
     private simple_points = [];
     private offset = 20;
     private y_offset = 60;
+    private hor_bar;
 
-    private hor_bar = ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00',
-        '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
-    ];
+    private current_chart = 'chart_request';
 
     private chartDatas = [
         {
@@ -47,39 +46,46 @@ export class ChartContentBlockComponent extends ContentBlockComponent implements
         }
     ];
 
-    ngAfterViewInit(){
-        if(!this.data['status']) return;
-        this.ctxObject = this.lineChart.nativeElement;
-        this.ctx = this.ctxObject.getContext('2d');
-        this.step = this.ctx.canvas.width / (this.hor_bar.length);
-        this.coord_coef = this.getCoef();
-        this.updateEvent.subscribe(data => this.initDrawChart(data));
-    }
-
     protected setDataUri() {
-        this.data['status'] = false;
         this.data_uri = parameters.chartUri;
     }
 
+    ngAfterViewInit(){
+        this.updateEvent.subscribe(data => this.initDrawChart(data));
+    }
+
     public initDrawChart(data) {
+        console.log('draw chart');
+        this.ctxObject = this.lineChart.nativeElement;
+        this.ctx = this.ctxObject.getContext('2d');
+        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+        this.hor_bar = this.data['periods'];
+        this.step = this.ctx.canvas.width / (this.hor_bar.length);
+        this.coord_coef = this.getCoef();
+        this.simple_points = [];
+        this.points = [];
         this.chartDatas[0].points = [];
         this.chartDatas[1].points = [];
         this.chartDatas[0].points_data = [];
         this.chartDatas[1].points_data = [];
-        for(let i in data.chart){
-            this.chartDatas[0].points.push(data.chart[i]['acc_requests']);
-            this.chartDatas[1].points.push(data.chart[i]['all_requests']);
-            this.chartDatas[0].points_data.push(data.chart[i]['acc_requests']);
-            this.chartDatas[1].points_data.push(data.chart[i]['all_requests']);
+        for(let i in data[this.current_chart]){
+            if(data[this.current_chart].hasOwnProperty(i)) {
+                this.chartDatas[0].points.push(data[this.current_chart][i]['acc_requests']);
+                this.chartDatas[1].points.push(data[this.current_chart][i]['all_requests']);
+                this.chartDatas[0].points_data.push(data[this.current_chart][i]['acc_requests']);
+                this.chartDatas[1].points_data.push(data[this.current_chart][i]['all_requests']);
+            }
         }
 
        // this.ctxObject.popover({content: 'asd', placement: 'top'});
         this.drawChart();
+        this.drawText();
         let chart, i = 0;
         while (chart = this.chartDatas[i++]) {
-            this.drawLine(chart);
-            this.drawLine(chart);
+            this.preparePoints(chart);
         }
+        this.drawLines(this.points);
+        this.drawLines(this.simple_points);
         this.drawPoints();
         let self = this;
         this.ctx.stroke();
@@ -135,6 +141,15 @@ export class ChartContentBlockComponent extends ContentBlockComponent implements
         // this.ctxObject.popover('hide');
     }
 
+    private drawText(){
+        this.ctx.beginPath();
+        for (let r = 0; r < 5; r++) {
+            this.ctx.fillText(r * Math.round(this.y_offset / this.coord_coef) + '', 0, this.ctx.canvas.height - r * this.y_offset);
+        }
+        this.ctx.closePath();
+        this.ctx.stroke();
+    }
+
     private drawChart() {
         this.ctx.beginPath();
         this.ctx.strokeStyle = '#cccccc';
@@ -145,33 +160,26 @@ export class ChartContentBlockComponent extends ContentBlockComponent implements
         this.ctx.lineTo(0, 0);
         this.ctx.closePath();
         this.ctx.stroke();
-        this.ctx.beginPath();
-        for (let s = 0; s < this.hor_bar.length; s++) {
-            this.ctx.fillText(this.hor_bar[s], s * this.step, this.ctx.canvas.height);
-        }
-        this.ctx.closePath();
-        this.ctx.stroke();
-        this.ctx.beginPath();
-        for (let r = 0; r < 5; r++) {
-            this.ctx.fillText(r * Math.round(this.y_offset / this.coord_coef) + '', 0, this.ctx.canvas.height - r * this.y_offset);
-        }
-        this.ctx.closePath();
-        this.ctx.stroke();
     }
 
-    private drawLine(data) {
-        this.ctx.beginPath();
-        this.ctx.strokeStyle = data.color;
-        this.ctx.lineWidth = data.line_weight;
+    private preparePoints(data) {
         for (let i in data.points) {
-            if (!data.points.hasOwnProperty(i)) continue;
             this.index = parseInt(i);
-            this.ctx.moveTo(this.step * this.index, this.ctx.canvas.height - this.offset - data.points[this.index] * this.coord_coef);
-            this.ctx.lineTo(this.step * (this.index + 1), this.ctx.canvas.height - this.offset - data.points[this.index + 1] * this.coord_coef);
             if (data.hoverable)
-                this.points.push([this.step * (this.index + 1), this.ctx.canvas.height - this.offset - data.points[this.index + 1] * this.coord_coef, data, false, data.points_data[this.index + 1]]);
+                this.points.push([this.step * this.index, this.ctx.canvas.height - this.offset - data.points[this.index] * this.coord_coef, data, false, data.points_data[this.index]]);
             else
-                this.simple_points.push([this.step * (this.index + 1), this.ctx.canvas.height - this.offset - data.points[this.index + 1] * this.coord_coef, data, false, data.points_data[this.index + 1]]);
+                this.simple_points.push([this.step * this.index, this.ctx.canvas.height - this.offset - data.points[this.index] * this.coord_coef, data, false, data.points_data[this.index]]);
+        }
+    }
+    private drawLines(points) {
+        this.ctx.beginPath();
+        let i = 0, point;
+        this.ctx.strokeStyle = points[0][2].color;
+        this.ctx.lineWidth = points[0][2].line_weight;
+        this.ctx.moveTo(0, this.ctx.canvas.height - this.offset);
+        while (point = points[i++]) {
+            this.ctx.lineTo(point[0], point[1]);
+            this.ctx.moveTo(point[0], point[1]);
         }
         this.ctx.closePath();
         this.ctx.stroke();

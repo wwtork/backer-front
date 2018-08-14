@@ -7,10 +7,9 @@ import {parameters} from "../../../parameters";
     templateUrl: './cached-dynamic-response-content-block.component.html',
     styleUrls: ['./cached-dynamic-response-content-block.component.css']
 })
-export class CachedDynamicResponseContentBlockComponent extends ContentBlockComponent implements OnInit {
+export class CachedDynamicResponseContentBlockComponent extends ContentBlockComponent implements OnInit{
 
     protected setDataUri() {
-        this.data['percent'] = 0;
         this.data_uri = parameters.cachedDynamicUri;
     }
 }

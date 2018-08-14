@@ -29,8 +29,6 @@ export class TicketNewComponent implements OnInit {
         });
 
         this.addMessage();
-
-        console.log(this.ticketForm.controls['messages']);
     }
 
     ngOnInit() {
@@ -61,7 +59,6 @@ export class TicketNewComponent implements OnInit {
     }
 
     saveMessage() {
-        console.log(this.ticketForm.value);
         let ticket = new Ticket().deserialize(this.ticketForm.value);
         ticket.user = new User();
         ticket.user.email = AuthenticationService.getUser().email;

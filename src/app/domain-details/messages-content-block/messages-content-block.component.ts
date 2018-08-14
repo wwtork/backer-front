@@ -10,7 +10,6 @@ import {NofilterContentBlockComponent} from "../nofilter-content-block/nofilter-
 export class MessagesContentBlockComponent extends NofilterContentBlockComponent implements OnInit {
 
   protected setDataUri(){
-    this.data['messages'] = [];
     this.data_uri = parameters.messagesUri;
   }
 

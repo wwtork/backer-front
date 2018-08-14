@@ -29,10 +29,7 @@ export class ContentBlockComponent implements OnInit {
         this.backendDataService.getContentBlockData(this.data_uri.replace('{siteId}', this.siteId.toString()), filter).then((result) => {
             this.data = result;
             this.spinnerService.hide();
-            if(!result['status'])
-                this.parent.has_content = false;
-            else
-                this.updateEvent.emit(result);
+            this.updateEvent.emit(result);
         }, (err) => {
             this.spinnerService.hide();
             this.error = err;
@@ -45,16 +42,16 @@ export class ContentBlockComponent implements OnInit {
 
     }
 
-    ngOnChanges() {
-        this.filterEvent.subscribe(filter => this.updateContent(filter));
-        this.setDataUri();
-        this.updateContent();
-    }
+    // ngOnChanges() {
+    //     this.setDataUri();
+    //     this.filterEvent.subscribe(filter => this.updateContent(filter));
+    //     // this.updateContent();
+    // }
 
     ngOnInit() {
-        this.filterEvent.subscribe(filter => this.updateContent(filter));
         this.setDataUri();
-        this.updateContent();
+        this.filterEvent.subscribe(filter => this.updateContent(filter));
+        // this.updateContent();
     }
 
     public processModalResult(result) {

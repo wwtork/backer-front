@@ -27,10 +27,7 @@ export class NofilterContentBlockComponent implements OnInit {
     if(!this.data_uri) return;
     this.backendDataService.getContentBlockData(this.data_uri.replace('{siteId}', this.siteId.toString()), null).then((result) => {
       this.data = result;
-      if(!result['status'])
-        this.parent.has_content = false;
-      else
-        this.updateEvent.emit(result);
+      this.updateEvent.emit(result);
     }, (err) => {
       this.error = err;
       return false;
@@ -57,7 +54,6 @@ export class NofilterContentBlockComponent implements OnInit {
     modalRef.componentInstance.siteId = this.siteId;
     modalRef.result.then(
         (result) => {
-            console.log(result);
           this.processModalResult(result);
         },
         (result: string) => {

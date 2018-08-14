@@ -1,16 +1,16 @@
 
-    <div *ngIf="data.status" class="card">
+    <div *ngIf="data?.status" class="card">
       <div class="card-header backup-card-header">
         SQL-бэкапы
-        <span class="backup-count">{{ data.backup_count }}</span>
+        <span class="backup-count">{{ data?.backup_count }}</span>
       </div>
       <div class="card-body with-navbar one-row">
         <div class="row nav-row">
           <div class="col-5" style="text-align:left;">
-            {{ data.date }}
+            {{ data?.date }}
           </div>
           <div class="col-7" style="text-align:right;">
-            Размер {{ data.size }}<span class="backup-count">+{{ data.size_delta }}</span>
+            Размер {{ data?.size }}<span class="backup-count">+{{ data?.size_delta }}</span>
           </div>
         </div>
         <h5 style="margin-left: 20px;" class="green-title"><span
